@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { PostsType } from "../types/PostsType";
 
-export default function BlogPosts({ post }) {
+export default function BlogPosts({ post }: { post: PostsType }) {
 
   const { title, excerpt, content, categories, image, authors } = post.attributes;
   const thumpNail = `http://localhost:1337${image.data[0].attributes.formats.thumbnail.url}`

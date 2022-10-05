@@ -1,5 +1,9 @@
 // * PostType -------------------------
 
+export interface ServerSidePosts {
+  data: PostsType[];
+  meta: any
+}
 export interface PostsType {
   id: number;
   attributes: PostAttributes;
@@ -9,9 +13,9 @@ export interface PostAttributes {
   title: string;
   excerpt: string;
   content: string;
-  createdAt: Date;
-  updatedAt: Date;
-  publishedAt: Date;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
   slug: string;
   image: ImageType;
   authors: AuthorsType;
