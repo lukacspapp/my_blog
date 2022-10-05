@@ -1,25 +1,11 @@
-
-import Image from "next/image";
 import Link from "next/link";
 
 export default function BlogPosts({ post }) {
 
-  // console.log(post.attributes.categories.data[0].attributes.name);
-
   const { title, excerpt, content, categories, image, authors } = post.attributes;
-
   const thumpNail = `http://localhost:1337${image.data[0].attributes.formats.thumbnail.url}`
-
-
-  // console.log(image.data[0].attributes.formats.thumbnail.url);
-  console.log('authors',authors);
-
-
-
+  const author = authors.data[0].attributes.name;
   const smallImg = `http://localhost:1337${image.data[0].attributes.formats.small.url}`
-
-  // console.log('images-----------',post.map(post => post.attributes.image.data));
-
 
 
   return (
@@ -37,38 +23,8 @@ export default function BlogPosts({ post }) {
           </div>
         </div>
         <span className="text-sm text-gray-500 dark:text-gray-300">{post.attributes.createdAt.substring(0, 10)}</span>
-        <h1>Kitti</h1>
+        <h1>{author}</h1>
       </div>
     </div>
   )
-
-
-  // return (
-  //   <Link href={`blog/${post.attributes.slug}`}>
-  //     <div className="card w-96 bg-base-100 shadow-xl image-full">
-  //       <figure>
-  //         {/* <Image src={smallImg} width={50} height={38} layout='responsive'  /> */}
-  //         <img src={smallImg} alt="Shoes" className="rounded-xl" />
-  //       </figure>
-  //       <div className="card-body">
-  //         <h2 className="card-title">
-  //           <div className="badge badge-secondary">NEW</div>
-  //         </h2>
-  //         <p>{excerpt}</p>
-  //         <div className="card-actions justify-end">
-  //           {authors.data.map((author: any) => {
-  //             return (
-  //               <div className="badge badge-outline">{author.attributes.name}</div>
-  //             )
-  //           })}
-  //           {categories.data.map((category: any) => {
-  //             return (
-  //               <div className="badge badge-outline">{category.attributes.name}</div>
-  //             )
-  //           })}
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </Link>
-  // )
 }

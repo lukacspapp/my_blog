@@ -32,7 +32,6 @@ export function Login() {
     setData({ ...data, [e.target.name]: e.target.value })
   }
 
-
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
 
     const response = await fetcher(`${server}/auth/local`, {
@@ -55,10 +54,6 @@ export function Login() {
       setError(response.error.message)
     }
   }
-
-
-
-
 
 
 

@@ -13,7 +13,6 @@ export default function Slug({ post }) {
       <div className="flex flex-col">
         <div className="flex justify-between">
           <div className="m-10 text-fuchsia-500">{title}</div>
-
         </div>
       </div>
     </div>
