@@ -19,6 +19,7 @@ export default function Slug({ post }) {
   )
 }
 
+
 export const getServerSideProps = async ({ params }) => {
   const { slug } = params;
 
@@ -30,3 +31,5 @@ export const getServerSideProps = async ({ params }) => {
     }
   }
 }
+
+
