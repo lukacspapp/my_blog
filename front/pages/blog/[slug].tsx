@@ -11,12 +11,6 @@ export default function Slug({ post }) {
 
   const category = categories.data[0].attributes.name
 
-  // const imageLength = image.data.map((img) => img.attributes.formats.small.url)
-
-
-
-
-
   const images = image.data.map((img) => img.attributes.url)
 
 
@@ -24,9 +18,7 @@ export default function Slug({ post }) {
 
 
   return (
-    // center the text
     <>
-
       <div className="hero min-h-screen">
         <div className="hero-content text-center">
           <div className="max-w-md">
@@ -41,7 +33,6 @@ export default function Slug({ post }) {
       <section className="overflow-hidden text-gray-700">
         <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
           <div className="flex flex-wrap -m-1 md:-m-2">
-
             {images.map((img) => {
               return (
                 <div className="flex flex-wrap p-1 w-1/3">
@@ -57,7 +48,8 @@ export default function Slug({ post }) {
             })}
           </div>
         </div>
-      </section></>
+      </section>
+    </>
   )
 }
 
