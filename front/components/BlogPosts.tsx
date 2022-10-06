@@ -14,8 +14,6 @@ export default function BlogPosts({
   const thumpNail = `http://localhost:1337${image.data[0].attributes.url}`
   const avatar = `http://localhost:1337${author.attributes.photo.data.attributes.url}`
 
-
-
   return (
     <div className="lg:flex">
       <img className="object-cover p-2 w-full h-56 rounded-3xl lg:w-64" src={thumpNail} alt="" />
@@ -27,11 +25,11 @@ export default function BlogPosts({
         </Link>
         <div className="avatar">
           <div className="w-12 mask mask-squircle">
-            <img src={avatar} />
+            <img src={avatar} alt={author.attributes.name} />
           </div>
         </div>
+        <h1>{author.attributes.name}</h1>
         <span className="text-sm text-gray-500 dark:text-gray-300">{createdAt.substring(0, 10)}</span>
-        <h1>{'author'}</h1>
       </div>
     </div>
   )
