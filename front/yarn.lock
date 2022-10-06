@@ -215,7 +215,7 @@
 
 "@types/js-cookie@^3.0.2":
   version "3.0.2"
-  resolved "https://registry.npmjs.org/@types/js-cookie/-/js-cookie-3.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-3.0.2.tgz#451eaeece64c6bdac8b2dde0caab23b085899e0d"
   integrity sha512-6+0ekgfusHftJNYpihfkMu8BWdeHs9EOJuGcSofErjstGPfPGEu9yTu4t460lTzzAMl2cM5zngQJqPMHbbnvYA==
 
 "@types/node@^12.12.21":

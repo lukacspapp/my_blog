@@ -1,7 +1,15 @@
 import Router from 'next/router'
 import Cookies from 'js-cookie'
 
-export const setToken = (data: any) => {
+interface Data {
+  user: {
+    id: string;
+    username: string;
+  },
+  jwt: string;
+}
+
+export const setToken = (data: Data) => {
 
   if (typeof window !== 'undefined') {
     return;
@@ -40,13 +48,13 @@ export const getTokenFromLocalCookie = () => {
   return Cookies.get('jwt')
 }
 
-export const getTokenFromServerSideCookie = (req: any) => {
+export const getTokenFromServerSideCookie = (req) => {
   if (!req.headers.cookie || '') {
     return undefined
   }
   const idCookie = req.headers.cookie
     .split(';')
-    .find((c: any) => c.trim().startsWith('id='))
+    .find((c: string) => c.trim().startsWith('id='))
 
   if (!idCookie) {
     return undefined

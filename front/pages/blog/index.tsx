@@ -5,12 +5,29 @@ import BlogPosts from "../../components/BlogPosts";
 import { useState } from "react";
 import Footer from "../../components/Footer";
 import Link from "next/link";
-import { PostsType, ServerSidePosts } from "../../types/PostsType";
+import { AuthorsType, PostsType, ServerSidePosts } from "../../types/PostsType";
 import { GetServerSideProps } from "next";
 
-function Blog({ ServerSidePosts }: { ServerSidePosts: PostsType[] }) {
+interface ServerSideProps {
+  ServerSidePosts: PostsType[];
+  ServerSideAuthors: any[];
+}
+
+
+function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
 
   const [posts, _setPosts] = useState(ServerSidePosts);
+  const [authors, _setAuthors] = useState(ServerSideAuthors)
+
+
+
+
+
+
+// function that takes in the array of authors id and the posts and mathces the id to the post id
+
+
+
 
   return (
     <div className='blog-page'>
@@ -22,7 +39,7 @@ function Blog({ ServerSidePosts }: { ServerSidePosts: PostsType[] }) {
           <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
             {posts.map((post: PostsType) => {
               return (
-                <BlogPosts key={post.id} post={post} />
+                <BlogPosts key={post.id} post={post} authorss={authors} />
               )
             })}
           </div>
@@ -35,19 +52,20 @@ function Blog({ ServerSidePosts }: { ServerSidePosts: PostsType[] }) {
 
 export const getServerSideProps: GetServerSideProps= async () => {
 
-  const post: ServerSidePosts = await fetcher(`${server}/posts?populate=*`);
+  const posts: ServerSidePosts = await fetcher(`${server}/posts?populate=*`);
 
-  if (!post) {
+  const authors: any = await fetcher(`${server}/authors?populate=*`);
+
+  if (!posts) {
     return {
       notFound: true,
     }
   }
-  console.log(post);
-
 
   return {
     props: {
-      ServerSidePosts: post.data
+      ServerSidePosts: posts.data,
+      ServerSideAuthors: authors.data
     }
   }
 }

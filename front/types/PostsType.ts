@@ -24,6 +24,7 @@ export interface PostAttributes {
 
 // * AuthorsType ------------------------
 
+
 export interface AuthorsType {
   data: AuthorsData[];
 }
