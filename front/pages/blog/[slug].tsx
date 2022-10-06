@@ -38,7 +38,7 @@ export default function Slug({ post }) {
                 <div className="flex flex-wrap p-1 w-1/3">
                   <div className="flex flex-wrap -m-1 md:-m-2">
                     <div className="w-full p-1 md:p-2">
-                      sdgf<img alt="gallery" className="block object-cover object-center w-full h-full rounded-lg"
+                      <img alt="gallery" className="block object-cover object-center w-full h-full rounded-lg"
                         src={`http://localhost:1337${img}`} />
                       <img />
                     </div>

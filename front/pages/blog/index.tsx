@@ -43,6 +43,7 @@ function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
 
 
   return (
+
     <div className='blog-page'>
       <Nav />
       <section className="bg-white dark:bg-gray-900">
