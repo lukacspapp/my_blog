@@ -45,7 +45,6 @@ function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
   return (
 
     <div className='blog-page'>
-      <Nav />
       <section className="bg-white dark:bg-gray-900">
         <div className="container px-6 py-10 mx-auto">
           <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">From the blog</h1>
@@ -58,7 +57,6 @@ function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   )
 }
