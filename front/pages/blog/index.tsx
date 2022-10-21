@@ -1,12 +1,10 @@
 import { fetcher } from "../../lib/api";
 import { server } from "../../config";
-import { Nav } from "../../components/Nav";
 import BlogPosts from "../../components/BlogPosts";
 import { useState } from "react";
-import Footer from "../../components/Footer";
-import Link from "next/link";
-import { AuthorsType, PostsType, ServerSidePosts } from "../../types/PostsType";
+import { PostsType, ServerSidePosts } from "../../types/PostsType";
 import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
 
 interface ServerSideProps {
   ServerSidePosts: PostsType[];
@@ -19,31 +17,15 @@ function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
   const [posts, _setPosts] = useState(ServerSidePosts);
   const [authors, _setAuthors] = useState(ServerSideAuthors)
 
-
-
-
-  console.log('authors',authors);
-  console.log('posts',posts);
-
   const authorOfPost = (posts, authors) => {
     return posts.map(post => {
       const author = authors.find(author => author.attributes.post.data.id === post.id)
       return { ...post, author }
     })
   }
-  console.log(authorOfPost(posts, authors));
-
-
-
-
-
-// function that takes in the array of authors id and the posts and mathces the id to the post id
-
-
-
 
   return (
-
+    <>
     <div className='blog-page'>
       <section className="bg-white dark:bg-gray-900">
         <div className="container px-6 py-10 mx-auto">
@@ -58,10 +40,22 @@ function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
         </div>
       </section>
     </div>
+    </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps= async () => {
+export const getServerSideProps: GetServerSideProps= async (context) => {
+
+  const session = await getSession(context);
+
+  if (session == null) {
+    return {
+      redirect: {
+        destination: '/auth/not-authenticated',
+        permanent: true,
+      },
+    };
+  }
 
   const posts: ServerSidePosts = await fetcher(`${server}/posts?populate=*`);
 

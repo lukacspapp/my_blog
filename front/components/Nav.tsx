@@ -1,11 +1,7 @@
-import { unsetToken } from "../lib/auth";
+
 
 export function Nav() {
 
-
-  const logOut = () => {
-    unsetToken();
-  }
 
 
   return (

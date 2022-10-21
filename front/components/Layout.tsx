@@ -1,27 +1,28 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 import Footer from '../components/Footer'
 import { Nav } from './Nav'
 
 type Props = {
   children?: ReactNode
-  title?: string
 }
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({ children }: Props) => {
+  return (
   <div>
     <Head>
-      <title>{title}</title>
+      <title>LJP</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
-      <Nav />
-    </header>
+    <Nav />
+    <main>
     {children}
+    </main>
     <Footer />
   </div>
-)
+  )
+}
+
 
 export default Layout

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { format } from "date-fns";
 
 export default function BlogPosts({
   post: {
@@ -11,6 +12,7 @@ export default function BlogPosts({
     }
   } }) {
 
+  const createdDate = format(new Date(createdAt), "dd MMM, yyyy");
   const thumpNail = `http://localhost:1337${image.data[0].attributes.url}`
   const avatar = `http://localhost:1337${author.attributes.photo.data.attributes.url}`
 
@@ -29,7 +31,7 @@ export default function BlogPosts({
           </div>
         </div>
         <h1>{author.attributes.name}</h1>
-        <span className="text-sm text-gray-500 dark:text-gray-300">{createdAt.substring(0, 10)}</span>
+        <span className="text-sm text-gray-500 dark:text-gray-300">{createdDate}</span>
       </div>
     </div>
   )

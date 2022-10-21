@@ -7,9 +7,16 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "daisyui": "^2.30.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.6",
+    "@mui/material": "^5.10.8",
+    "axios": "^1.1.2",
+    "daisyui": "^2.31.0",
+    "date-fns": "^2.29.3",
     "js-cookie": "^3.0.1",
     "next": "latest",
+    "next-auth": "^4.14.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.36.1"
