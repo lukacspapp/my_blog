@@ -3,6 +3,7 @@ import { signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import Header from '../components/Header';
 import { Login } from '../components/Login';
 
 export default function Home() {
@@ -18,7 +19,8 @@ export default function Home() {
       <Head>
         <title>Strapi - Next - NextAuth</title>
       </Head>
-      <h1>{session ? 'Authenticated' : 'Not Authenticated'}</h1>
+      <Header />
+      {/* <h1>{session ? 'Authenticated' : 'Not Authenticated'}</h1>
       {session && (
         <div style={{ marginBottom: 10 }}>
           <h3>Session Data</h3>
@@ -40,7 +42,7 @@ export default function Home() {
         >
           Protected Page
         </button>
-      </Link>
+      </Link> */}
     </div>
   );
 }
