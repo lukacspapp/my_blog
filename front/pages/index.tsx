@@ -41,7 +41,6 @@ export default function Home() {
           Protected Page
         </button>
       </Link>
-      <Login />
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { signIn } from 'next-auth/react';
 
 export function Login() {
 
-
   const router = useRouter();
 
   const onSubmit = async (e) => {
@@ -21,8 +20,6 @@ export function Login() {
     }
     alert('Credential is not valid');
   };
-
-
 
   return (
     <body className="login-page min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0">
