@@ -6,3 +6,12 @@
   background-color: #9921e8;
   background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
 }
+
+@layer components {
+  .heroButton {
+    @apply px-6 py-2 border-transparent rounded-full uppercase text-xs tracking-widest transition-all
+    hover:border-[#F7AB0A]/40  hover:text-[#F7AB0A]/40
+  }
+}
+
+
