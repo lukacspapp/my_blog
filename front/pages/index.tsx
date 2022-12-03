@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <div className='snap-y snap-mandatory overflow-scroll z-0'>
       <Head>
-        <title>Strapi - Next - NextAuth</title>
+        <title>Lukacs J Papp</title>
       </Head>
       <Header />
       <section id='hero' className='snap-center'>
