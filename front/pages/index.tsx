@@ -8,6 +8,7 @@ import Hero from '../components/Hero';
 import { Login } from '../components/Login';
 import About from '../components/About';
 import Experience from '../components/Experience';
+import Skills from '../components/Skills';
 
 export default function Home() {
   const { data: session }: any = useSession();
@@ -31,6 +32,9 @@ export default function Home() {
       </section>
       <section id='experience' className='snap-center'>
         <Experience />
+      </section>
+      <section id='skills' className='snap-start'>
+        <Skills />
       </section>
     </div>
   );
