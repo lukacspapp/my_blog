@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Hero from '../components/Hero';
 import { Login } from '../components/Login';
 import About from '../components/About';
+import Experience from '../components/Experience';
 
 export default function Home() {
   const { data: session }: any = useSession();
@@ -17,7 +18,7 @@ export default function Home() {
   }, [session]);
 
   return (
-    <div className='snap-y snap-mandatory overflow-scroll z-0'>
+    <div className='snap-y snap-mandatory h-screen overflow-scroll z-0'>
       <Head>
         <title>Lukacs J Papp</title>
       </Head>
@@ -27,6 +28,9 @@ export default function Home() {
       </section>
       <section id='about' className='snap-center'>
         <About />
+      </section>
+      <section id='experience' className='snap-center'>
+        <Experience />
       </section>
     </div>
   );
