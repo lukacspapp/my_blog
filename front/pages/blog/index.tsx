@@ -26,25 +26,25 @@ function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
 
   return (
     <>
-    <div className='blog-page'>
-      <section className="bg-white dark:bg-gray-900">
-        <div className="container px-6 py-10 mx-auto">
-          <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">From the blog</h1>
-          <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-            {authorOfPost(posts, authors).map(post => {
-              return (
-                <BlogPosts key={post.id} post={post}/>
-              )
-            })}
+      <div className='blog-page'>
+        <section className="bg-white dark:bg-gray-900">
+          <div className="container px-6 py-10 mx-auto">
+            <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">From the blog</h1>
+            <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+              {authorOfPost(posts, authors).map(post => {
+                return (
+                  <BlogPosts key={post.id} post={post} />
+                )
+              })}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps= async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const session = await getSession(context);
 

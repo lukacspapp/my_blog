@@ -2,9 +2,15 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import ExperienceCard from './ExperienceCard'
 
-type Props = {}
+type experiencesProps = {
+  experiences: any
+}
 
-export default function Experience({ }: Props) {
+export default function Experience({ experiences }: experiencesProps) {
+
+  console.log(experiences);
+
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

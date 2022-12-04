@@ -1,0 +1,11 @@
+export interface HeroTypes {
+  id: number;
+  attributes: AttributeTypes;
+}
+
+export interface AttributeTypes {
+  createdAt: string;
+  publishedAt: string;
+  updatedAt: string;
+  vocations: string
+}

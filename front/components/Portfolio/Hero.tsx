@@ -1,16 +1,19 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 import BackgroundCircles from './BackgroundCircles'
+import TypeWriter from './TypeWriter'
 
-type Props = {}
 
-export default function Hero({ }: Props) {
-  const [text, count] = useTypewriter({
-    words: ['Ma name is Macska', 'I am very kecses', 'es gyonyoru', 'I am the most beautiful Cat in the world'],
-    loop: true,
-    delaySpeed: 2000,
-  })
+
+
+export default function Hero({ hero }) {
+
+  const { vocations } = hero.attributes
+  const { profile } = hero.attributes
+
+
+
 
   return (
     <div className='h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden'>
@@ -19,8 +22,7 @@ export default function Hero({ }: Props) {
       <div className='z-20'>
         <h2 className='text-sm uppercase text-gray-500 tracking-[15px]'>Software Engineer</h2>
         <h1 className='text-5xl lg:text-6xl font-semibold px-10'>
-          <span className='mr-3'>{text}</span>
-          <Cursor cursorColor='white' />
+          <TypeWriter vocations={vocations} />
         </h1>
         <div className='pt-5'>
           <Link href={'#about'}>

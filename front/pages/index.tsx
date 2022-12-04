@@ -2,7 +2,7 @@
 import { signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Portfolio/Hero';
 import { Login } from '../components/Login';
@@ -11,8 +11,17 @@ import Experience from '../components/Portfolio/Experience';
 import Skills from '../components/Portfolio/Skills';
 import Projects from '../components/Portfolio/Projects';
 import Contact from '../components/Portfolio/Contact';
+import { server } from '../config';
+import { fetcher } from '../lib/api';
 
-export default function Home() {
+
+export default function Home({ heroData: hero, about, experiences }) {
+
+  console.log('====================================');
+  console.log(experiences);
+  console.log('====================================');
+
+
   const { data: session }: any = useSession();
 
   useEffect(() => {
@@ -28,13 +37,13 @@ export default function Home() {
       </Head>
       <Header />
       <section id='hero' className='snap-center'>
-        <Hero />
+        <Hero hero={hero} />
       </section>
       <section id='about' className='snap-center'>
-        <About />
+        <About about={about} />
       </section>
       <section id='experience' className='snap-center'>
-        <Experience />
+        <Experience experiences={experiences} />
       </section>
       <section id='skills' className='snap-start'>
         <Skills />
@@ -47,4 +56,24 @@ export default function Home() {
       </section>
     </div>
   );
+}
+
+export const getStaticProps = async () => {
+
+  const heroData = await fetcher(`${server}/portfolio-hero?populate=*`)
+
+  const aboutData = await fetcher(`${server}/p-about?populate=*`)
+
+  const experienceData = await fetcher(`${server}/p-experiences?populate=*`)
+
+
+
+
+  return {
+    props: {
+      heroData: heroData.data,
+      about: aboutData.data,
+      experiences: experienceData.data
+    }
+  }
 }
