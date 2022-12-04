@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 type Props = {}
 
@@ -17,13 +18,20 @@ export default function Projects({ }: Props) {
           return (
             <div className='w-screen flex-shrink-0 snap-center flex flex-col space-y-5
             items-center justify-center p-20 md:p-44 h-screen'>
-
-              <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/226654454/original/30d2f06521d6d7a7caedeed826d0056d17a00dfc/design-a-digital-product-mockup-and-online-course-bundle-fde3.png" alt="" />
-              <div>
-                <h4>Case Study {i + 1} of {pro.length}: UPS clone</h4>
+              <motion.img
+                initial={{
+                  y: -300,
+                  opacity: 0
+                }}
+                transition={{ duration: 1.2 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/226654454/original/30d2f06521d6d7a7caedeed826d0056d17a00dfc/design-a-digital-product-mockup-and-online-course-bundle-fde3.png" alt="" />
+              <div className='space-y-10 px-0 md:px-10 max-w-6xl'>
+                <h4 className='text-4xl font-semibold text-center'>Case Study {i + 1} of {pro.length}: UPS clone</h4>
+                <p className='text-lg text-center md:text-left'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nihil mollitia deserunt saepe hic possimus quia, ipsum, nostrum doloribus libero blanditiis voluptas vel accusamus sint placeat! Magni quia sed deleniti?</p>
               </div>
             </div>
-
           )
         })}
       </div>
