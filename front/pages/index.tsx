@@ -15,10 +15,10 @@ import { server } from '../config';
 import { fetcher } from '../lib/api';
 
 
-export default function Home({ heroData: hero, about, experiences }) {
+export default function Home({ heroData: hero, about, experiences, technologies }) {
 
   console.log('====================================');
-  console.log(experiences);
+  console.log(technologies);
   console.log('====================================');
 
 
@@ -43,7 +43,7 @@ export default function Home({ heroData: hero, about, experiences }) {
         <About about={about} />
       </section>
       <section id='experience' className='snap-center'>
-        <Experience experiences={experiences} />
+        <Experience experiences={experiences} technologies={technologies} />
       </section>
       <section id='skills' className='snap-start'>
         <Skills />
@@ -66,6 +66,8 @@ export const getStaticProps = async () => {
 
   const experienceData = await fetcher(`${server}/p-experiences?populate=*`)
 
+  const technologiesData = await fetcher(`${server}/technologies?populate=*`)
+
 
 
 
@@ -73,7 +75,8 @@ export const getStaticProps = async () => {
     props: {
       heroData: heroData.data,
       about: aboutData.data,
-      experiences: experienceData.data
+      experiences: experienceData.data,
+      technologies: technologiesData.data
     }
   }
 }

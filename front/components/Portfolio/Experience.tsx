@@ -3,12 +3,11 @@ import { motion } from 'framer-motion'
 import ExperienceCard from './ExperienceCard'
 
 type experiencesProps = {
-  experiences: any
+  experiences: any,
+  technologies: any
 }
 
-export default function Experience({ experiences }: experiencesProps) {
-
-  console.log(experiences);
+export default function Experience({ experiences, technologies }: experiencesProps) {
 
 
   return (
@@ -21,10 +20,11 @@ export default function Experience({ experiences }: experiencesProps) {
     >
       <h3 className='absolute top-24 uppercase text-2xl tracking-[20px]'>Experience</h3>
       <div className='w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory'>
-        <ExperienceCard />
-        <ExperienceCard />
-        <ExperienceCard />
-        <ExperienceCard />
+        {experiences.map((experience: any) => {
+          return (
+            <ExperienceCard key={experience.id} experience={experience} technologies={technologies} />
+          )
+        })}
       </div>
     </motion.div>
   )
