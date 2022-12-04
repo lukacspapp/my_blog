@@ -12,6 +12,11 @@
     @apply px-6 py-2 border border-transparent rounded-full uppercase text-xs tracking-widest transition-all
     hover:border-[#F5AB0A]/40  hover:text-[#F7AB0A]/40
   }
+  .contactInput {
+    @apply outline-none bg-slate-600/80 rounded-md border-b px-6 py-4 border-[#242424]
+    placeholder-gray-500 transition-all focus:border-[#F7AB0A]/40 focus:text-[#F7AB0A]/40
+    hover:border-[#F7AB0A]/40
+  }
 }
 
 

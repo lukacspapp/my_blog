@@ -13,10 +13,10 @@ export default function Projects({ }: Props) {
       </h3>
 
       <div className='relative w-full flex overflow-x-scroll overflow-y-hidden snap-x
-      snap-mandatory z-20 '>
+      snap-mandatory z-20 scrollbar-track-gray scrollbar scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-gary-400 scrollbar-thumb-[#F7AB0A]/20'>
         {pro.map((p, i) => {
           return (
-            <div className='w-screen flex-shrink-0 snap-center flex flex-col space-y-5
+            <div key={i} className='w-screen flex-shrink-0 snap-center flex flex-col space-y-5
             items-center justify-center p-20 md:p-44 h-screen'>
               <motion.img
                 initial={{

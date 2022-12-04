@@ -29,7 +29,7 @@ export default function About({ }: Props) {
         src='https://scontent-lhr8-2.xx.fbcdn.net/v/t39.30808-6/279085132_574857057454657_273421715507861464_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=174925&_nc_ohc=68SG7dFz9nUAX8niHJP&_nc_ht=scontent-lhr8-2.xx&oh=00_AfCD9N-p6XvzQnHcTbTYno8zJDqQfiKbrZt54jq8IciknQ&oe=639103D9'>
       </motion.img>
       <div className='space-y-10 px-0 md:px-10'>
-        <h4 className='text-4xl font-semibold '>Here is a little background</h4>
+        <h4 className='text-4xl font-semibold '>Here is a little background, I have been coding countdown </h4>
         <p className='text-base'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit sed, error ducimus ut eius deserunt accusamus excepturi, ex saepe voluptatum expedita rem qui quae harum? Recusandae maiores similique quaerat dolorem.</p>
       </div>
     </motion.div>

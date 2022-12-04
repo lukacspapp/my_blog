@@ -4,12 +4,13 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
+import Hero from '../components/Portfolio/Hero';
 import { Login } from '../components/Login';
-import About from '../components/About';
-import Experience from '../components/Experience';
-import Skills from '../components/Skills';
-import Projects from '../components/Projects';
+import About from '../components/Portfolio/About';
+import Experience from '../components/Portfolio/Experience';
+import Skills from '../components/Portfolio/Skills';
+import Projects from '../components/Portfolio/Projects';
+import Contact from '../components/Portfolio/Contact';
 
 export default function Home() {
   const { data: session }: any = useSession();
@@ -20,7 +21,8 @@ export default function Home() {
   }, [session]);
 
   return (
-    <div className='snap-y snap-mandatory h-screen overflow-scroll z-0'>
+    <div className='snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden z-0
+    scrollbar scrollbar-track-gary-400 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#F7AB0A]/20'>
       <Head>
         <title>Lukacs J Papp</title>
       </Head>
@@ -39,6 +41,9 @@ export default function Home() {
       </section>
       <section id='projects' className='snap-start'>
         <Projects />
+      </section>
+      <section id='contact' className='snap-start'>
+        <Contact />
       </section>
     </div>
   );
