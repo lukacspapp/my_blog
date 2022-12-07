@@ -22,7 +22,7 @@ export function Login() {
   };
 
   return (
-    <body className="login-page min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0">
+    <>
       <header className="max-w-lg mx-auto">
         <h1 className="text-4xl font-bold text-white text-center">Welcome</h1>
       </header>
@@ -54,6 +54,7 @@ export function Login() {
         <span className="mx-3">•</span>
         <a href="#" className="hover:underline">Privacy</a>
       </footer>
-    </body>
+    </>
+
   )
 }

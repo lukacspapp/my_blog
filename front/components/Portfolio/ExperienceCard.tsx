@@ -9,7 +9,7 @@ type Props = {
 export default function ExperienceCards({ experience, technologies }: Props) {
 
   const { company_title, image, job_title, start_date, end_date } = experience.attributes
-  const { url } = image.data.attributes
+  // const { url } = image.data.attributes
 
   return (
     <article className='flex flex-col rounded-lg items-center space-y-7 flex-shrink-0
@@ -23,8 +23,8 @@ export default function ExperienceCards({ experience, technologies }: Props) {
         transition={{ duration: 1.2 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
-        className='w-32 h-32 rounded-full md:rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center'
-        src={`http://localhost:1337${url}`}
+        className='w-32 h-32 rounded-full md:rounded-full md:h-25 md:w-25 xl:w-[200px] xl:h-[200px] object-cover object-center'
+        src='https://media-exp1.licdn.com/dms/image/C4D03AQHoz1BKTkUXBQ/profile-displayphoto-shrink_400_400/0/1649069515182?e=1675900800&v=beta&t=IE3ZLzORaJId5PE5KwiE7h_RL6DSl2oxv19_vebJie4'
         alt='avatar'
       />
       <div className='px-0 md:px-10'>
@@ -33,16 +33,12 @@ export default function ExperienceCards({ experience, technologies }: Props) {
         <div className='flex space-x-2 my-2'>
           {technologies.map(({ attributes }: any) => {
             return (
-              <img className='h-10 w-10 rounded-full object-cover' src={`http://localhost:1337${attributes.image.data.attributes.url}`} alt="" />
+              <img className='h-10 w-10 md:h-7 md:w-7 rounded-lg object-cover' src={`http://localhost:1337${attributes.image.data.attributes.url}`} alt="" />
             )
           })}
         </div>
         <p className='uppercase'>{`${start_date} - ${end_date === null ? 'Present' : end_date}`}</p>
         <ul className='list-disc space-y-4 ml-5 text-lg'>
-          <li>Summary Point</li>
-          <li>Summary Point</li>
-          <li>Summary Point</li>
-          <li>Summary Point</li>
           <li>Summary Point</li>
           <li>Summary Point</li>
           <li>Summary Point</li>

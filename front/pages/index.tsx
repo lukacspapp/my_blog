@@ -17,10 +17,6 @@ import { fetcher } from '../lib/api';
 
 export default function Home({ heroData: hero, about, experiences, technologies }) {
 
-  console.log('====================================');
-  console.log(technologies);
-  console.log('====================================');
-
 
   const { data: session }: any = useSession();
 
@@ -28,6 +24,7 @@ export default function Home({ heroData: hero, about, experiences, technologies 
     if (session == null) return;
     console.log('session.jwt', session.jwt);
   }, [session]);
+
 
   return (
     <div className='snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden z-0
@@ -64,7 +61,7 @@ export const getStaticProps = async () => {
 
   const aboutData = await fetcher(`${server}/p-about?populate=*`)
 
-  const experienceData = await fetcher(`${server}/p-experiences?populate=*`)
+  const experienceData = await fetcher(`${server}/p-experiences?populate=technologies`)
 
   const technologiesData = await fetcher(`${server}/technologies?populate=*`)
 

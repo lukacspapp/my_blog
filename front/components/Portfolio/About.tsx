@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
+import Clock from './Clock'
 
 type AboutProps = {
   about: any
@@ -10,6 +12,7 @@ export default function About({ about }: AboutProps) {
   const { bio, title, photo } = about.attributes
   const { url } = photo.data.attributes
 
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -18,7 +21,6 @@ export default function About({ about }: AboutProps) {
       className='flex flex-col relative h-screen text-center md:text-left md:flex-row
       max-w-7xl px-10 justify-evenly mx-auto items-center'
     >
-
       <h3 className='absolute top-24 uppercase text-2xl tracking-[20px]'>About</h3>
       <motion.img
         initial={{
@@ -36,7 +38,19 @@ export default function About({ about }: AboutProps) {
       </motion.img>
       <div className='space-y-10 px-0 md:px-10'>
         <h4 className='text-4xl font-semibold '>{title}</h4>
+        <h5 className=''>I have been coding for</h5>
+        <Clock />
         <p className='text-base'>{bio}</p>
+        <h4 className='text-4xl font-semibold text-center'>Check Out my blog</h4>
+        <div className='flex flex-makeClock items-left justify-around'>
+          <Link href={'/blog/login'} passHref>
+            <button className='btn'>Login</button>
+          </Link>
+          <p>OR</p>
+          <Link href={'blog/register'}>
+            <button onClick={() => console.log()} className='btn'>Register</button>
+          </Link>
+        </div>
       </div>
     </motion.div>
   )

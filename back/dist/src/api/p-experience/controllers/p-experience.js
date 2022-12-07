@@ -11,7 +11,8 @@ exports.default = strapi_1.factories.createCoreController('api::p-experience.p-e
             filters: { slug },
             ...ctx.query,
         };
-        const post = await strapi.entityService.findMany("api::post.post", query);
-        return this.transformResponse(post[0]);
+        const pExperience = await strapi.entityService.findMany("api::p-experience.p-experience", query);
+        const post = await strapi.entityService.findMany('api::p-experience.p-experience', query);
+        return this.transformResponse(pExperience[0]);
     }
 }));
