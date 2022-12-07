@@ -61,7 +61,7 @@ export const getStaticProps = async () => {
 
   const aboutData = await fetcher(`${server}/p-about?populate=*`)
 
-  const experienceData = await fetcher(`${server}/p-experiences?populate=technologies`)
+  const experienceData = await fetcher(`${server}/p-experiences?populate=*`)
 
   const technologiesData = await fetcher(`${server}/technologies?populate=*`)
 

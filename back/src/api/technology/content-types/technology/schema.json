@@ -14,7 +14,7 @@
   "attributes": {
     "image": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "allowedTypes": [
         "images",
@@ -24,7 +24,15 @@
       ]
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "p_experiences": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::p-experience.p-experience",
+      "inversedBy": "technologies",
+      "populate": true
     }
   }
 }

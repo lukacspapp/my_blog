@@ -9,7 +9,10 @@ type Props = {
 export default function ExperienceCards({ experience, technologies }: Props) {
 
   const { company_title, image, job_title, start_date, end_date } = experience.attributes
-  // const { url } = image.data.attributes
+  console.log('====================================');
+  console.log(experience);
+  console.log('====================================');
+  const { url } = image.data.attributes
 
   return (
     <article className='flex flex-col rounded-lg items-center space-y-7 flex-shrink-0
@@ -24,7 +27,7 @@ export default function ExperienceCards({ experience, technologies }: Props) {
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         className='w-32 h-32 rounded-full md:rounded-full md:h-25 md:w-25 xl:w-[200px] xl:h-[200px] object-cover object-center'
-        src='https://media-exp1.licdn.com/dms/image/C4D03AQHoz1BKTkUXBQ/profile-displayphoto-shrink_400_400/0/1649069515182?e=1675900800&v=beta&t=IE3ZLzORaJId5PE5KwiE7h_RL6DSl2oxv19_vebJie4'
+        src={`http://localhost:1337${url}`}
         alt='avatar'
       />
       <div className='px-0 md:px-10'>

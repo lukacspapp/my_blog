@@ -12,7 +12,6 @@ export default function About({ about }: AboutProps) {
   const { bio, title, photo } = about.attributes
   const { url } = photo.data.attributes
 
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -38,9 +37,9 @@ export default function About({ about }: AboutProps) {
       </motion.img>
       <div className='space-y-10 px-0 md:px-10'>
         <h4 className='text-4xl font-semibold '>{title}</h4>
-        <h5 className=''>I have been coding for</h5>
-        <Clock />
         <p className='text-base'>{bio}</p>
+        {/* <h5 className=''>I have been coding for</h5> */}
+        {/* <Clock />
         <h4 className='text-4xl font-semibold text-center'>Check Out my blog</h4>
         <div className='flex flex-makeClock items-left justify-around'>
           <Link href={'/blog/login'} passHref>
@@ -50,7 +49,7 @@ export default function About({ about }: AboutProps) {
           <Link href={'blog/register'}>
             <button onClick={() => console.log()} className='btn'>Register</button>
           </Link>
-        </div>
+        </div> */}
       </div>
     </motion.div>
   )

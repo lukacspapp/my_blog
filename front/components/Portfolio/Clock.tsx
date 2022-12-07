@@ -27,7 +27,7 @@ export default function Clock({ }: Props) {
 
 
   return (
-    <div className="grid grid-flow-col gap-5 text-center auto-cols-max animate-pulse">
+    <div className="grid container grid-flow-col gap-5 text-center auto-cols-max animate-pulse md:justify-center">
       <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
         <div className="countdown font-mono text-5xl" x-text="days">{days}</div>
         <div className="font-mono uppercase text-sm leading-none">Days</div>
