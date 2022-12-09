@@ -4,10 +4,9 @@ import ExperienceCard from './ExperienceCard'
 
 type experiencesProps = {
   experiences: any,
-  technologies: any
 }
 
-export default function Experience({ experiences, technologies }: experiencesProps) {
+export default function Experience({ experiences }: experiencesProps) {
 
 
   return (
@@ -22,7 +21,7 @@ export default function Experience({ experiences, technologies }: experiencesPro
       <div className='w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory'>
         {experiences.map((experience: any) => {
           return (
-            <ExperienceCard key={experience.id} experience={experience} technologies={technologies} />
+            <ExperienceCard key={experience.id} experience={experience} />
           )
         })}
       </div>

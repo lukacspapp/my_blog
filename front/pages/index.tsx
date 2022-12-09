@@ -11,11 +11,13 @@ import Experience from '../components/Portfolio/Experience';
 import Skills from '../components/Portfolio/Skills';
 import Projects from '../components/Portfolio/Projects';
 import Contact from '../components/Portfolio/Contact';
-import { server } from '../config';
+import { graphql, server } from '../config';
 import { fetcher } from '../lib/api';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 
 export default function Home({ heroData: hero, about, experiences, technologies }) {
+  console.log(experiences);
 
 
   const { data: session }: any = useSession();
@@ -40,7 +42,7 @@ export default function Home({ heroData: hero, about, experiences, technologies 
         <About about={about} />
       </section>
       <section id='experience' className='snap-center'>
-        <Experience experiences={experiences} technologies={technologies} />
+        <Experience experiences={experiences} />
       </section>
       <section id='skills' className='snap-start'>
         <Skills />
@@ -57,6 +59,53 @@ export default function Home({ heroData: hero, about, experiences, technologies 
 
 export const getStaticProps = async () => {
 
+  const client = new ApolloClient({
+    uri: graphql,
+    cache: new InMemoryCache()
+  })
+
+  const { data } = await client.query({
+    query: gql`
+    query{
+      pExperiences{
+        data{
+          id,
+          attributes{
+            job_title,
+            start_date,
+            end_date,
+            company_title,
+            image{
+              data{
+                id,
+                attributes{
+                  url
+                }
+              }
+            }
+            technologies{
+              data{
+                id,
+                attributes{
+                  name,
+                  image{
+                    data{
+                      id,
+                      attributes{
+                        url
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }`,
+
+  })
+
   const heroData = await fetcher(`${server}/portfolio-hero?populate=*`)
 
   const aboutData = await fetcher(`${server}/p-about?populate=*`)
@@ -72,7 +121,7 @@ export const getStaticProps = async () => {
     props: {
       heroData: heroData.data,
       about: aboutData.data,
-      experiences: experienceData.data,
+      experiences: data.pExperiences.data,
       technologies: technologiesData.data
     }
   }

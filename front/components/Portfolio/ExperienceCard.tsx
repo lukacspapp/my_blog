@@ -3,16 +3,14 @@ import { motion } from 'framer-motion'
 
 type Props = {
   experience: any,
-  technologies: any
 }
 
-export default function ExperienceCards({ experience, technologies }: Props) {
+export default function ExperienceCards({ experience }: Props) {
 
-  const { company_title, image, job_title, start_date, end_date } = experience.attributes
-  console.log('====================================');
-  console.log(experience);
-  console.log('====================================');
-  const { url } = image.data.attributes
+
+  const { job_title, company_title, start_date, end_date } = experience
+  const { url } = experience.attributes.image.data.attributes
+  const technologies = experience.attributes.technologies.data
 
   return (
     <article className='flex flex-col rounded-lg items-center space-y-7 flex-shrink-0
