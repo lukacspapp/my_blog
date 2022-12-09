@@ -46,10 +46,13 @@
     "technologies": {
       "type": "relation",
       "relation": "manyToMany",
-      "populate": true,
       "target": "api::technology.technology",
+      "populate": true,
       "'inversedBy": "p_experiences",
       "mappedBy": "p_experiences"
+    },
+    "summary_points": {
+      "type": "richtext"
     }
   }
 }

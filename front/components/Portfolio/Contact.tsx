@@ -2,9 +2,14 @@ import React, { useRef, useState } from 'react'
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
 import emailjs from 'emailjs-com'
 
-type Props = {}
+type Props = {
+  contact: any
+}
 
-export default function Contact({ }: Props) {
+export default function Contact({ contact }: Props) {
+
+  const { email, location } = contact.attributes
+
 
   const userId = 'service_k28ayav'
   const templateId = 'template_m60bxwh'
@@ -35,20 +40,15 @@ export default function Contact({ }: Props) {
         Contact
       </h3>
       <div className='flex flex-col space-y-10'>
-        <h4 className='text-4xl font-semibold text-center'>Contact me</h4>
         <div className='space-y-10'>
           <div className='flex items-center space-x-5 justify-center'>
-            <PhoneIcon className='text-yellow-500 h-7 w-7 animate-pulse' />
-            <p className='text-2xl'>+07123456789</p>
-          </div>
-          <div className='flex items-center space-x-5 justify-center'>
             <MapPinIcon className='text-yellow-500 h-7 w-7 animate-pulse' />
-            <p className='text-2xl'>+123 Dev lane</p>
+            <p className='text-2xl'>{location}</p>
           </div>
 
           <div className='flex items-center space-x-5 justify-center'>
             <EnvelopeIcon className='text-yellow-500 h-7 w-7 animate-pulse' />
-            <p className='text-2xl'>sanyi@mail.com</p>
+            <p className='text-2xl'>{email}</p>
           </div>
         </div>
         <form ref={form} onSubmit={handleSubmit} className='flex flex-col space-y-2 w-fit mx-auto'>

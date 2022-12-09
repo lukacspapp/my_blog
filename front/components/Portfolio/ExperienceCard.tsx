@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Key } from 'react'
 import { motion } from 'framer-motion'
 
 type Props = {
@@ -8,9 +8,10 @@ type Props = {
 export default function ExperienceCards({ experience }: Props) {
 
 
-  const { job_title, company_title, start_date, end_date } = experience
+  const { job_title, company_title, start_date, end_date } = experience.attributes
   const { url } = experience.attributes.image.data.attributes
   const technologies = experience.attributes.technologies.data
+  const summaryPoints = experience.attributes.summary_points
 
   return (
     <article className='flex flex-col rounded-lg items-center space-y-7 flex-shrink-0
@@ -40,9 +41,11 @@ export default function ExperienceCards({ experience }: Props) {
         </div>
         <p className='uppercase'>{`${start_date} - ${end_date === null ? 'Present' : end_date}`}</p>
         <ul className='list-disc space-y-4 ml-5 text-lg'>
-          <li>Summary Point</li>
-          <li>Summary Point</li>
-          <li>Summary Point</li>
+          {summaryPoints.split(',').map((point: string, i: Key) => {
+            return (
+              <li key={i}>{point}</li>
+            )
+          })}
         </ul>
       </div>
     </article>

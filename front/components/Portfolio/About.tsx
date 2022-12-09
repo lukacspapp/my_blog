@@ -38,8 +38,8 @@ export default function About({ about }: AboutProps) {
       <div className='space-y-10 px-0 md:px-10'>
         <h4 className='text-4xl font-semibold '>{title}</h4>
         <p className='text-base'>{bio}</p>
-        {/* <h5 className=''>I have been coding for</h5> */}
-        {/* <Clock />
+        {/* <h5 className=''>I have been coding for</h5>
+        <Clock />
         <h4 className='text-4xl font-semibold text-center'>Check Out my blog</h4>
         <div className='flex flex-makeClock items-left justify-around'>
           <Link href={'/blog/login'} passHref>

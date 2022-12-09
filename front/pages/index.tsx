@@ -16,15 +16,12 @@ import { fetcher } from '../lib/api';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 
-export default function Home({ heroData: hero, about, experiences, technologies }) {
-  console.log(experiences);
-
+export default function Home({ heroData: hero, about, experiences, contact }) {
 
   const { data: session }: any = useSession();
 
   useEffect(() => {
     if (session == null) return;
-    console.log('session.jwt', session.jwt);
   }, [session]);
 
 
@@ -51,8 +48,15 @@ export default function Home({ heroData: hero, about, experiences, technologies 
         <Projects />
       </section>
       <section id='contact' className='snap-start'>
-        <Contact />
+        <Contact contact={contact} />
       </section>
+      <Link href={'#hero'}>
+        <footer className='sticky bottom-5 w-full cursor-pointer'>
+          <div className='flex items-center justify-center'>
+            <img className='h-10 w10 rounded-full filter grayscale hover:grayscale-0' src="https://lh3.googleusercontent.com/a/AEdFTp4XI19YIlxUxbuARimfx5M-8gNTIeLPGq8nBhokVw=s192-c-rg-br100" alt="sanyi" />
+          </div>
+        </footer>
+      </Link>
     </div>
   );
 }
@@ -75,6 +79,7 @@ export const getStaticProps = async () => {
             start_date,
             end_date,
             company_title,
+            summary_points,
             image{
               data{
                 id,
@@ -110,11 +115,7 @@ export const getStaticProps = async () => {
 
   const aboutData = await fetcher(`${server}/p-about?populate=*`)
 
-  const experienceData = await fetcher(`${server}/p-experiences?populate=*`)
-
-  const technologiesData = await fetcher(`${server}/technologies?populate=*`)
-
-
+  const contactData = await fetcher(`${server}/contact`)
 
 
   return {
@@ -122,7 +123,7 @@ export const getStaticProps = async () => {
       heroData: heroData.data,
       about: aboutData.data,
       experiences: data.pExperiences.data,
-      technologies: technologiesData.data
+      contact: contactData.data
     }
   }
 }
