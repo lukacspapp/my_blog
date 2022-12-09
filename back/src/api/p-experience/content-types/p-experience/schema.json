@@ -48,6 +48,7 @@
       "relation": "manyToMany",
       "populate": true,
       "target": "api::technology.technology",
+      "'inversedBy": "p_experiences",
       "mappedBy": "p_experiences"
     }
   }

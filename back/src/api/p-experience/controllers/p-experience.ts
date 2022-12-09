@@ -17,6 +17,6 @@ export default factories.createCoreController('api::p-experience.p-experience', 
 
     const post = await strapi.entityService.findMany('api::p-experience.p-experience', query);
 
-    return this.transformResponse(post[0]);
+    return this.transformResponse(pExperience[0]);
   }
 }));
