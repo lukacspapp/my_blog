@@ -58,7 +58,7 @@ export default function Contact({ contact }: Props) {
           </div>
           <input className='contactInput' placeholder='Subject' name='subject' type='text' />
           <textarea className='contactInput' typeof='text' name='message'></textarea>
-          <button type='submit' className='bg-[#F7AB0A] py-5 px-10 rounded-md text-black font-bold text-lg' >Submit</button>
+          <button type='submit' className='bg-[#F7AB0A] disabled py-5 px-10 rounded-md text-black font-bold text-lg' >Submit</button>
         </form>
       </div>
     </div>
