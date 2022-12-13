@@ -10,7 +10,6 @@ export default function Contact({ contact }: Props) {
 
   const { email, location } = contact.attributes
 
-
   const userId = 'service_k28ayav'
   const templateId = 'template_m60bxwh'
   const key = '5tIJVW2z2YUdH9bHg'

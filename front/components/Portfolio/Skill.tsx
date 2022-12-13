@@ -3,11 +3,17 @@ import { motion } from 'framer-motion'
 
 type Props = {
   directionLeft?: boolean
+  technology?: any
 }
 
-export default function Skill({ directionLeft }: Props) {
+export default function Skill({ directionLeft, technology }: Props) {
+
+  const { url } = technology.attributes.image.data.attributes
+
+
+
   return (
-    <div className='group relative flex cursor-pointer'>
+    <div className='group relative flex cursor-pointer p-1'>
       <motion.img
         initial={{
           x: directionLeft ? -200 : 200,
@@ -16,16 +22,10 @@ export default function Skill({ directionLeft }: Props) {
         viewport={{ once: true }}
         transition={{ duration: 1 }}
         whileInView={{ opacity: 1, x: 0 }}
-        src='https://seeklogo.com/images/J/jworg-logo-052E6568CA-seeklogo.com.png'
-        className='rounded-full border border-gray-500 object-cover h-24 w-24 md:w-28 md:h-28 xl:w-32 xl:h-32
-        filter group-hover:grayscale transition duration-300 ease-in-out'
+        src={`http://localhost:1337${url}`}
+        className=' rounded-full object-contain h-24 w-24 md:w-28 md:h-28 xl:w-32 xl:h-32
+        filter grayscale hover:grayscale-0 transition duration-300 ease-in-out'
       />
-      <div className='absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out
-      group-hover:bg-white h-24 w-24 md:w-28 md:h-28 xl:w-32 xl:h-32 rounded-full z-0'>
-        <div className='flex items-center justify-center h-full'>
-          <p className='text-3xl font-bold text-black opacity-100'>100%</p>
-        </div>
-      </div>
     </div>
   )
 }

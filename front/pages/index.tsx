@@ -16,7 +16,9 @@ import { fetcher } from '../lib/api';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 
-export default function Home({ heroData: hero, about, experiences, contact }) {
+export default function Home({ heroData: hero, about, experiences, contact, technologies }) {
+
+  const { url } = contact.attributes.profile.data.attributes;
 
   const { data: session }: any = useSession();
 
@@ -42,7 +44,7 @@ export default function Home({ heroData: hero, about, experiences, contact }) {
         <Experience experiences={experiences} />
       </section>
       <section id='skills' className='snap-start'>
-        <Skills />
+        <Skills technologies={technologies} />
       </section>
       <section id='projects' className='snap-start'>
         <Projects />
@@ -53,7 +55,7 @@ export default function Home({ heroData: hero, about, experiences, contact }) {
       <Link href={'#hero'}>
         <footer className='sticky bottom-5 w-full cursor-pointer'>
           <div className='flex items-center justify-center'>
-            <img className='h-10 w10 rounded-full filter grayscale hover:grayscale-0' src="https://lh3.googleusercontent.com/a/AEdFTp4XI19YIlxUxbuARimfx5M-8gNTIeLPGq8nBhokVw=s192-c-rg-br100" alt="sanyi" />
+            <img className='h-10 w10 rounded-full filter grayscale hover:grayscale-0' src={`http://localhost:1337${url}`} alt="sanyi" />
           </div>
         </footer>
       </Link>
@@ -108,22 +110,63 @@ export const getStaticProps = async () => {
         }
       }
     }`,
+  })
 
+  const { data: contact } = await client.query({
+    query: gql`
+    query {
+      contact{
+        data{
+          id
+          attributes{
+            email,
+            location,
+            profile{
+              data{
+                id,
+                attributes{
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }`
+  })
+
+  const { data: technologies } = await client.query({
+    query: gql`
+    query {
+    technologies{
+      data{
+        id,
+        attributes{
+          image{
+            data{
+              id,
+              attributes{
+                url
+              }
+            }
+          },
+          name
+        }
+      }
+    }}`
   })
 
   const heroData = await fetcher(`${server}/portfolio-hero?populate=*`)
 
   const aboutData = await fetcher(`${server}/p-about?populate=*`)
 
-  const contactData = await fetcher(`${server}/contact`)
-
-
   return {
     props: {
       heroData: heroData.data,
       about: aboutData.data,
       experiences: data.pExperiences.data,
-      contact: contactData.data
+      contact: contact.contact.data,
+      technologies: technologies.technologies.data
     }
   }
 }

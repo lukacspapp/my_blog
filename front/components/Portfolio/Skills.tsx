@@ -2,9 +2,15 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Skill from './Skill'
 
-type Props = {}
+type Props = {
+  technologies: any,
+}
 
-export default function Skills({ }: Props) {
+export default function Skills({ technologies }: Props) {
+
+  console.log(technologies);
+
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -19,22 +25,14 @@ export default function Skills({ }: Props) {
       </h3>
 
       <div className='grid grid-cols-4 gap-5'>
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
-        <Skill />
+        {technologies.map((technology: any) => {
+          return (
+            <Skill
+              key={technology.name}
+              technology={technology}
+            />
+          )
+        })}
       </div>
     </motion.div>
   )

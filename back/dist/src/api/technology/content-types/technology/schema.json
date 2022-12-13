@@ -32,6 +32,11 @@
             "relation": "manyToMany",
             "target": "api::p-experience.p-experience",
             "inversedBy": "technologies"
+        },
+        "percentage": {
+            "type": "integer",
+            "max": 100,
+            "min": 1
         }
     }
 }
