@@ -1,10 +1,12 @@
 import { fetcher } from "../../lib/api";
 import { server } from "../../config";
-import BlogPosts from "../../components/BlogPosts";
+import BlogPosts from "../../components/Blog/BlogPosts";
 import { useState } from "react";
 import { PostsType, ServerSidePosts } from "../../types/PostsType";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
+import BlogHeader from "../../components/Blog/BlogHeader";
+import Banner from "../../components/Blog/Banner";
 
 interface ServerSideProps {
   ServerSidePosts: PostsType[];
@@ -25,8 +27,10 @@ function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
   }
 
   return (
-    <>
-      <div className='blog-page'>
+    <div>
+      <BlogHeader />
+      <Banner />
+      {/* <div className='blog-page'>
         <section className="bg-white dark:bg-gray-900">
           <div className="container px-6 py-10 mx-auto">
             <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">From the blog</h1>
@@ -39,8 +43,8 @@ function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
             </div>
           </div>
         </section>
-      </div>
-    </>
+      </div> */}
+    </div>
   )
 }
 
@@ -51,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (session == null) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/blog/login',
         permanent: true,
       },
     };

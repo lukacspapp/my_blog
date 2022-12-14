@@ -3,7 +3,7 @@ import { signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import Header from '../components/Header';
+import Header from '../components/Portfolio/Header';
 import Hero from '../components/Portfolio/Hero';
 import { Login } from '../components/Login';
 import About from '../components/Portfolio/About';
