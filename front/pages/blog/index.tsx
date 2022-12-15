@@ -7,6 +7,7 @@ import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import BlogHeader from "../../components/Blog/BlogHeader";
 import Banner from "../../components/Blog/Banner";
+import BlogList from "../../components/Blog/BlogList";
 
 interface ServerSideProps {
   ServerSidePosts: PostsType[];
@@ -27,9 +28,10 @@ function Blog({ ServerSidePosts, ServerSideAuthors }: ServerSideProps) {
   }
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <BlogHeader />
       <Banner />
+      <BlogList posts={posts} />
       {/* <div className='blog-page'>
         <section className="bg-white dark:bg-gray-900">
           <div className="container px-6 py-10 mx-auto">

@@ -14,6 +14,7 @@
     "@leenguyen/react-flip-clock-countdown": "^1.3.1",
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.8",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "axios": "^1.1.2",
     "boxicons": "^2.1.4",
     "daisyui": "^2.31.0",
