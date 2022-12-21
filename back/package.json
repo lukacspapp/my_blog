@@ -12,10 +12,11 @@
   "devDependencies": {},
   "dependencies": {
     "@strapi/plugin-graphql": "^4.3.8",
-    "@strapi/strapi": "4.4.1",
-    "@strapi/plugin-users-permissions": "4.4.1",
-    "@strapi/plugin-i18n": "4.4.1",
-    "better-sqlite3": "7.4.6"
+    "@strapi/plugin-i18n": "4.5.3",
+    "@strapi/plugin-users-permissions": "4.5.3",
+    "@strapi/strapi": "4.5.3",
+    "better-sqlite3": "7.4.6",
+    "strapi-plugin-vercel-deploy": "^1.4.0"
   },
   "author": {
     "name": "A Strapi developer"
@@ -24,7 +25,7 @@
     "uuid": "9f8fadc2-e76a-46ee-9215-2d8dd550294d"
   },
   "engines": {
-    "node": ">=14.19.1 <=16.x.x",
+    "node": "16.15.0",
     "npm": ">=6.0.0"
   },
   "license": "MIT"
