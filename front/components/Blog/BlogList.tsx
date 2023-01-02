@@ -22,7 +22,21 @@ export default function BlogList({ posts }: Props) {
           return (
             <Link href={`/blog/${slug}`}>
               <div key={post.id} className='flex flex-col group cursor-pointer'>
-                <div className='relative w-full drop-shadow-xl group-hover:scale-105 transition-transform duration-200 ease-out'>
+                <div className="card w-96 bg-base-100 shadow-xl image-full">
+                  <figure><img className='w-full' src={`http://localhost:1337${url}`} alt="Shoes" /></figure>
+                  <div className="card-body">
+                    <h2 className="card-title">{title}</h2>
+                    <p>{excerpt}</p>
+                    <div className="card-actions justify-end">
+                      {categories.data.map((category: any) => {
+                        return (
+                          <div key={category.id} className="badge badge-accent badge-outline">{category.attributes.name}</div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <div className='relative w-auto drop-shadow-xl group-hover:scale-105 transition-transform duration-200 ease-out'>
                   <img className='w-full rounded-3xl object-cover object-left h-96 lg:object-center' src={`http://localhost:1337${url}`} alt="first image of the blog fill to Next image" />
                   <div className='absolute bottom-0 w-full bg-opacity-20 bg-black backdrop-blur-lg text-white p-5 flex justify-between rounded-3xl'>
                     <div>

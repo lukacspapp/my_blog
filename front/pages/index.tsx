@@ -18,6 +18,7 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 export default function Home({ heroData: hero, about, experiences, contact, technologies }) {
 
+
   const { url } = contact.attributes.profile.data.attributes;
 
   const { data: session }: any = useSession();
@@ -63,12 +64,15 @@ export default function Home({ heroData: hero, about, experiences, contact, tech
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 
   const client = new ApolloClient({
     uri: graphql,
+    credentials: 'include',
     cache: new InMemoryCache()
+
   })
+
 
   const { data } = await client.query({
     query: gql`
