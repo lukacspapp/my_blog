@@ -19,7 +19,8 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 export default function Home({ heroData: hero, about, experiences, contact, technologies }) {
 
 
-  const { url } = contact.attributes.profile.data.attributes;
+
+  // const { url } = contact.attributes.profile.data.attributes;
 
   const { data: session }: any = useSession();
 
@@ -27,6 +28,7 @@ export default function Home({ heroData: hero, about, experiences, contact, tech
     if (session == null) return;
   }, [session]);
 
+  return <h1>sanyi</h1>
 
   return (
     <div className='snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden z-0
@@ -67,110 +69,123 @@ export default function Home({ heroData: hero, about, experiences, contact, tech
 export const getServerSideProps = async () => {
 
   const client = new ApolloClient({
-    uri: graphql,
+    uri: 'https://strapi-test-9vev.onrender.com/graphql',
     credentials: 'include',
     cache: new InMemoryCache()
 
   })
 
-
   const { data } = await client.query({
     query: gql`
-    query{
-      pExperiences{
-        data{
-          id,
-          attributes{
-            job_title,
-            start_date,
-            end_date,
-            company_title,
-            summary_points,
-            image{
-              data{
-                id,
-                attributes{
-                  url
-                }
-              }
-            }
-            technologies{
-              data{
-                id,
-                attributes{
-                  name,
-                  image{
-                    data{
-                      id,
-                      attributes{
-                        url
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }`,
-  })
-
-  const { data: contact } = await client.query({
-    query: gql`
     query {
-      contact{
-        data{
-          id
-          attributes{
-            email,
-            location,
-            profile{
-              data{
-                id,
-                attributes{
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    }`
+  products {
+    data{
+      id
+    }
+  }
+}
+    `
   })
 
-  const { data: technologies } = await client.query({
-    query: gql`
-    query {
-    technologies{
-      data{
-        id,
-        attributes{
-          image{
-            data{
-              id,
-              attributes{
-                url
-              }
-            }
-          },
-          name
-        }
-      }
-    }}`
-  })
 
-  const heroData = await fetcher(`${server}/portfolio-hero?populate=*`)
+  // const { data } = await client.query({
+  //   query: gql`
+  //   query{
+  //     pExperiences{
+  //       data{
+  //         id,
+  //         attributes{
+  //           job_title,
+  //           start_date,
+  //           end_date,
+  //           company_title,
+  //           summary_points,
+  //           image{
+  //             data{
+  //               id,
+  //               attributes{
+  //                 url
+  //               }
+  //             }
+  //           }
+  //           technologies{
+  //             data{
+  //               id,
+  //               attributes{
+  //                 name,
+  //                 image{
+  //                   data{
+  //                     id,
+  //                     attributes{
+  //                       url
+  //                     }
+  //                   }
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }`,
+  // })
 
-  const aboutData = await fetcher(`${server}/p-about?populate=*`)
+  // const { data: contact } = await client.query({
+  //   query: gql`
+  //   query {
+  //     contact{
+  //       data{
+  //         id
+  //         attributes{
+  //           email,
+  //           location,
+  //           profile{
+  //             data{
+  //               id,
+  //               attributes{
+  //                 url
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }`
+  // })
+
+  // const { data: technologies } = await client.query({
+  //   query: gql`
+  //   query {
+  //   technologies{
+  //     data{
+  //       id,
+  //       attributes{
+  //         image{
+  //           data{
+  //             id,
+  //             attributes{
+  //               url
+  //             }
+  //           }
+  //         },
+  //         name
+  //       }
+  //     }
+  //   }}`
+  // })
+
+  // const heroData = await fetcher(`${server}/portfolio-hero?populate=*`)
+
+  // const aboutData = await fetcher(`${server}/p-about?populate=*`)
 
   return {
     props: {
-      heroData: heroData.data,
-      about: aboutData.data,
-      experiences: data.pExperiences.data,
-      contact: contact.contact.data,
-      technologies: technologies.technologies.data
+      valami: data.products.data,
+      // heroData: heroData.data,
+      // about: aboutData.data,
+      // experiences: data.pExperiences.data,
+      // contact: contact.contact.data,
+      // technologies: technologies.technologies.data
     }
   }
 }
