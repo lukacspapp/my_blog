@@ -68,24 +68,24 @@ export default function Home({ heroData: hero, about, experiences, contact, tech
 
 export const getServerSideProps = async () => {
 
-  const client = new ApolloClient({
-    uri: 'https://strapi-test-9vev.onrender.com/graphql',
-    credentials: 'include',
-    cache: new InMemoryCache()
+//   const client = new ApolloClient({
+//     uri: 'https://strapi-test-9vev.onrender.com/graphql',
+//     credentials: 'include',
+//     cache: new InMemoryCache()
 
-  })
+//   })
 
-  const { data } = await client.query({
-    query: gql`
-    query {
-  products {
-    data{
-      id
-    }
-  }
-}
-    `
-  })
+//   const { data } = await client.query({
+//     query: gql`
+//     query {
+//   products {
+//     data{
+//       id
+//     }
+//   }
+// }
+//     `
+//   })
 
 
   // const { data } = await client.query({
@@ -180,7 +180,7 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      valami: data.products.data,
+      // valami: data.products.data,
       // heroData: heroData.data,
       // about: aboutData.data,
       // experiences: data.pExperiences.data,
