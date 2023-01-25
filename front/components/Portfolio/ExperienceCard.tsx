@@ -7,9 +7,6 @@ type Props = {
 
 export default function ExperienceCards({ experience }: Props) {
 
-  console.log(experience)
-
-
   return (
     <article className='flex flex-col rounded-lg items-center space-y-7 flex-shrink-0
       w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-[#353d4c] p-10 hover:opacity-100
@@ -32,7 +29,7 @@ export default function ExperienceCards({ experience }: Props) {
         <div className='flex space-x-2 my-2'>
           {experience.portfolioTechnologies.map(( technology : any) => {
             return (
-              <img className='h-10 w-10 md:h-7 md:w-7 rounded-lg object-cover' src={technology.image.url} alt={technology.image.name} />
+              <img key={technology.id} className='h-10 w-10 md:h-7 md:w-7 rounded-lg object-cover' src={technology.image.url} alt={technology.image.name} />
             )
           })}
         </div>

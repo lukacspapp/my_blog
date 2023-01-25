@@ -3,12 +3,10 @@ import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
 import emailjs from 'emailjs-com'
 
 type Props = {
-  contact: any
+  about: any
 }
 
-export default function Contact({ contact }: Props) {
-
-  const { email, location } = contact.attributes
+export default function Contact({ about }: Props) {
 
   const userId = 'service_k28ayav'
   const templateId = 'template_m60bxwh'
@@ -42,12 +40,12 @@ export default function Contact({ contact }: Props) {
         <div className='space-y-10'>
           <div className='flex items-center space-x-5 justify-center'>
             <MapPinIcon className='text-yellow-500 h-7 w-7 animate-pulse' />
-            <p className='text-2xl'>{location}</p>
+            <p className='text-2xl'>{about.location}</p>
           </div>
 
           <div className='flex items-center space-x-5 justify-center'>
             <EnvelopeIcon className='text-yellow-500 h-7 w-7 animate-pulse' />
-            <p className='text-2xl'>{email}</p>
+            <p className='text-2xl'>{about.email}</p>
           </div>
         </div>
         <form ref={form} onSubmit={handleSubmit} className='flex flex-col space-y-2 w-fit mx-auto'>

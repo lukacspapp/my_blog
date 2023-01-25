@@ -8,8 +8,6 @@ type Props = {
 
 export default function Skills({ technologies }: Props) {
 
-  console.log(technologies);
-
 
   return (
     <motion.div
@@ -23,7 +21,6 @@ export default function Skills({ technologies }: Props) {
       <h3 className='absolute top-36 uppercase tracking-[3px] text-sm'>
         Hover over a Skill for proficiency
       </h3>
-
       <div className='grid grid-cols-4 gap-5'>
         {technologies.map((technology: any) => {
           return (

@@ -15,7 +15,7 @@ import { getExpereinces, getTechnologies, getHero, getAbout } from '../services'
 
 
 
-export default function Home({ hero, about, experiences, contact, technologies }) {
+export default function Home({ hero, about, experiences, technologies }) {
 
   const { data: session }: any = useSession();
 
@@ -32,33 +32,35 @@ export default function Home({ hero, about, experiences, contact, technologies }
       <Header />
       <section id='hero' className='snap-center'>
         {hero.map((hero: any) => {
-          return <Hero hero={hero} />
+          return <Hero key={hero.id} hero={hero} />
         })}
       </section>
       <section id='about' className='snap-center'>
         {about.map((about: any) => {
-          return <About about={about} />
+          return <About key={about.id} about={about} />
         })}
       </section>
       <section id='experience' className='snap-center'>
         <Experience experiences={experiences} />
       </section>
-      {/* <section id='skills' className='snap-start'>
+      <section id='skills' className='snap-start'>
         <Skills technologies={technologies} />
       </section>
       <section id='projects' className='snap-start'>
         <Projects />
       </section>
       <section id='contact' className='snap-start'>
-        <Contact contact={contact} />
+        {about.map((about: any) => {
+          return <Contact key={about.id} about={about} />
+        })}
       </section>
       <Link href={'#hero'}>
         <footer className='sticky bottom-5 w-full cursor-pointer'>
           <div className='flex items-center justify-center'>
-            <img className='h-10 w10 rounded-full filter grayscale hover:grayscale-0' src={``} alt="sanyi" />
+            <img className='h-10 w10 rounded-full filter grayscale hover:grayscale-0' src={about.map((image: { photo: { url: any; }; }) => image.photo.url)} alt="sanyi" />
           </div>
         </footer>
-      </Link> */}
+      </Link>
     </div>
   );
 }
