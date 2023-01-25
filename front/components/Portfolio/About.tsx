@@ -9,9 +9,6 @@ type AboutProps = {
 
 export default function About({ about }: AboutProps) {
 
-  const { bio, title, photo } = about.attributes
-  const { url } = photo.data.attributes
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -33,11 +30,11 @@ export default function About({ about }: AboutProps) {
         transition={{ duration: 1.2 }}
         viewport={{ once: true }}
         className='-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-96 xl:w-[500px] xl:h-[600px]'
-        src={`http://localhost:1337${url}`}>
+        src={about.photo.url}>
       </motion.img>
       <div className='space-y-10 px-0 md:px-10'>
-        <h4 className='text-4xl font-semibold '>{title}</h4>
-        <p className='text-base'>{bio}</p>
+        <h4 className='text-4xl font-semibold '>{about.title}</h4>
+        <p className='text-base'>{about.bio}</p>
         {/* <h5 className=''>I have been coding for</h5>
         <Clock />
         <h4 className='text-4xl font-semibold text-center'>Check Out my blog</h4>

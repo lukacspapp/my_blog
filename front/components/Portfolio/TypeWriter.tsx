@@ -13,7 +13,6 @@ export default function TypeWriter({ vocations }: TypeWriterProps) {
     delaySpeed: 2000,
   })
 
-
   return (
     <>
       <span className='mr-3'>{text}</span>

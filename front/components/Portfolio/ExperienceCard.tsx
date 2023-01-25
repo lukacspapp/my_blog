@@ -7,11 +7,8 @@ type Props = {
 
 export default function ExperienceCards({ experience }: Props) {
 
+  console.log(experience)
 
-  const { job_title, company_title, start_date, end_date } = experience.attributes
-  const { url } = experience.attributes.image.data.attributes
-  const technologies = experience.attributes.technologies.data
-  const summaryPoints = experience.attributes.summary_points
 
   return (
     <article className='flex flex-col rounded-lg items-center space-y-7 flex-shrink-0
@@ -26,26 +23,26 @@ export default function ExperienceCards({ experience }: Props) {
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         className='w-32 h-32 rounded-full md:rounded-full md:h-25 md:w-25 xl:w-[200px] xl:h-[200px] object-cover object-center'
-        src={`http://localhost:1337${url}`}
+        src={experience.image.url}
         alt='avatar'
       />
       <div className='px-0 md:px-10'>
-        <h4 className='text-4xl font-light'>{job_title}</h4>
-        <p className='font-bold text-2xl mt-1'>{company_title}</p>
+        <h4 className='text-4xl font-light'>{experience.jobTitle}</h4>
+        <p className='font-bold text-2xl mt-1'>{experience.companyTitle}</p>
         <div className='flex space-x-2 my-2'>
-          {technologies.map(({ attributes }: any) => {
+          {experience.portfolioTechnologies.map(( technology : any) => {
             return (
-              <img className='h-10 w-10 md:h-7 md:w-7 rounded-lg object-cover' src={`http://localhost:1337${attributes.image.data.attributes.url}`} alt="" />
+              <img className='h-10 w-10 md:h-7 md:w-7 rounded-lg object-cover' src={technology.image.url} alt={technology.image.name} />
             )
           })}
         </div>
-        <p className='uppercase'>{`${start_date} - ${end_date === null ? 'Present' : end_date}`}</p>
+        <p className='uppercase'>{`${experience.startDate} - ${!experience.end_date ? 'Present' : experience.end_date}`}</p>
         <ul className='list-disc space-y-4 ml-5 text-lg'>
-          {summaryPoints.split(',').map((point: string, i: Key) => {
+          {/* {experience.summaryPoint ?? experience.summaryPoints.split(',').map((point: string, i: Key) => {
             return (
               <li key={i}>{point}</li>
             )
-          })}
+          })} */}
         </ul>
       </div>
     </article>
