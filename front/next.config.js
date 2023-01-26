@@ -11,7 +11,7 @@ module.exports = {
   },
   images: {
     domains: [
-      "localhost",
+      "media.graphassets.com",
     ]
   }
 

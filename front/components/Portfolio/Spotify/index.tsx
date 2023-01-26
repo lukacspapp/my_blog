@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
-import { StatusOfflineIcon, StatusOnlineIcon } from "@heroicons/react/outline";
 
 import Blob from "./Blob";
 import TrackInformation from "./TrackInformation";
@@ -48,6 +47,10 @@ const Spotify = () => {
   }, [nowPlaying]);
 
   return (
+    <div className='h-screen relative flex flex-col text-center
+    md:flex-row md:text-left max-w-7xl px-10 justify-evenly mx-auto items-center'>
+
+
     <div className={nowPlaying?.isPlaying ? "text-white" : "text-current"}>
       {colors && nowPlaying?.isPlaying && (
         <div className="absolute inset-0 z-[1] overflow-hidden rounded-2xl">
@@ -82,12 +85,13 @@ const Spotify = () => {
               {nowPlaying?.isPlaying ? (
                 <>
                   <span>now playing</span>
-                  <StatusOnlineIcon className="ml-2 w-5 animate-pulse" />
+
+                  {/* <StatusOnlineIcon className="ml-2 w-5 animate-pulse" /> */}
                 </>
               ) : (
                 <>
                   <span>last played</span>
-                  <StatusOfflineIcon className="ml-2 w-5" />
+                  {/* <StatusOfflineIcon className="ml-2 w-5" /> */}
                 </>
               )}
             </div>
@@ -107,6 +111,7 @@ const Spotify = () => {
         </div>
       </div>
     </div>
+      </div>
   );
 };
 

@@ -12,6 +12,7 @@ import Skills from '../components/Portfolio/Skills';
 import Projects from '../components/Portfolio/Projects';
 import Contact from '../components/Portfolio/Contact';
 import { getExpereinces, getTechnologies, getHero, getAbout } from '../services';
+import Image from 'next/image';
 
 
 
@@ -55,9 +56,9 @@ export default function Home({ hero, about, experiences, technologies }) {
         })}
       </section>
       <Link href={'#hero'}>
-        <footer className='sticky bottom-5 w-full cursor-pointer'>
+        <footer className='sticky bottom-10 w-full cursor-pointer'>
           <div className='flex items-center justify-center'>
-            <img className='h-10 w10 rounded-full filter grayscale hover:grayscale-0' src={about.map((image: { photo: { url: any; }; }) => image.photo.url)} alt="sanyi" />
+            <Image className='rounded-full grayscale hover:grayscale-0' src={about[0].photo.url} alt={'me'} width={35} height={35} />
           </div>
         </footer>
       </Link>
