@@ -17,7 +17,7 @@ export default function Experience({ experiences }: experiencesProps) {
       className='h-screen flex relative overflow-hidden flex-col text-lft md:flex-row
       max-w-full px-10 justify-evenly mx-auto items-center'
     >
-      <h3 className='absolute top-24 uppercase text-2xl tracking-[20px]'>Experience</h3>
+      <h3 className='absolute top-24 uppercase text-2xl tracking-[15px]'>Experience</h3>
       <div className='w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory'>
         {experiences.map((experience: any) => {
           return (

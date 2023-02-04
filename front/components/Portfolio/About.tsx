@@ -17,7 +17,7 @@ export default function About({ about }: AboutProps) {
       className='flex flex-col relative h-screen text-center md:text-left md:flex-row
       max-w-7xl px-10 justify-evenly mx-auto items-center'
     >
-      <h3 className='absolute top-24 uppercase text-2xl tracking-[20px]'>About</h3>
+      <h3 className='absolute top-24 uppercase text-2xl tracking-[15px]'>About</h3>
       <motion.img
         initial={{
           x: -200,

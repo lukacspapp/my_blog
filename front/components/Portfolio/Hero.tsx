@@ -1,7 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect } from 'react'
-import { Cursor, useTypewriter } from 'react-simple-typewriter'
 import BackgroundCircles from './BackgroundCircles'
 import TypeWriter from './TypeWriter'
 
@@ -19,7 +17,7 @@ export default function Hero({ hero }) {
         <h1 className='text-5xl lg:text-6xl font-semibold px-10'>
           <TypeWriter vocations={hero.vocations} />
         </h1>
-        <div className='pt-5'>
+        <div className='pt-10'>
           <Link href={'#about'}>
             <button className='heroButton'>About</button>
           </Link>

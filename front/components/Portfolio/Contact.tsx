@@ -42,11 +42,6 @@ export default function Contact({ about }: Props) {
             <MapPinIcon className='text-yellow-500 h-7 w-7 animate-pulse' />
             <p className='text-2xl'>{about.location}</p>
           </div>
-
-          <div className='flex items-center space-x-5 justify-center'>
-            <EnvelopeIcon className='text-yellow-500 h-7 w-7 animate-pulse' />
-            <p className='text-2xl'>{about.email}</p>
-          </div>
         </div>
         <form ref={form} onSubmit={handleSubmit} className='flex flex-col space-y-2 w-fit mx-auto'>
           <div className='flex space-x-2'>
