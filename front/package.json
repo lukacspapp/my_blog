@@ -20,7 +20,7 @@
     "daisyui": "^2.31.0",
     "date-fns": "^2.29.3",
     "emailjs-com": "^3.2.0",
-    "framer-motion": "^7.6.17",
+    "framer-motion": "^9.0.2",
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
     "html-react-parser": "^3.0.8",
