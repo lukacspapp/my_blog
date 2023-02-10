@@ -13,6 +13,7 @@ import Projects from '../components/Portfolio/Projects';
 import Contact from '../components/Portfolio/Contact';
 import { getExpereinces, getTechnologies, getHero, getAbout } from '../services';
 import Image from 'next/image';
+import { Nav } from '../components/Nav';
 
 
 
@@ -58,13 +59,14 @@ export default function Home({ hero, about, experiences, technologies }) {
           return <Contact key={about.id} about={about} />
         })}
       </section>
-      <Link href={'#hero'}>
+      {/* <Link href={'#hero'}>
         <footer className='sticky bottom-11 w-full cursor-pointer'>
           <div className='flex items-center justify-center'>
             <Image className='rounded-full grayscale hover:grayscale-0' src={about[0].photo.url} alt={'me'} width={35} height={35} />
           </div>
         </footer>
-      </Link>
+      </Link> */}
+      <Nav />
     </div>
   );
 }
