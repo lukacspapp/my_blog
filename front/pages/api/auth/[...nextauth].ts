@@ -1,53 +1,98 @@
-import NextAuth from 'next-auth';
+import NextAuth, { Awaitable, RequestInternal, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { signIn } from '../../../services/auth';
+import { compare, hash } from "bcrypt";
+import { GraphQLClient } from "graphql-request";
+import { request, gql } from 'graphql-request'
+
+
+const client = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
+  headers: {
+    Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`,
+  },
+});
+
+const GetUserByEmail = gql`
+  query GetUserByEmail($email: String!) {
+    user: nextUser(where: { email: $email }, stage: DRAFT) {
+      id
+      password
+    }
+  }
+`;
+
+const CreateNextUserByEmail = gql`
+  mutation CreateNextUserByEmail($email: String!, $password: String!) {
+    newUser: createNextUser(data: { email: $email, password: $password }) {
+      id
+    }
+  }
+`;
+
+const GetUserProfileById = gql`
+  query GetUserProfileById($id: ID!) {
+    user: nextAuthUser(where: { id: $id }) {
+      name
+      bio
+    }
+  }
+`;
 
 export default NextAuth({
-  // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
-      name: 'Sign in with Email',
+      name: 'Credentials',
       credentials: {
-        email: { label: 'Email', type: 'text' },
-        password: { label: 'Password', type: 'password' },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "jamie@hygraph.com"
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "Password"
+        },
       },
-      async authorize(credentials, req) {
-        /**
-         * This function is used to define if the user is authenticated or not.
-         * If authenticated, the function should return an object contains the user data.
-         * If not, the function should return `null`.
-         */
-        if (credentials == null) return null;
-        /**
-         * credentials is defined in the config above.
-         * We can expect it contains two properties: `email` and `password`
-         */
-        try {
-          const { user, jwt } = await signIn({
-            email: credentials.email,
-            password: credentials.password,
-          });
-          return { ...user, jwt };
-        } catch (error) {
-          // Sign In Fail
-          return null;
+      authorize: async ({ email, password }) => {
+        const { user } = await client.request(GetUserByEmail, {
+          email,
+        });
+
+        if (!user) {
+          const { newUser } = await client.request(
+            CreateNextUserByEmail,
+            {
+              email,
+              password: await hash(password, 12),
+            }
+          );
+
+          return {
+            id: newUser.id,
+            username: email,
+            email,
+          };
         }
+
+        const isValid = await compare(password, user.password);
+
+        if (!isValid) {
+          throw new Error("Wrong credentials. Try again.");
+        }
+
+        return {
+          id: user.id,
+          username: email,
+          email,
+        };
       },
     }),
   ],
   callbacks: {
-    session: async ({ session, token }: any) => {
-      session.id = token.id;
-      session.jwt = token.jwt;
+    async session({ session, token }: any) {
+      session.user = token.sub;
       return Promise.resolve(session);
     },
-    jwt: async ({ token, user }:any) => {
-      const isSignIn = user ? true : false;
-      if (isSignIn) {
-        token.id = user.id;
-        token.jwt = user.jwt;
-      }
-      return Promise.resolve(token);
-    },
   },
-});
+})
+

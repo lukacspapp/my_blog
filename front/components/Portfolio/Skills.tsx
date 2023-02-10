@@ -3,12 +3,13 @@ import { motion } from 'framer-motion'
 import Skill from './Skill'
 
 type Props = {
-  technologies: any,
+  technologies: [any],
 }
 
 export default function Skills({ technologies }: Props) {
 
 
+console.log(technologies);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -18,7 +19,7 @@ export default function Skills({ technologies }: Props) {
       max-w-[2000px] xl:px-10 min-h-screen justify-center items-center xl:space-y-0 mx-auto'>
       <h3 className='absolute top-24 uppercase text-2xl tracking-[15px]'>Skills</h3>
 
-      <div className='flex'>
+      <div className='flex flex-row flex-wrap w-90 m-2'>
         {technologies.map((technology: any) => {
           return (
             <Skill

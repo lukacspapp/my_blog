@@ -9,17 +9,25 @@ export function Login() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const result = await signIn('credentials', {
+    const body = {
+      identifier: e.currentTarget.identifier.value,
+      password: e.currentTarget.password.value,
+    };
+console.log(body)
+    const response = await signIn('credentials', {
       redirect: false,
-      email: e.target.email.value,
-      password: e.target.password.value,
+      email: body.identifier,
+      password: body.password,
     });
-    if (result.ok) {
-      router.replace('/blog');
-      return;
+
+    if (response.error) {
+      alert(response.error);
+    } else {
+      router.reload();
     }
-    alert('Credential is not valid');
-  };
+  }
+
+
 
   return (
     <>
@@ -28,7 +36,7 @@ export function Login() {
       </header>
       <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
         <section className="mt-10">
-          <form className="flex flex-col" method="POST" action="#" onSubmit={onSubmit}>
+          <form className="flex flex-col" action="#" onSubmit={onSubmit}>
             <div className="mb-6 pt-3 rounded bg-gray-200">
               <label className="block text-gray-700 text-sm font-bold mb-2 ml-3">Email</label>
               <input  type="text" name='identifier' id="email" className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3" />

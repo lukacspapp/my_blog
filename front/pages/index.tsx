@@ -1,5 +1,5 @@
 
-import { signOut, useSession } from 'next-auth/react';
+import { signOut, useSession, signIn } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -16,9 +16,12 @@ import Image from 'next/image';
 
 
 
+
 export default function Home({ hero, about, experiences, technologies }) {
 
-  const { data: session }: any = useSession();
+  const { data: session, status }: any = useSession();
+
+  console.log(session, status)
 
   useEffect(() => {
     if (session == null) return;

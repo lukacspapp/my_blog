@@ -1,11 +1,22 @@
-import axios from 'axios';
+import { request, gql } from 'graphql-request'
 
-const strapiUrl = process.env.STRAPI_URL;
+export async function GetUserByEmail() {
+  gql`
+    query GetUserByEmail($email: String!) {
+      user: nextUser(where: { email: $email }, stage: DRAFT) {
+        id
+        password
+      }
+    }
+  `;
+}
 
-export async function signIn({ email, password }: any) {
-  const res = await axios.post(`${strapiUrl}/api/auth/local`, {
-    identifier: email,
-    password,
-  });
-  return res.data;
+export async function CreateNextUserByEmail() {
+  gql`
+    mutation CreateNextUserByEmail($email: String!, $password: String!) {
+      newUser: createNextUser(data: { email: $email, password: $password }) {
+        id
+      }
+    }
+  `;
 }

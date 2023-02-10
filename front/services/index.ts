@@ -32,7 +32,7 @@ export async function getExpereinces() {
 export async function getTechnologies() {
   const query = gql`
     query MyQuery {
-      portfolioTechnologies {
+      portfolioTechnologies (first: 100) {
         image {
           url
           id

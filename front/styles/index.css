@@ -19,4 +19,12 @@
   }
 }
 
+button {
+  // add hover color change to light
+
+  &:hover {
+    background-color: #f5ab0a;
+    color: #242424;
+  }
+}
 
