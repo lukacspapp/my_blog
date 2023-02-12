@@ -8,7 +8,7 @@ module.exports = {
     extend: {},
   },
   daisyui: {
-    themes: ["luxury", "acid"],
+    themes: ["acid"],
   },
   plugins: [require("daisyui"), require('tailwind-scrollbar'), require('@tailwindcss/line-clamp')],
   variants: {

@@ -43,12 +43,9 @@ export default function Contact({ about }: Props) {
             <p className='text-2xl'>{about.location}</p>
           </div>
         </div>
-        <form ref={form} onSubmit={handleSubmit} className='flex flex-col space-y-2 w-fit mx-auto'>
-          <div className='flex space-x-2'>
-            <input placeholder='Name' className='contactInput' name='name' type="text" />
-            <input placeholder='Email' className='contactInput' name='email' type="email" />
-          </div>
-          <input className='contactInput' placeholder='Subject' name='subject' type='text' />
+        <form ref={form} onSubmit={handleSubmit} className='flex flex-col space-y-2 w-80 mx-auto'>
+          <input placeholder='Name' className='contactInput' name='name' type="text" />
+          <input className='contactInput' placeholder='Email' name='email' type='email' />
           <textarea className='contactInput' typeof='text' name='message'></textarea>
           <button type='submit' className='bg-[#F7AB0A] disabled py-5 px-10 rounded-md text-black font-bold text-lg' >Submit</button>
         </form>
