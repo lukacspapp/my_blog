@@ -20,6 +20,7 @@
     "bcrypt": "^5.1.0",
     "daisyui": "^2.31.0",
     "date-fns": "^2.29.3",
+    "easy-peasy": "^5.2.0",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^9.0.2",
     "graphql": "^16.6.0",

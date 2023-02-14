@@ -1,31 +1,112 @@
 import { HomeIcon, UserIcon, ClipboardIcon, BriefcaseIcon, ChatBubbleBottomCenterIcon } from "@heroicons/react/24/solid";
+import { MutableRefObject, useRef, memo, ReactElement } from "react";
 import { Link } from 'react-scroll'
+import { useStore, useStoreActions } from "../store";
+
+const dockButtons: { title: string; logo: ReactElement }[] = [
+  {
+    title: 'Home',
+    logo: <HomeIcon />
+  },
+  {
+    title: 'About',
+    logo: <UserIcon />
+  },
+  {
+    title: 'Experience',
+    logo: <ClipboardIcon />
+  },
+  {
+    title: 'Skills',
+    logo: <BriefcaseIcon />
+  },
+  {
+    title: 'Contact',
+    logo: <ChatBubbleBottomCenterIcon />
+  }
+]
 
 export function Nav() {
+
+  const dockButtonsWrapper =
+    useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+  const closeMenu = true
+
+  const handleItemsMouseEnter = (itemIndex: number) => {
+    const expandSize = 8
+
+    const buttonElements = dockButtonsWrapper.current
+      .children as HTMLCollectionOf<HTMLDivElement>
+
+    buttonElements[itemIndex].style.width = `${expandSize}rem`
+
+    if (itemIndex > 0 && buttonElements[itemIndex - 1]) {
+      buttonElements[itemIndex - 1].style.width = `${expandSize - 1.5}rem`
+    }
+
+    if (itemIndex > 0 && buttonElements[itemIndex - 2]) {
+      buttonElements[itemIndex - 2].style.width = `${expandSize - 2.5}rem`
+    }
+
+    if (itemIndex < dockButtons.length - 1 && buttonElements[itemIndex + 1]) {
+      buttonElements[itemIndex + 1].style.width = `${expandSize - 1.5}rem`
+    }
+
+    if (itemIndex < dockButtons.length - 1 && buttonElements[itemIndex + 2]) {
+      buttonElements[itemIndex + 2].style.width = `${expandSize - 2.5}rem`
+    }
+  }
+
+  const handleItemsMouseLeave = (itemIndex: number) => {
+    const unexpandSize = 4
+
+    const buttonElements = dockButtonsWrapper.current
+      .children as HTMLCollectionOf<HTMLDivElement>
+
+    buttonElements[itemIndex].style.width = `${unexpandSize}em`
+
+    if (itemIndex > 0 && buttonElements[itemIndex - 1]) {
+      buttonElements[itemIndex - 1].style.width = `${unexpandSize}em`
+    }
+
+    if (itemIndex > 0 && buttonElements[itemIndex - 2]) {
+      buttonElements[itemIndex - 2].style.width = `${unexpandSize}em`
+    }
+
+    if (itemIndex < dockButtons.length - 1 && buttonElements[itemIndex + 1]) {
+      buttonElements[itemIndex + 1].style.width = `${unexpandSize}em`
+    }
+
+    if (itemIndex < dockButtons.length - 1 && buttonElements[itemIndex + 2]) {
+      buttonElements[itemIndex + 2].style.width = `${unexpandSize}em`
+    }
+  }
+
+  const handleItemsClick = () => {
+    if (closeMenu) {
+      // closeMenu()
+    }
+  }
 
 
 
   return (
-    <nav className="fixed bottom-2 lg:bottom-8 w-full overflow-hidden z-50 p-5">
-      <div className="container mx-auto">
-        <div className="w-full bg-black/5 items-center h-[96px] backdrop-blur-2xl rounded-full mx-auto max-w-md px-5 flex justify-between text-2xl">
-          <Link to='hero' className="cursor-pointer w-[40px] h-[40px] flex items-center" >
-            <HomeIcon  />
-          </Link>
-          <Link to='about' className="cursor-pointer w-[40px] h-[40px] flex items-center">
-            <UserIcon />
-          </Link>
-          <Link to='experience' className="cursor-pointer w-[40px] h-[40px] flex items-center">
-            <ClipboardIcon />
-          </Link>
-          <Link to='contact' className="cursor-pointer w-[40px] h-[40px] flex items-center">
-            <ChatBubbleBottomCenterIcon />
-          </Link>
-          <Link to='skills' className="cursor-pointer w-[40px] h-[40px] flex items-center">
-            <BriefcaseIcon />
-          </Link>
-        </div>
-      </div>
-    </nav>
+    <div
+      ref={dockButtonsWrapper}
+      className="flex h-16 flex-row justify-center items-end bg-white fixed bottom-2 left-0 right-0 px-2 bg-opacity-10 w-max m-auto rounded-xl"
+    >
+      {dockButtons.map((item: { title: string; logo: ReactElement }, i: number) => (
+        <button
+          key={item.title}
+          className="w-16 align-bottom dock-item p-2"
+          style={{ transition: 'all ease .2s' }}
+          onMouseEnter={() => handleItemsMouseEnter(i)}
+          onMouseLeave={() => handleItemsMouseLeave(i)}
+          onClick={() => handleItemsClick()}
+        >
+          {item.logo}
+        </button>
+      ))}
+    </div>
   )
 }
