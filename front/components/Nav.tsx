@@ -7,7 +7,7 @@ const dockButtons: { title: string; logo: ReactElement; to: string; }[] = [
   {
     title: 'Home',
     logo: <HomeIcon />,
-    to: 'home'
+    to: 'hero'
   },
   {
     title: 'About',
@@ -88,19 +88,11 @@ export function Nav() {
   }
 
   const handleItemsClick = (to: string) => {
-    // on click scroll to section
-
-    const buttonElements = dockButtonsWrapper.current
-      .children as HTMLCollectionOf<HTMLDivElement>
-
-
-    for (let i = 0; i < buttonElements.length; i++) {
-      buttonElements[i].style.width = '4em'
+    const element = document.getElementById(to)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
     }
-
   }
-
-
 
   return (
     <div
@@ -110,8 +102,7 @@ export function Nav() {
       {dockButtons.map((item: { title: string; logo: ReactElement, to: string }, i: number) => (
         <button
           key={item.title}
-          className="w-16 align-bottom dock-item p-2"
-          style={{ transition: 'all ease .2s' }}
+          className="w-16 align-bottom dock-item p-2 transition-all ease-in-out duration-200"
           onMouseEnter={() => handleItemsMouseEnter(i)}
           onMouseLeave={() => handleItemsMouseLeave(i)}
           onClick={() => handleItemsClick(item.to)}
