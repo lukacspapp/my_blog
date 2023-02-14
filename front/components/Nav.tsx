@@ -93,7 +93,7 @@ export function Nav() {
   return (
     <div
       ref={dockButtonsWrapper}
-      className="flex h-16 flex-row justify-center items-end bg-white fixed bottom-2 left-0 right-0 px-2 bg-opacity-10 w-max m-auto rounded-xl"
+      className="flex h-10 flex-row justify-center items-end bg-white fixed bottom-2 left-0 right-0 px-1 bg-opacity-10 w-max m-auto rounded-xl"
     >
       {dockButtons.map((item: { title: string; logo: ReactElement }, i: number) => (
         <button
