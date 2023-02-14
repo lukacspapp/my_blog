@@ -13,7 +13,7 @@ import Projects from '../components/Portfolio/Projects';
 import Contact from '../components/Portfolio/Contact';
 import { getExpereinces, getTechnologies, getHero, getAbout } from '../services';
 import Image from 'next/image';
-import { Nav } from '../components/Nav';
+import { Nav } from '../components/Portfolio/Nav';
 import { Element } from 'react-scroll';
 
 

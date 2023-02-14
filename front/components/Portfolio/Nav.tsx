@@ -1,7 +1,7 @@
 import { HomeIcon, UserIcon, ClipboardIcon, BriefcaseIcon, ChatBubbleBottomCenterIcon } from "@heroicons/react/24/solid";
 import { MutableRefObject, useRef, memo, ReactElement } from "react";
 import { Link } from 'react-scroll'
-import { useStore, useStoreActions } from "../store";
+import { useStore, useStoreActions } from "../../store";
 
 const dockButtons: { title: string; logo: ReactElement; to: string; }[] = [
   {
@@ -97,7 +97,7 @@ export function Nav() {
   return (
     <div
       ref={dockButtonsWrapper}
-      className="flex h-10 flex-row justify-center items-end bg-white fixed bottom-2 left-0 right-0 px-1 bg-opacity-10 w-max m-auto rounded-xl"
+      className="flex h-10 flex-row justify-center items-end bg-white fixed bottom-10 left-0 right-0 bg-opacity-10 w-max m-auto rounded-xl"
     >
       {dockButtons.map((item: { title: string; logo: ReactElement, to: string }, i: number) => (
         <button
