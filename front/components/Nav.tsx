@@ -3,26 +3,31 @@ import { MutableRefObject, useRef, memo, ReactElement } from "react";
 import { Link } from 'react-scroll'
 import { useStore, useStoreActions } from "../store";
 
-const dockButtons: { title: string; logo: ReactElement }[] = [
+const dockButtons: { title: string; logo: ReactElement; to: string; }[] = [
   {
     title: 'Home',
-    logo: <HomeIcon />
+    logo: <HomeIcon />,
+    to: 'home'
   },
   {
     title: 'About',
-    logo: <UserIcon />
+    logo: <UserIcon />,
+    to: 'about'
   },
   {
     title: 'Experience',
-    logo: <ClipboardIcon />
+    logo: <ClipboardIcon />,
+    to: 'experience'
   },
   {
     title: 'Skills',
-    logo: <BriefcaseIcon />
+    logo: <BriefcaseIcon />,
+    to: 'skills'
   },
   {
     title: 'Contact',
-    logo: <ChatBubbleBottomCenterIcon />
+    logo: <ChatBubbleBottomCenterIcon />,
+    to: 'contact'
   }
 ]
 
@@ -82,10 +87,17 @@ export function Nav() {
     }
   }
 
-  const handleItemsClick = () => {
-    if (closeMenu) {
-      // closeMenu()
+  const handleItemsClick = (to: string) => {
+    // on click scroll to section
+
+    const buttonElements = dockButtonsWrapper.current
+      .children as HTMLCollectionOf<HTMLDivElement>
+
+
+    for (let i = 0; i < buttonElements.length; i++) {
+      buttonElements[i].style.width = '4em'
     }
+
   }
 
 
@@ -95,14 +107,14 @@ export function Nav() {
       ref={dockButtonsWrapper}
       className="flex h-10 flex-row justify-center items-end bg-white fixed bottom-2 left-0 right-0 px-1 bg-opacity-10 w-max m-auto rounded-xl"
     >
-      {dockButtons.map((item: { title: string; logo: ReactElement }, i: number) => (
+      {dockButtons.map((item: { title: string; logo: ReactElement, to: string }, i: number) => (
         <button
           key={item.title}
           className="w-16 align-bottom dock-item p-2"
           style={{ transition: 'all ease .2s' }}
           onMouseEnter={() => handleItemsMouseEnter(i)}
           onMouseLeave={() => handleItemsMouseLeave(i)}
-          onClick={() => handleItemsClick()}
+          onClick={() => handleItemsClick(item.to)}
         >
           {item.logo}
         </button>
