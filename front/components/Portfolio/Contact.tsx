@@ -1,5 +1,7 @@
-import React, { useRef, useState } from 'react'
-import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
+"use client"
+
+import { useRef } from 'react'
+import { MapPinIcon } from '@heroicons/react/24/solid'
 import emailjs from 'emailjs-com'
 
 type Props = {

@@ -1,7 +1,7 @@
+"use client"
+
 import { HomeIcon, UserIcon, ClipboardIcon, BriefcaseIcon, ChatBubbleBottomCenterIcon } from "@heroicons/react/24/solid";
-import { MutableRefObject, useRef, memo, ReactElement } from "react";
-import { Link } from 'react-scroll'
-import { useStore, useStoreActions } from "../../store";
+import { MutableRefObject, useRef, ReactElement } from "react";
 
 const dockButtons: { title: string; logo: ReactElement; to: string; }[] = [
   {

@@ -3,9 +3,6 @@ import Link from 'next/link'
 import BackgroundCircles from './BackgroundCircles'
 import TypeWriter from './TypeWriter'
 
-
-
-
 export default function Hero({ hero }) {
 
   return (

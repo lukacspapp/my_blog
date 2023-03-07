@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+'use client'
+
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import Clock from './Clock'
 
 type AboutProps = {

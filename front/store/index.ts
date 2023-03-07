@@ -1,3 +1,5 @@
+"use client"
+
 import { useMemo } from 'react'
 import { createStore, action, persist, Action, Store, createTypedHooks } from 'easy-peasy'
 

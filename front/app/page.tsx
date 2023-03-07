@@ -1,33 +1,29 @@
 
-import { signOut, useSession, signIn } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import Head from 'next/head';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import Header from '../components/Portfolio/Header';
 import Hero from '../components/Portfolio/Hero';
-import { Login } from '../components/Login';
 import About from '../components/Portfolio/About';
 import Experience from '../components/Portfolio/Experience';
 import Skills from '../components/Portfolio/Skills';
 import Projects from '../components/Portfolio/Projects';
 import Contact from '../components/Portfolio/Contact';
 import { getExpereinces, getTechnologies, getHero, getAbout } from '../services';
-import Image from 'next/image';
 import { Nav } from '../components/Portfolio/Nav';
-import { Element } from 'react-scroll';
 
 
 
 
-export default function Home({ hero, about, experiences, technologies }) {
+export default async function Home() {
 
-  const { data: session, status }: any = useSession();
+  const experiences = await getExpereinces();
 
-  console.log(session, status)
+  const technologies = await getTechnologies();
 
-  useEffect(() => {
-    if (session == null) return;
-  }, [session]);
+  const hero = await getHero();
+
+  const about = await getAbout();
+;
 
   return (
     <div className='snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden z-0
@@ -65,24 +61,3 @@ export default function Home({ hero, about, experiences, technologies }) {
   );
 }
 
-export const getStaticProps = async () => {
-
-  const experiences = await getExpereinces();
-
-  const technologies = await getTechnologies();
-
-  const hero = await getHero();
-
-  const about = await getAbout();
-
-
-
-  return {
-    props: {
-      experiences,
-      technologies,
-      hero,
-      about
-    }
-  }
-}

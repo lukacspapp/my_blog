@@ -1,4 +1,5 @@
-import React, { Key } from 'react'
+'use client'
+
 import { motion } from 'framer-motion'
 
 type Props = {

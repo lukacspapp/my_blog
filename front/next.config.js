@@ -1,14 +1,17 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  webpack(config, options) {
-    config.module.rules.push({
-      test: /\.ya?ml$/,
-      type: 'json',
-      use: 'yaml-loader',
-    })
+const nextConfig = {
+  reactStrictMode: true,
 
-    return config
+  productionBrowserSourceMaps: true,
+
+  experimental: {
+    appDir: true
   },
+
+  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+
+  output: 'standalone',
+
   images: {
     domains: [
       "media.graphassets.com",
@@ -17,4 +20,4 @@ module.exports = {
 
 }
 
-
+module.exports = nextConfig
