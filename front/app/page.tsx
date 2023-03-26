@@ -1,13 +1,13 @@
 
 import Head from 'next/head';
-import About from '../components/Portfolio/About';
-import Contact from '../components/Portfolio/Contact';
-import Experience from '../components/Portfolio/Experience';
-import Header from '../components/Portfolio/Header';
-import Hero from '../components/Portfolio/Hero';
-import { Nav } from '../components/Portfolio/Nav';
-import Projects from '../components/Portfolio/Projects';
-import Skills from '../components/Portfolio/Skills';
+import About from '../components/About';
+import Contact from '../components/Contact';
+import Experience from '../components/Experience';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
+import { Nav } from '../components/Nav';
+import Projects from '../components/Projects';
+import Skills from '../components/Skills';
 import { getAbout, getExpereinces, getHero, getTechnologies } from '../lib/services';
 
 
