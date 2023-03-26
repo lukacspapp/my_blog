@@ -13,6 +13,7 @@
     "@mui/material": "^5.10.8",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@types/react-scroll": "^1.8.6",
+    "clsx": "^1.2.1",
     "daisyui": "^2.31.0",
     "emailjs-com": "^3.2.0",
     "eslint-config-next": "^13.2.4",
@@ -20,6 +21,7 @@
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
     "next": "^13.2.4",
+    "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scroll": "^1.8.9",
@@ -27,7 +29,6 @@
     "react-social-icons": "^5.15.0",
     "tailwind-scrollbar": "^2.0.1"
   },
-
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@types/bcrypt": "^5.0.0",

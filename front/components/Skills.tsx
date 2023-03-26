@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Technology } from '../../types/portfolioTypes'
+import { Technology } from '../types/portfolioTypes'
+
 import Skill from './Skill'
 
 type Props = {
