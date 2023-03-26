@@ -1,8 +1,9 @@
-import { request, gql } from 'graphql-request'
+import { gql, request } from 'graphql-request';
+import { About, Experience, Hero, PortfolioAbout, PortfolioExpriences, PortfolioHero, PortfolioTechnologies, Technology } from '../types/portfolioTypes';
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
+const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT ?? ''
 
-export async function getExpereinces() {
+export async function getExpereinces() : Promise<Experience[]> {
   const query = gql`
     query MyQuery {
       portfolioExpriences {
@@ -24,12 +25,12 @@ export async function getExpereinces() {
       }
     }
   `
-  const data = await request( graphqlAPI, query)
+  const data: PortfolioExpriences = await request( graphqlAPI, query)
 
   return data.portfolioExpriences
 }
 
-export async function getTechnologies() {
+export async function getTechnologies() : Promise<Technology[]> {
   const query = gql`
     query MyQuery {
       portfolioTechnologies (first: 100) {
@@ -41,12 +42,12 @@ export async function getTechnologies() {
       }
     }
   `
-  const data = await request( graphqlAPI, query)
+  const data: PortfolioTechnologies = await request( graphqlAPI, query)
 
   return data.portfolioTechnologies
 }
 
-export async function getHero() {
+export async function getHero() : Promise<Hero[]> {
   const query = gql`
     query MyQuery {
       portfolioHeroes {
@@ -58,12 +59,12 @@ export async function getHero() {
       }
     }
   `
-  const data = await request( graphqlAPI, query)
+  const data : PortfolioHero = await request( graphqlAPI, query)
 
   return data.portfolioHeroes
 }
 
-export async function getAbout() {
+export async function getAbout() : Promise<About[]> {
   const query = gql`
     query MyQuery {
       potfolioAbouts {
@@ -78,7 +79,7 @@ export async function getAbout() {
       }
     }
   `
-  const data = await request( graphqlAPI, query)
+  const data : PortfolioAbout = await request( graphqlAPI, query)
 
   return data.potfolioAbouts
 }

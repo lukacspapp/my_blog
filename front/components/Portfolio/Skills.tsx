@@ -1,17 +1,15 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
+import { Technology } from '../../types/portfolioTypes'
 import Skill from './Skill'
 
 type Props = {
-  technologies: [any],
+  technologies: Technology[],
 }
 
 export default function Skills({ technologies }: Props) {
 
-
-console.log(technologies);
   return (
     <motion.div
       initial={{ opacity: 0 }}

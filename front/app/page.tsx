@@ -1,15 +1,14 @@
 
-import { useSession } from 'next-auth/react';
 import Head from 'next/head';
+import About from '../components/Portfolio/About';
+import Contact from '../components/Portfolio/Contact';
+import Experience from '../components/Portfolio/Experience';
 import Header from '../components/Portfolio/Header';
 import Hero from '../components/Portfolio/Hero';
-import About from '../components/Portfolio/About';
-import Experience from '../components/Portfolio/Experience';
-import Skills from '../components/Portfolio/Skills';
-import Projects from '../components/Portfolio/Projects';
-import Contact from '../components/Portfolio/Contact';
-import { getExpereinces, getTechnologies, getHero, getAbout } from '../services';
 import { Nav } from '../components/Portfolio/Nav';
+import Projects from '../components/Portfolio/Projects';
+import Skills from '../components/Portfolio/Skills';
+import { getAbout, getExpereinces, getHero, getTechnologies } from '../services';
 
 
 
