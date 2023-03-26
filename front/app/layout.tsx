@@ -1,4 +1,5 @@
 import '../styles/index.css';
+import { Providers } from './providers';
 
 export default function RootLayout({
   children,
@@ -6,10 +7,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning lang="en">
       <head />
       <body>
-        <main>{children}</main>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
