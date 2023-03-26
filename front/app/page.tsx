@@ -8,7 +8,7 @@ import Hero from '../components/Portfolio/Hero';
 import { Nav } from '../components/Portfolio/Nav';
 import Projects from '../components/Portfolio/Projects';
 import Skills from '../components/Portfolio/Skills';
-import { getAbout, getExpereinces, getHero, getTechnologies } from '../services';
+import { getAbout, getExpereinces, getHero, getTechnologies } from '../lib/services';
 
 
 

@@ -1,5 +1,5 @@
 import { gql, request } from 'graphql-request';
-import { About, Experience, Hero, PortfolioAbout, PortfolioExpriences, PortfolioHero, PortfolioTechnologies, Technology } from '../types/portfolioTypes';
+import { About, Experience, Hero, PortfolioAbout, PortfolioExpriences, PortfolioHero, PortfolioTechnologies, Technology } from '../../types/portfolioTypes';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT ?? ''
 
