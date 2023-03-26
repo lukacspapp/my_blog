@@ -2,10 +2,7 @@
 
 import { useState } from 'react'
 
-type Props = {}
-
-export default function Clock({ }: Props) {
-
+export default function Clock() {
 
   const [days, setDays] = useState(0)
   const [hours, setHours] = useState(0)
@@ -13,7 +10,6 @@ export default function Clock({ }: Props) {
   const [seconds, setSeconds] = useState(0)
 
   function makeClock(): void {
-
     const now = new Date();
     const diff = now.getTime() - new Date(2021, 9, 20).getTime();
 
@@ -21,7 +17,6 @@ export default function Clock({ }: Props) {
     setHours(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))
     setMinutes(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)))
     setSeconds(Math.floor((diff % (1000 * 60)) / 1000))
-
   }
 
   setInterval(makeClock, 1000)
