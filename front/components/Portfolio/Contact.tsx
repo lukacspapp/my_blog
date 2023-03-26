@@ -1,8 +1,8 @@
 "use client"
 
-import { useRef } from 'react'
 import { MapPinIcon } from '@heroicons/react/24/solid'
 import emailjs from 'emailjs-com'
+import { useRef } from 'react'
 
 type Props = {
   about: any
@@ -10,26 +10,29 @@ type Props = {
 
 export default function Contact({ about }: Props) {
 
-  const userId = 'service_k28ayav'
-  const templateId = 'template_m60bxwh'
-  const key = '5tIJVW2z2YUdH9bHg'
+  const userId = process.env.EMAILJS_SERVICEID ?? ''
+  const templateId = process.env.EMAIL_JS_TEMPLATE_ID ?? ''
+  const key = process.env.EMAIL_JS_KEY ?? ''
 
-  const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    emailjs.sendForm(
-      userId,
-      templateId,
-      form.current,
-      key
-    ).then((result) => {
-      console.log(result.text);
-    }, (error) => {
-      console.log(error.text);
-    });
-    e.target.reset();
+    if (form.current) {
+        emailjs.sendForm(
+          userId,
+          templateId,
+          form.current,
+          key
+        ).then((result) => {
+          console.log(result.text);
+        }, (error) => {
+          console.log(error.text);
+        });
+        e.target.reset();
+    }
+
   }
 
   return (
