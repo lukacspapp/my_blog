@@ -3,6 +3,9 @@
 import { ThemeProvider } from 'next-themes'
 
 export function Providers({ children }) {
-
-  return <ThemeProvider>{children}</ThemeProvider>
+  return (
+    <ThemeProvider attribute="class" storageKey='app-theme' defaultTheme='system'>
+      {children}
+    </ThemeProvider>
+  )
 }

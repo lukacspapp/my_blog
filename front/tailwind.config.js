@@ -1,11 +1,11 @@
-export const defaultTheme = require("tailwindcss/defaultTheme")
-export const plugin = require("tailwindcss/plugin")
-export const colors = require("tailwindcss/colors")
+const defaultTheme = require("tailwindcss/defaultTheme")
+const plugin = require("tailwindcss/plugin")
+const colors = require("tailwindcss/colors")
 
-export const growBeforeView = { opacity: 0, transform: "scale(0.90) translateY(-32px)" }
-export const growInView = { opacity: 1, transform: "scale(0.95) translateY(-16px)" }
-export const growInFocus = { opacity: 1, transform: "scale(1.00)" }
-export const growOutView = { opacity: 0, transform: "scale(1.05) translateY(16px)" }
+const growBeforeView = { opacity: 0, transform: "scale(0.90) translateY(-32px)" }
+const growInView = { opacity: 1, transform: "scale(0.95) translateY(-16px)" }
+const growInFocus = { opacity: 1, transform: "scale(1.00)" }
+const growOutView = { opacity: 0, transform: "scale(1.05) translateY(16px)" }
 
 
 module.exports = {
