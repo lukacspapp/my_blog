@@ -1,62 +1,31 @@
-
-import Head from 'next/head';
-import About from '../components/About';
-import Contact from '../components/Contact';
-import Experience from '../components/Experience';
-import Header from '../components/Header';
-import Hero from '../components/Hero';
-import { Nav } from '../components/Nav';
-import Projects from '../components/Projects';
-import Skills from '../components/Skills';
-import { getAbout, getExpereinces, getHero, getTechnologies } from '../lib/services';
+'use client'
+import { TooltipProvider } from "@radix-ui/react-tooltip";
+import clsx from "clsx";
+import Inspect from "inspx";
+import Navigation from "../components/Navigation/Navigation";
 
 
 
-
-export default async function Home() {
-
-  const experiences = await getExpereinces();
-
-  const technologies = await getTechnologies();
-
-  const hero = await getHero();
-
-  const about = await getAbout();
-;
+export default function Home() {
 
   return (
-    <div className='snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden z-0
-    scrollbar scrollbar-track-gary-400 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#F7AB0A]/20'>
-      <Head>
-        <title>Lukacs J Papp</title>
-      </Head>
-      <Header />
-      <section id='hero' className='snap-center'>
-        {hero.map((hero: any) => {
-          return <Hero key={hero.id} hero={hero} />
-        })}
-      </section>
-      <section id='about' className='snap-center'>
-        {about.map((about: any) => {
-          return <About key={about.id} about={about} />
-        })}
-      </section>
-      <section id='experience' className='snap-center'>
-        <Experience experiences={experiences} />
-      </section>
-      <section id='skills' className='snap-start'>
-        <Skills technologies={technologies} />
-      </section>
-      <section id='projects' className='snap-start'>
-        <Projects />
-      </section>
-      <section id='contact' className='snap-start'>
-        {about.map((about: any) => {
-          return <Contact key={about.id} about={about} />
-        })}
-      </section>
-      <Nav />
-    </div>
+    <Inspect>
+      <div className="mx-auto max-w-screen-lg">
+        <span
+          className={clsx(
+            "rounded-full bg-gradient-to-r",
+            "dark:from-rose-700 dark:via-pink-700 dark:to-purple-700 dark:opacity-60",
+            "from-blue-300 via-cyan-300 to-green-300 opacity-70",
+            "-z-50 aspect-square w-full max-w-screen-lg blur-3xl filter",
+            "bottom-[calc(100%-200px)] dark:bottom-[calc(100%-180px)]",
+            "absolute"
+          )}
+        />
+      </div>
+      <TooltipProvider>
+        <Navigation />
+      </TooltipProvider>
+    </Inspect>
   );
 }
 

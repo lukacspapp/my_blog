@@ -7,10 +7,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning lang="en" className='nightwind h-full'>
       <head />
-      <body>
-        <Providers>{children}</Providers>
+      <body className='bg-gray-50 selection:bg-teal-300 selection:text-gray-800 dark:bg-gray-900 dark:selection:bg-rose-600 dark:selection:text-rose-50'>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )
