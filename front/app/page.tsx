@@ -1,9 +1,13 @@
 'use client'
+
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import clsx from "clsx";
 import Inspect from "inspx";
 import Navigation from "../components/Navigation/Navigation";
+import TransitionPage from "../components/TransitionPage";
+import TransitionProvider from "../components/TransitionProvider";
 
+const redGradient = "bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500 text-transparent bg-clip-text"
 
 
 export default function Home() {
@@ -25,6 +29,11 @@ export default function Home() {
       <TooltipProvider>
         <Navigation />
       </TooltipProvider>
+      <TransitionPage title={'Lukacs Papp'} description={'Hello Sanyi'}>
+        <TransitionProvider>
+          <h1>sanyi</h1>
+        </TransitionProvider>
+      </TransitionPage>
     </Inspect>
   );
 }
