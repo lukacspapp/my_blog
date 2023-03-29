@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react"
 import clsx from "clsx"
 import Inspect from "inspx"
 import "tailwindcss/tailwind.css"
+import GithubContributions from "../components/Github"
 import NavigationBar from "../components/Navigation/Navigation"
 import TransitionProvider from "../components/TransitionProvider"
 
@@ -32,6 +33,7 @@ export default function Page(): JSX.Element {
             <TooltipProvider>
               <TransitionProvider>
                 <h1>sanyi</h1>
+                <GithubContributions />
               </TransitionProvider>
             </TooltipProvider>
           </main>
