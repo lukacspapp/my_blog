@@ -15,7 +15,7 @@ import YearlyChart from "./YearlyChart";
 const title = "Github Contributions"
 const description = "visualize, analyze and contrast your commits"
 
-export const DEFAULT_USERNAME = "pondorasti"
+export const DEFAULT_USERNAME = "lukacspapp"
 const fetcher = (username: string): Promise<IUserInformation> =>
   fetch(`/api/github-contributions?username=${username}`).then(res => res.json() as Promise<IUserInformation>)
 
@@ -31,7 +31,7 @@ export default function GithubContributions() {
   const searchd = useSearchParams()
   const router = useRouter()
 
-  const searchParam = searchd ? searchd?.get('search') : DEFAULT_USERNAME
+  const searchParam = searchd ? searchd.get('search') : ''
 
   const { data, error } = useSWR<IUserInformation, Error>(searchParam, fetcher)
   const isLoading = !data && !error
@@ -59,13 +59,14 @@ export default function GithubContributions() {
     if (!usernameInput) return
 
     // fallback to default username
-    if (searchParam === undefined) {
+    if (searchParam === null) {
       usernameInput.value = DEFAULT_USERNAME
       router.push(`?search=${DEFAULT_USERNAME}`)
     } else {
       usernameInput.value = String(searchParam)
     }
   }, [searchParam])
+
 
   // Focus input form based on hotkeys
   useHotkeys("⌘+k, ctrl+k, /", event => {
