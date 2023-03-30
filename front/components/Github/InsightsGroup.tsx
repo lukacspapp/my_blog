@@ -1,5 +1,5 @@
 import { formatDate, normalizeUtc } from "../../lib/date";
-import { IUserInsights } from "../../types/githubTypes";
+import { UserInsightsType } from "../../types/githubTypes";
 
 
 function InsightCard({ label, value }: { label: string; value: number | string }) {
@@ -11,7 +11,7 @@ function InsightCard({ label, value }: { label: string; value: number | string }
   )
 }
 
-export default function InsightsGroup({ insights }: { insights: IUserInsights }) {
+export default function InsightsGroup({ insights }: { insights: UserInsightsType }) {
   return (
     <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-2">
       <InsightCard label="Current Streak" value={insights.currentStreak} />
