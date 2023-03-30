@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Fragment, useLayoutEffect, useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import useSWR from "swr";
-import { UserInformationtype, UserInsightsType } from "../../types/githubTypes";
+import { UserInformationType, UserInsightsType } from "../../types/githubTypes";
 import TransitionPage from "../TransitionPage";
 import Description from "./Desciption";
 import InsightsGroup from "./InsightsGroup";
@@ -16,8 +16,8 @@ const title = "Github Contributions"
 const description = "visualize, analyze and contrast your commits"
 
 export const DEFAULT_USERNAME = "lukacspapp"
-const fetcher = (username: string): Promise<UserInformationtype> =>
-  fetch(`/api/github-contributions?username=${username}`).then(res => res.json() as Promise<UserInformationtype>)
+const fetcher = (username: string): Promise<UserInformationType> =>
+  fetch(`/api/github-contributions?username=${username}`).then(res => res.json() as Promise<UserInformationType>)
 
 const DEFAULT_INSIGHTS: UserInsightsType = {
   longestStreak: 0,
@@ -33,7 +33,7 @@ export default function GithubContributions() {
 
   const searchParam = searchd ? searchd.get('search') : ''
 
-  const { data, error } = useSWR<UserInformationtype, Error>(searchParam, fetcher)
+  const { data, error } = useSWR<UserInformationType, Error>(searchParam, fetcher)
   const isLoading = !data && !error
   const insights = data?.insights || DEFAULT_INSIGHTS
   const collections = data?.collections || []

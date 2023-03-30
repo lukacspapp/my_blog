@@ -35,7 +35,7 @@ export interface UserInsightsType {
   totalContributions: number
   firstContributionDate: string
 }
-export interface UserInformationtype {
+export interface UserInformationType {
   collections: ContributionsCollectionType[]
   insights: UserInsightsType
 }
