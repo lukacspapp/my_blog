@@ -34,7 +34,6 @@ export default function Page(): JSX.Element {
       <main className="body">
         <TooltipProvider>
           <TransitionProvider>
-            <h1>sanyi</h1>
             <BrowserFrame
               href="/github?search=lukacspapp"
               title="Github Contributions"
@@ -42,8 +41,9 @@ export default function Page(): JSX.Element {
             >
               <Image
                 src={"/images/github.svg"}
-                alt={""}
-                layout="fill"
+                alt={"github-contributions"}
+                width={1920}
+                height={1080}
                 priority={true}
               />
             </BrowserFrame>
