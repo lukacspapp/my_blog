@@ -41,6 +41,7 @@ async function fetchYearlyContributions(username: string | string[], year: numbe
 }
 
 export async function getGithubContributions(username: string): Promise<UserInformationType> {
+
   const body = {
     query: `query {
         user(login: "${username}") {
