@@ -4,9 +4,9 @@ import * as d3 from "d3"
 import { useTheme } from "next-themes"
 import { RefObject, useLayoutEffect, useRef } from "react"
 import { formatDate, normalizeUtc } from "../../lib/date"
-import { IContributionsCollection } from "../../types/githubTypes"
+import { ContributionsCollectionType } from "../../types/githubTypes"
 
-function drawChart(payload: IContributionsCollection, svgRef: RefObject<SVGSVGElement>, theme: string | undefined) {
+function drawChart(payload: ContributionsCollectionType, svgRef: RefObject<SVGSVGElement>, theme: string | undefined) {
   const contributions = payload.data.user.contributionsCollection.contributionCalendar.weeks
 
   const chartWidth = 740
@@ -154,7 +154,7 @@ function drawChart(payload: IContributionsCollection, svgRef: RefObject<SVGSVGEl
     .style("fill", theme === "dark" ? "#fff" : "#000")
 }
 
-export default function YearlyChart({ collection }: { collection: IContributionsCollection }) {
+export default function YearlyChart({ collection }: { collection: ContributionsCollectionType }) {
   const { resolvedTheme } = useTheme()
   const svgRef = useRef<SVGSVGElement>(null)
 

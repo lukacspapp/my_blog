@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Fragment, useLayoutEffect, useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import useSWR from "swr";
-import { IUserInformation, IUserInsights } from "../../types/githubTypes";
+import { UserInformationType, UserInsightsType } from "../../types/githubTypes";
 import TransitionPage from "../TransitionPage";
 import Description from "./Desciption";
 import InsightsGroup from "./InsightsGroup";
@@ -15,11 +15,11 @@ import YearlyChart from "./YearlyChart";
 const title = "Github Contributions"
 const description = "visualize, analyze and contrast your commits"
 
-export const DEFAULT_USERNAME = "pondorasti"
-const fetcher = (username: string): Promise<IUserInformation> =>
-  fetch(`/api/github-contributions?username=${username}`).then(res => res.json() as Promise<IUserInformation>)
+export const DEFAULT_USERNAME = "lukacspapp"
+const fetcher = (username: string): Promise<UserInformationType> =>
+  fetch(`/api/hello?username=${username}`).then(res => res.json() as Promise<UserInformationType>)
 
-const DEFAULT_INSIGHTS: IUserInsights = {
+const DEFAULT_INSIGHTS: UserInsightsType = {
   longestStreak: 0,
   currentStreak: 0,
   totalContributions: 0,
@@ -31,9 +31,9 @@ export default function GithubContributions() {
   const searchd = useSearchParams()
   const router = useRouter()
 
-  const searchParam = searchd ? searchd?.get('search') : DEFAULT_USERNAME
+  const searchParam = searchd ? searchd.get('search') : ''
 
-  const { data, error } = useSWR<IUserInformation, Error>(searchParam, fetcher)
+  const { data, error } = useSWR<UserInformationType, Error>(searchParam, fetcher)
   const isLoading = !data && !error
   const insights = data?.insights || DEFAULT_INSIGHTS
   const collections = data?.collections || []
@@ -59,13 +59,14 @@ export default function GithubContributions() {
     if (!usernameInput) return
 
     // fallback to default username
-    if (searchParam === undefined) {
+    if (searchParam === null) {
       usernameInput.value = DEFAULT_USERNAME
       router.push(`?search=${DEFAULT_USERNAME}`)
     } else {
       usernameInput.value = String(searchParam)
     }
   }, [searchParam])
+
 
   // Focus input form based on hotkeys
   useHotkeys("⌘+k, ctrl+k, /", event => {

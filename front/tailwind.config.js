@@ -14,7 +14,10 @@ module.exports = {
     "./utils/**/*.{js,ts,jsx,tsx}",
     "./data/**/*.mdx",
   ],
-  darkMode: "class", // or 'media' or 'class'
+  darkMode: "class",
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     screens: {
       xs: "475px",
@@ -31,10 +34,10 @@ module.exports = {
         gray: {
           ...colors.neutral,
 
-          // 50: "#FEFEFE",
-          // 100: "#fafafa",
-          // 200: "#f5f5f5",
-          // 300: "#e5e5e5",
+          50: "#FEFEFE",
+          100: "#fafafa",
+          200: "#f5f5f5",
+          300: "#e5e5e5",
           400: "#BABABA",
           500: "#737373",
           600: "#525252",

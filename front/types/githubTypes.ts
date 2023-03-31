@@ -1,12 +1,12 @@
 // Github Contributions
-export interface IContributionWeek {
+export interface ContributionWeekType {
   color: string
   contributionCount: number
   contributionLevel: "NONE" | "FIRST_QUARTILE" | "SECOND_QUARTILE" | "THIRD_QUARTILE" | "FOURTH_QUARTILE"
   date: string
 }
 
-export interface IContributionsCollection {
+export interface ContributionsCollectionType {
   data: {
     user: {
       contributionsCollection: {
@@ -15,7 +15,7 @@ export interface IContributionsCollection {
         contributionCalendar: {
           totalContributions: number
           weeks: {
-            contributionDays: IContributionWeek[]
+            contributionDays: ContributionWeekType[]
           }[]
         }
       }
@@ -23,25 +23,24 @@ export interface IContributionsCollection {
   }
 }
 
-export interface IUserCache {
+export interface UserCacheType {
   username: string
   year: number
-  contributions: IContributionsCollection
+  contributions: ContributionsCollectionType
 }
 
-export interface IUserInsights {
+export interface UserInsightsType {
   longestStreak: number
   currentStreak: number
   totalContributions: number
   firstContributionDate: string
 }
-export interface IUserInformation {
-  collections: IContributionsCollection[]
-  insights: IUserInsights
+export interface UserInformationType {
+  collections: ContributionsCollectionType[]
+  insights: UserInsightsType
 }
 
-// Journal
-export interface IMeta<Slug> {
+export interface MetaType<Slug> {
   slug: Slug
   title: string
   description: string
