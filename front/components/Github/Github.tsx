@@ -17,7 +17,7 @@ const description = "visualize, analyze and contrast your commits"
 
 export const DEFAULT_USERNAME = "lukacspapp"
 const fetcher = (username: string): Promise<UserInformationType> =>
-  fetch(`/api/github-contributions?username=${username}`).then(res => res.json() as Promise<UserInformationType>)
+  fetch(`/api/hello?username=${username}`).then(res => res.json() as Promise<UserInformationType>)
 
 const DEFAULT_INSIGHTS: UserInsightsType = {
   longestStreak: 0,
