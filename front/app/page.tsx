@@ -7,7 +7,6 @@ import Inspect from "inspx"
 import Image from "next/image"
 import "tailwindcss/tailwind.css"
 import BrowserFrame from "../components/BrowserFrame"
-import NavigationBar from "../components/Navigation/Navigation"
 import TransitionProvider from "../components/TransitionProvider"
 
 export default function Page(): JSX.Element {
@@ -27,9 +26,6 @@ export default function Page(): JSX.Element {
           )}
         />
       </div>
-      <TooltipProvider>
-        <NavigationBar />
-      </TooltipProvider>
       <main className="body">
         <TooltipProvider>
           <TransitionProvider>
