@@ -93,11 +93,11 @@ export default function About(): JSX.Element {
               "inline-block cursor-ne-resize bg-clip-text text-transparent",
               "transition-transform ease-in-out hover:scale-105"
             )}
-            href="https://palette.dev/"
+            href="https://www.attractiontickets.com/en"
             target="_blank"
             rel="noopener noreferrer"
           >
-            ATD Travel Services
+            AttractionTickets.com
           </a>
 
         </p>

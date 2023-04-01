@@ -97,7 +97,7 @@ export default function Navigation(): JSX.Element {
             className={clsx(linkStyle, "cursor-ne-resize")}
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/pondorasti/"
+            href="https://github.com/lukacspapp/"
           >
             <span className="sr-only">GitHub account</span>
             <svg className={iconStyle} viewBox="0 0 24 24" fill="currentColor">
