@@ -3,7 +3,7 @@ import { normalizeUtc } from "../../lib/date"
 import { ContributionsCollectionType, UserInformationType } from "../../types/githubTypes"
 
 const api = "https://api.github.com/graphql"
-const ghToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN ?? ""
+const ghToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN
 const ghHeaders = { Authorization: `bearer ${ghToken}` }
 
 async function fetchYearlyContributions(username: string | string[], year: number): Promise<ContributionsCollectionType> {
@@ -71,6 +71,7 @@ export async function getGithubContributions(username: string): Promise<UserInfo
   })
 
   const collections: ContributionsCollectionType[] = []
+
   const currentCollection = (await response.json()) as ContributionsCollectionType
 
   collections.push(currentCollection)
@@ -85,6 +86,8 @@ export async function getGithubContributions(username: string): Promise<UserInfo
 
   // Fetch missing contributions years
   const years = currentCollection.data.user.contributionsCollection.contributionYears
+  console.log(years);
+
 
   let longestStreak = 0
   let currentStreak = -1

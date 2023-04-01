@@ -3,7 +3,7 @@
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useLayoutEffect, useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import useSWR from "swr";
 import { DEFAULT_USERNAME } from "../../lib/constant";
@@ -54,7 +54,7 @@ export default function GithubContributions() {
   }
 
   // Synchronize input with router
-  useEffect(() => {
+  useLayoutEffect(() => {
     const usernameInput = usernameRef.current
 
     console.log(searchParam);
