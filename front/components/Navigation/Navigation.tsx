@@ -14,6 +14,7 @@ const iconStyle = "h-5 w-5"
 const transitionStyle = "duration-300"
 
 export default function Navigation(): JSX.Element {
+
   const [, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const [showBlur, setShowBlur] = useState(false)
@@ -81,12 +82,15 @@ export default function Navigation(): JSX.Element {
             className={clsx(linkStyle, "cursor-ne-resize")}
             target="_blank"
             rel="noopener noreferrer"
-            href="https://twitter.com/Pondorasti/"
+            href="https://www.linkedin.com/in/lukacsjpapp/"
           >
-            <span className="sr-only">Twitter account</span>
+            <span className="sr-only">LinkedIn Account</span>
             <svg className={iconStyle} viewBox="0 0 24 24" fill="currentColor">
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z" />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M22.225 0H1.77C.79 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.77 24h20.452C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0zM7.44 20.452H3.957V9h3.483v11.452zM5.7 7.667a2.038 2.038 0 01-2.042-2.043A2.038 2.038 0 015.7 3.58a2.038 2.038 0 012.042 2.044c0 1.128-.915 2.043-2.042 2.043zm15.154 12.785h-3.486v-5.954c0-1.423-.026-3.253-1.972-3.253-1.975 0-2.277 1.546-2.277 3.146v6.061H9.632V9h3.349v1.565h.046c.466-.883 1.604-1.814 3.3-1.814 3.533 0 4.175 2.328 4.175 5.355v6.346z"
+              />
             </svg>
           </a>
           <a

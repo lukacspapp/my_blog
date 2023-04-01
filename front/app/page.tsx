@@ -1,13 +1,11 @@
 'use client'
 
-import { TooltipProvider } from "@radix-ui/react-tooltip"
 import { Analytics } from "@vercel/analytics/react"
 import clsx from "clsx"
 import Inspect from "inspx"
 import Image from "next/image"
 import "tailwindcss/tailwind.css"
 import BrowserFrame from "../components/BrowserFrame"
-import TransitionProvider from "../components/TransitionProvider"
 
 export default function Page(): JSX.Element {
 
@@ -27,26 +25,20 @@ export default function Page(): JSX.Element {
         />
       </div>
       <main className="body">
-        <TooltipProvider>
-          <TransitionProvider>
-            <BrowserFrame
-              href="/github?search=lukacspapp"
-              title="Github Contributions"
-              containerClassName="relative m-auto h-full w-full max-w-sm sm:max-w-md grayscale-0 group-hover:grayscale-0 sm:grayscale"
-            >
-              <Image
-                src={"/images/github.svg"}
-                alt={"github-contributions"}
-                width={1920}
-                height={1080}
-                priority={true}
-              />
-            </BrowserFrame>
-          </TransitionProvider>
-        </TooltipProvider>
+        <BrowserFrame
+          href="/github?search=lukacspapp"
+          title="Github Contributions"
+          containerClassName="relative m-auto h-full w-full max-w-sm sm:max-w-md grayscale-0 group-hover:grayscale-0 sm:grayscale"
+        >
+          <Image
+            src={"/images/github.svg"}
+            alt={"github-contributions"}
+            width={1920}
+            height={1080}
+            priority={true}
+          />
+        </BrowserFrame>
       </main>
-      <>
-      </>
       <Analytics />
     </Inspect>
   )
