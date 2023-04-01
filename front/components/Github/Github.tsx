@@ -35,9 +35,13 @@ export default function GithubContributions() {
   const searchParam = searchd ? searchd.get('search') : null
 
 
-  const { data, error } = useSWR<UserInformationType, Error>(searchParam, fetcher)
+  const { data, error, isLoading } = useSWR<UserInformationType, Error>(searchParam, fetcher)
 
-  const isLoading = !data && !error
+  console.log(data)
+  console.log(error);
+  console.log(isLoading);
+
+
   const insights = data?.insights || DEFAULT_INSIGHTS
   const collections = data?.collections || []
 
@@ -56,13 +60,6 @@ export default function GithubContributions() {
   // Synchronize input with router
   useLayoutEffect(() => {
     const usernameInput = usernameRef.current
-
-    console.log(searchParam);
-    console.log(usernameInput);
-
-
-    console.log(router);
-
 
     // exit early if it's rendering on the server
     if (!router) return
