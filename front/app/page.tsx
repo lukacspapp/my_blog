@@ -7,7 +7,6 @@ import Inspect from "inspx"
 import Image from "next/image"
 import "tailwindcss/tailwind.css"
 import BrowserFrame from "../components/BrowserFrame"
-import GithubContributions from "../components/Github/Github"
 import NavigationBar from "../components/Navigation/Navigation"
 import TransitionProvider from "../components/TransitionProvider"
 
@@ -47,7 +46,6 @@ export default function Page(): JSX.Element {
                 priority={true}
               />
             </BrowserFrame>
-            <GithubContributions />
           </TransitionProvider>
         </TooltipProvider>
       </main>

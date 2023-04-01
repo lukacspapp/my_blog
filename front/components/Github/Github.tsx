@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Fragment, useLayoutEffect, useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import useSWR from "swr";
+import { DEFAULT_USERNAME } from "../../lib/constant";
 import { UserInformationType, UserInsightsType } from "../../types/githubTypes";
 import TransitionPage from "../TransitionPage";
 import Description from "./Desciption";
@@ -15,7 +16,6 @@ import YearlyChart from "./YearlyChart";
 const title = "Github Contributions"
 const description = "visualize, analyze and contrast your commits"
 
-export const DEFAULT_USERNAME = "lukacspapp"
 const fetcher = (username: string): Promise<UserInformationType> =>
   fetch(`/api/hello?username=${username}`).then(res => res.json() as Promise<UserInformationType>)
 
@@ -27,25 +27,34 @@ const DEFAULT_INSIGHTS: UserInsightsType = {
 }
 
 export default function GithubContributions() {
+
   const usernameRef = useRef<HTMLInputElement>(null)
   const searchd = useSearchParams()
   const router = useRouter()
 
-  const searchParam = searchd ? searchd.get('search') : ''
+  const searchParam = searchd ? searchd.get('search') : null
 
-  const { data, error } = useSWR<UserInformationType, Error>(searchParam, fetcher)
-  const isLoading = !data && !error
+
+  const { data, error, isLoading } = useSWR<UserInformationType, Error>(searchParam, fetcher)
+
+  console.log(data)
+  console.log(error);
+  console.log(isLoading);
+
+
   const insights = data?.insights || DEFAULT_INSIGHTS
   const collections = data?.collections || []
 
   // Update router based on input
   function handleInput() {
     const username = usernameRef.current?.value || ""
+    console.log(usernameRef);
+
 
     // Only push router if it doesn't already have the same username
     if (searchParam === username) return
 
-    router.push("?search=" + username)
+    router.push("github?search=" + username)
   }
 
   // Synchronize input with router
