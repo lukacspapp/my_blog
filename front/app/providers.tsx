@@ -13,7 +13,7 @@ export function Providers({ children }) {
   return (
     <ThemeProvider attribute="class" storageKey='app-theme' defaultTheme='system'>
       <Inspect>
-          <Gradient />
+        <Gradient />
         <TooltipProvider>
           <Navigation />
         </TooltipProvider>
