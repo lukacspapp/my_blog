@@ -15,9 +15,6 @@ module.exports = {
     "./data/**/*.mdx",
   ],
   darkMode: "class",
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
   theme: {
     screens: {
       xs: "475px",
