@@ -1,5 +1,9 @@
+'use client'
+
+import { Transition } from "@headlessui/react"
 import clsx from "clsx"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 export const wrapperStyle = "group flex h-full w-full flex-col overflow-hidden rounded-lg border border-divider"
 export const tabStyle =
@@ -20,30 +24,51 @@ export interface IBrowserFrame {
 }
 
 export default function BrowserFrame({ children, href, title, containerClassName }: IBrowserFrame): JSX.Element {
+
+  const [show, setShow] = useState(false)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShow(true)
+    }, 600)
+
+    return () => clearTimeout(timeout)
+  }, [])
+
   return (
-    <Link href={href} passHref className={clsx(wrapperStyle, "cursor-ne-resize hover:scale-[1.03]", transition)}>
-        <div
-          className={clsx(
-            "relative flex h-12 w-full flex-row items-center space-x-2 px-4",
-            "bg-gray-100 text-gray-500 dark:bg-gray-800",
-            "group-hover:text-gray-700 dark:group-hover:text-gray-300"
-          )}
-        >
-          <div className={clsx(circleStyle, "group-hover:bg-systemRed", transition)} />
-          <div className={clsx(circleStyle, "group-hover:bg-systemYellow", transition)} />
-          <div className={clsx(circleStyle, "group-hover:bg-systemGreen", transition)} />
+    <>
 
-          <span className="flex-grow" />
+      <Transition
+        show={show}
+        enter={clsx(transition)}
+        enterFrom="opacity-0 -translate-y-2"
+        enterTo="opacity-100 translate-y-0"
+      >
 
-          <div className="absolute left-0 !ml-0 w-full">
-            <div className={clsx(tabStyle, transition)}>{title}</div>
+        <Link href={href} passHref className={clsx(wrapperStyle, "cursor-ne-resize hover:scale-[1.03]", transition)}>
+          <div
+            className={clsx(
+              "relative flex h-12 w-full flex-row items-center space-x-2 px-4",
+              "bg-gray-100 text-gray-500 dark:bg-gray-800",
+              "group-hover:text-gray-700 dark:group-hover:text-gray-300"
+            )}
+          >
+            <div className={clsx(circleStyle, "group-hover:bg-systemRed", transition)} />
+            <div className={clsx(circleStyle, "group-hover:bg-systemYellow", transition)} />
+            <div className={clsx(circleStyle, "group-hover:bg-systemGreen", transition)} />
+
+            <span className="flex-grow" />
+
+            <div className="absolute left-0 !ml-0 w-full">
+              <div className={clsx(tabStyle, transition)}>{title}</div>
+            </div>
+
+            <span className={clsx("opacity-0 xs:opacity-100", "translate-x-0 group-hover:translate-x-1", transition)}>
+              →
+            </span>
           </div>
-
-          <span className={clsx("opacity-0 xs:opacity-100", "translate-x-0 group-hover:translate-x-1", transition)}>
-            →
-          </span>
-        </div>
-        <div className={clsx(frameStyle, "h-60 p-8 xs:h-80", transition, containerClassName ?? "")}>{children}</div>
-    </Link>
+          <div className={clsx(frameStyle, "h-60 p-8 xs:h-80", transition, containerClassName ?? "")}>{children}</div>
+        </Link>
+      </Transition>
+    </>
   )
 }
