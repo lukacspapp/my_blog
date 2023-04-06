@@ -7,7 +7,7 @@ interface ProjectType {
   preview?: string
 }
 
-const projects: ProjectType[] = [
+export const projects: ProjectType[] = [
   {
     name: "SWL",
     description: "Modern Next.js 13 website overhaul",
