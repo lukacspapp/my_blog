@@ -4,12 +4,14 @@ import "tailwindcss/tailwind.css"
 import About from "../components/About"
 import BrowserFrame from "../components/BrowserFrame"
 import AnimatedDescription from "../components/Description/AnimatedDescription"
+import Gradient from "../components/Gradient"
 
 export default function Page(): JSX.Element {
 
   return (
     <>
       <main className="body">
+      <Gradient />
         <About />
         <AnimatedDescription title={''} description={''} />
         <BrowserFrame
