@@ -1,4 +1,5 @@
 import "tailwindcss/tailwind.css";
+import Gradient from "../components/Gradient";
 import { Providers } from './providers';
 
 export default async function RootLayout({
@@ -11,6 +12,7 @@ export default async function RootLayout({
       <head />
       <body className="body">
         <Providers>
+        <Gradient />
           {children}
         </Providers>
       </body>

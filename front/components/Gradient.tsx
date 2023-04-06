@@ -6,7 +6,7 @@ export default function Gradient() {
 
   return (
     <div className="fixed inset-x-0 top-0 flex justify-center transform -translate-y-3/4">
-      <div className={honeyGradient} />
+      <div className={gradientClasses} />
     </div>
   )
 }
