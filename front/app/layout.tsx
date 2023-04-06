@@ -11,8 +11,8 @@ export default async function RootLayout({
     <html suppressHydrationWarning lang="en" className='nightwind h-full'>
       <head />
       <body className="body">
-        <Gradient />
         <Providers>
+        <Gradient />
           {children}
         </Providers>
       </body>
