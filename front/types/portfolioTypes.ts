@@ -47,3 +47,9 @@ export interface PortfolioHero {
 export interface PortfolioAbout {
   potfolioAbouts: About[]
 }
+
+export interface Description  {
+  title: string
+  description: string
+  hideBreak?: boolean
+}

@@ -3,17 +3,10 @@
 import { Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { useEffect, useState } from "react"
+import { descriptionStyle, titleStyle } from "../../styles/styles"
+import { Description } from "../../types/portfolioTypes"
 
-const titleStyle = "text-3xl font-semibold text-gray-900 dark:text-gray-50 tracking-tight text-center mb-3"
-const descriptionStyle = "text-base text-gray-600 dark:text-gray-400 text-center mb-10"
-
-type Description =  {
-  title: string
-  description: string
-  hideBreak?: boolean
-}
-
-export default function Description({ title, description, hideBreak = false }: Description): JSX.Element {
+export default function AnimatedDescription({ title, description, hideBreak = false }: Description): JSX.Element {
   const transition = "transition-all duration-500"
   const [show, setShow] = useState(false)
   useEffect(() => {
