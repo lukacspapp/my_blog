@@ -9,7 +9,7 @@ interface ProjectType {
 
 export const projects: ProjectType[] = [
   {
-    name: "SWL",
+    name: "Seaworld White Label",
     description: "Modern Next.js 13 website overhaul",
     month: "March",
     year: 2023,

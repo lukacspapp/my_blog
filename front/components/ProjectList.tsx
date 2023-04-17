@@ -5,9 +5,6 @@ import Link from "next/link"
 import { useRef, useState } from "react"
 import { formatDate, normalizeUtc } from "../lib/date"
 
-const title = "Journal"
-const description = "Collection of random thoughts"
-
 const cardStyle =
   "flex flex-col px-4 py-6 relative hover:highlight sm:hover:!bg-transparent rounded-xl transition-colors duration-300"
 const asideStyle =
@@ -70,7 +67,7 @@ export default function Journal({ projects }): JSX.Element {
             <Link legacyBehavior key={meta.slug} href={`/journal/${meta.slug}`} passHref>
               <a className={cardStyle} onMouseOver={handleMouseOver}>
                 <aside className={asideStyle} onMouseOver={handleMouseOver}>
-                  {formatDate(normalizeUtc(new Date(meta.publishedAt)), false)}
+                  {formatDate(normalizeUtc(new Date(meta.publishedAt)), false)}, 2023
                 </aside>
                 <h2 className="text-xl font-semibold">{meta.title}</h2>
                 <p className="mt-2 text-sm text-gray-500 dark:text-gray-500">{meta.description}</p>
