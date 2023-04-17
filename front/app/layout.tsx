@@ -1,5 +1,4 @@
 import "tailwindcss/tailwind.css";
-import Gradient from "../components/Gradient";
 import { Providers } from './providers';
 
 export default async function RootLayout({
@@ -10,9 +9,8 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning lang="en" className='nightwind h-full'>
       <head />
-      <body className="body">
+      <body className="bg-gray-50 selection:bg-teal-300 selection:text-gray-800 dark:bg-gray-900 dark:selection:bg-rose-600 dark:selection:text-rose-50">
         <Providers>
-        <Gradient />
           {children}
         </Providers>
       </body>
