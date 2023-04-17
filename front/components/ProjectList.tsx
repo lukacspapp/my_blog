@@ -64,7 +64,7 @@ export default function Journal({ projects }): JSX.Element {
           </div>
           {/* Entries */}
           {projects.map(meta => (
-            <Link legacyBehavior key={meta.slug} href={`/journal/${meta.slug}`} passHref>
+            <Link legacyBehavior key={meta.slug} href={`/projects/${meta.slug}`} passHref>
               <a className={cardStyle} onMouseOver={handleMouseOver}>
                 <aside className={asideStyle} onMouseOver={handleMouseOver}>
                   {formatDate(normalizeUtc(new Date(meta.publishedAt)), false)}, 2023
