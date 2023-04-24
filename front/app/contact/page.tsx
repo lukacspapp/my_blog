@@ -1,8 +1,8 @@
 
 export default async function Contact() {
   return (
-    <div>
+    <main className="body">
       <h1>Contact</h1>
-    </div>
+    </main>
   )
 }

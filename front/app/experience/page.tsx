@@ -1,8 +1,9 @@
+import 'tailwindcss/tailwind.css'
 
 export default async function Experience() {
   return (
-    <div>
+    <main className='body'>
       <h1>Experience</h1>
-    </div>
+    </main>
   )
 }
