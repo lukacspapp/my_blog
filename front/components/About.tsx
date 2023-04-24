@@ -7,7 +7,10 @@ import { useEffect, useState } from "react"
 import AnimatedDescription from "./Description/AnimatedDescription"
 import TransitionPage from "./TransitionPage"
 
-const redGradient = "bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500 text-transparent bg-clip-text"
+const darkGradient = "bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-transparent bg-clip-text";
+const lightGradient = "animate-text-shimmer bg-[linear-gradient(110deg,#f97316,45%,#f5f5f5,55%,#f97316)] bg-[length:250%_100%] dark:bg-[linear-gradient(110deg,#d1fb9d,45%,#6b46c1,55%,#d1fb9d)] inline-block cursor-ne-resize bg-clip-text text-transparent transition-transform ease-in-out hover:scale-105";
+
+
 
 const title = "Lukacs J Papp"
 const description = "Full Stack Developer"
@@ -36,11 +39,11 @@ export default function About(): JSX.Element {
       >
         <p className="text-gray-600 dark:text-gray-400">
           Web Developer fueled by{" "}
-          <span className="group relative top-[6px] inline-block cursor-text overflow-hidden">
+          <span className="group relative top-[7px] inline-block cursor-text overflow-hidden">
             <span className="invisible">passion for coding</span>
             <span
               className={clsx(
-                redGradient,
+                darkGradient,
                 "absolute top-0 left-0 group-hover:-translate-y-full",
                 "transition-transform duration-500 ease-in-out hover:duration-300"
               )}
@@ -49,7 +52,7 @@ export default function About(): JSX.Element {
             </span>
             <span
               className={clsx(
-                redGradient,
+                darkGradient,
                 "absolute top-0 left-0 translate-y-full group-hover:translate-y-0",
                 "transition-transform duration-500 ease-in-out hover:duration-300"
               )}
@@ -57,7 +60,8 @@ export default function About(): JSX.Element {
               {" "} and strong coffee
             </span>
           </span>
-          {/* , Crafting digital magic{" "}
+          .
+                {/* , Crafting digital magic{" "}
           <span
             className={clsx(
               "bg-gradient-to-r from-green-500 to-blue-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-cyan-400 dark:to-green-500",
@@ -89,9 +93,7 @@ export default function About(): JSX.Element {
           Working at{" "}
           <a
             className={clsx(
-              "animate-text-shimmer bg-[linear-gradient(110deg,#0ea5e9,45%,#f5f5f5,55%,#0ea5e9)] bg-[length:250%_100%] dark:bg-[linear-gradient(110deg,#0ea5e9,45%,#171717,55%,#0ea5e9)]",
-              "inline-block cursor-ne-resize bg-clip-text text-transparent",
-              "transition-transform ease-in-out hover:scale-105"
+              lightGradient
             )}
             href="https://www.attractiontickets.com/en"
             target="_blank"

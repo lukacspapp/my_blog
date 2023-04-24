@@ -1,8 +1,8 @@
 
 export default async function Experience() {
   return (
-    <div>
+    <main className="main">
       <h1>Experience</h1>
-    </div>
+    </main>
   )
 }
