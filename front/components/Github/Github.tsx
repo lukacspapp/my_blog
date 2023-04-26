@@ -34,13 +34,7 @@ export default function GithubContributions() {
 
   const searchParam = searchd ? searchd.get('search') : null
 
-
   const { data, error, isLoading } = useSWR<UserInformationType, Error>(searchParam, fetcher)
-
-  console.log(data)
-  console.log(error);
-  console.log(isLoading);
-
 
   const insights = data?.insights || DEFAULT_INSIGHTS
   const collections = data?.collections || []

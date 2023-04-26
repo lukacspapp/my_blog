@@ -56,7 +56,7 @@ export default function Journal({ projects }): JSX.Element {
           >
             <div
               className={clsx(
-                "h-full w-full rounded-xl highlight",
+                "h-full w-full rounded-lg highlight",
                 highlightedTab ? "opacity-100" : "opacity-0",
                 "transition-opacity duration-300"
               )}
@@ -69,7 +69,7 @@ export default function Journal({ projects }): JSX.Element {
                 <aside className={asideStyle} onMouseOver={handleMouseOver}>
                   {formatDate(normalizeUtc(new Date(meta.publishedAt)), false)}, 2023
                 </aside>
-                <h2 className="text-xl font-semibold">{meta.title}</h2>
+                <h2 className="text-lg font-semibold">{meta.title}</h2>
                 <p className="mt-2 text-sm text-gray-500 dark:text-gray-500">{meta.description}</p>
               </a>
             </Link>
