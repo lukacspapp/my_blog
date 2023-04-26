@@ -1,6 +1,6 @@
 'use client'
 
-import { BriefcaseIcon, ChatBubbleLeftIcon, ClipboardIcon, HomeIcon } from "@heroicons/react/24/outline"
+import { ChatBubbleLeftIcon, ClipboardIcon, CommandLineIcon, HomeIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import { useTheme } from "next-themes"
 import Link from "next/link"
@@ -63,9 +63,9 @@ export default function Navigation(): JSX.Element {
 
           <div className="flex-grow" />
 
-          <Link href="/experience" className={linkStyle}>
-              <span className="sr-only">Experiments</span>
-              <BriefcaseIcon className={iconStyle} />
+          <Link href="/contributions" className={linkStyle}>
+              <span className="sr-only">Contributions</span>
+              <CommandLineIcon className={iconStyle} />
           </Link>
           <Link href="/projects" className={linkStyle}>
               <span className="sr-only">Projects</span>
