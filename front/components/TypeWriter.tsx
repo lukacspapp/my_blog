@@ -1,13 +1,13 @@
 'use client'
 
-import React from 'react'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 
 type TypeWriterProps = {
   vocations: string
 }
 
-export default function TypeWriter({ vocations }: TypeWriterProps) {
+export default function TypeWriter ({vocations}) {
+
 
   const [text, count] = useTypewriter({
     words: vocations.split(', '),
@@ -17,7 +17,7 @@ export default function TypeWriter({ vocations }: TypeWriterProps) {
 
   return (
     <>
-      <span className='mr-3'>{text}</span>
+      <span>{text}.</span>
       <Cursor cursorColor='white' />
     </>
   )
