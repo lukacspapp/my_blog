@@ -25,3 +25,4 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
     </div>
   )
 }
+// ! Left at 36:53
