@@ -68,7 +68,7 @@ export default function About(): JSX.Element {
             className={clsx(
               "bg-gradient-to-r from-green-500 to-blue-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-cyan-400 dark:to-green-500",
               "after:bg-gradient-to-r",
-              "relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-[160px]",
+              "relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-[130px]",
               "after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100",
               "after:transition-transform after:duration-300 after:ease-in-out"
             )}
