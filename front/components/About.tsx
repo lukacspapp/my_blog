@@ -12,8 +12,9 @@ const lightGradient = "animate-text-shimmer bg-[linear-gradient(110deg,#f97316,4
 
 const title = "Lukacs J Papp"
 const description = "Full Stack Developer"
-const slogan = "Web Developer fueled by passion for coding, strong coffee, and relentless curiosity, with skills in TypeScript, MySQL, Next.js, and more."
 const words = 'TypeScript, MySQL, Next.js, React, Node.js'
+
+
 export default function About(): JSX.Element {
 
   const [show, setShow] = useState(false)
