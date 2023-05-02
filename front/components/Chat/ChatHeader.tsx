@@ -4,7 +4,7 @@ type Props = {}
 
 export default function ChatHeader({}: Props) {
   return (
-    <div className='w-full flex gap-3 justify-start items-center text-zinc-800'>
+    <div className='w-full flex gap-3 justify-start items-center dark:text-white'>
       <div className='flex flex-col text-sm items-start'>
         <p className="text-sm">
           Chat With

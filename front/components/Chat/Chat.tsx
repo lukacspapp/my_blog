@@ -18,7 +18,7 @@ export default function Chat({}: Props) {
         value='item-1'
       >
         <div
-          className='fixed right-8 w-80 bottom-8 bg-white dark:bg-gray-800,
+          className='fixed right-8 w-80 bottom-8 dark:bg-gray-700 bg-white shadow-lg,
           rounded-md overflow-hidden'
         >
           <div className='flex flex-col h-full w-full'>
