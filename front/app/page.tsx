@@ -1,6 +1,7 @@
 
 import "tailwindcss/tailwind.css"
 import About from "../components/About"
+import Chat from "../components/Chat/Chat"
 
 export default function Page(): JSX.Element {
 
@@ -8,6 +9,7 @@ export default function Page(): JSX.Element {
     <>
       <main className="body">
         <About />
+        <Chat />
       </main>
     </>
   )
