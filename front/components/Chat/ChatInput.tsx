@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { cn } from "../../lib/utils";
+import { Message } from '../../lib/validator/message';
 
 interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -13,7 +14,7 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
   const [input, setInput] = useState<string>('')
 
   const { mutate, isLoading,  } = useMutation({
-    mutationFn: async (message) => {
+    mutationFn: async (message: Message) => {
       const res = await fetch('/api/message', {
         method: 'POST',
         headers: {
@@ -50,9 +51,11 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 
               const message = {
                 id: nanoid(),
-                userInput: true,
+                isUserInput: true,
                 text: input,
               }
+
+              mutate(message)
             }
           }}
           onChange={(e) => setInput(e.target.value)}
