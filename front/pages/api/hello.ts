@@ -80,14 +80,7 @@ export async function getGithubContributions(username: string): Promise<UserInfo
     throw new Error("User not found.")
   }
 
-  // Fetch cached contributions history
-  // const { data, error } = await privateClient.from("github-contributions").select().match({ username })
-  // if (data === null || error) throw new Error(error?.message)
-
-  // Fetch missing contributions years
   const years = currentCollection.data.user.contributionsCollection.contributionYears
-  console.log(years);
-
 
   let longestStreak = 0
   let currentStreak = -1
@@ -95,22 +88,16 @@ export async function getGithubContributions(username: string): Promise<UserInfo
   let totalContributions = 0
   let firstContributionDate = ""
   const today = normalizeUtc(new Date()).toISOString().split("T")[0]
+
   for (const year of years) {
-    // Resolve collection from cache or by fetching it
+
     let resolvedCollection: ContributionsCollectionType
-    // const cachedYear: any = data.find((element: any) => element.year === year)
-      const collection = fetchYearlyContributions(username, year)
-      resolvedCollection = await collection
 
-      // Cache result except current year (in order to avoid caching and freezing current year data)
-      // if (resolvedCollection.data.user.contributionsCollection.year !== new Date().getFullYear()) {
-      //   await privateClient.from("github-contributions").upsert({ username, year, contributions: resolvedCollection })
-      // }
-    // } else {
-      // resolvedCollection = cachedYear.contributions
-      collections.push(resolvedCollection)
+    const collection = fetchYearlyContributions(username, year)
+    resolvedCollection = await collection
 
-    // Gather stats
+    collections.push(resolvedCollection)
+
     const contributionCalendar = resolvedCollection.data.user.contributionsCollection.contributionCalendar
     const contributions = contributionCalendar.weeks
     totalContributions += contributionCalendar.totalContributions
