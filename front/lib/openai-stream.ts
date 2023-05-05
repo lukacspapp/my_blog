@@ -1,4 +1,4 @@
-
+export const sanyi = "sanyi";
   // export type ChatGPTAgent = "user" | "system";
 
   // export interface ChatGPTMessage {
