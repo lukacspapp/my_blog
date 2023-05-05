@@ -1,3 +1,7 @@
+export async function GET() {
+  return new Response("Hello world!");
+}
+
 // import { CHAT_BOT_PROMPT } from "../../../lib/constant";
 // import { ChatGPTMessage, OpenAIStream } from "../../../lib/openai-stream";
 // import { MessagesSchema } from "../../../lib/validator/message";
