@@ -1,28 +1,23 @@
+import fs from "fs";
 import matter from "gray-matter";
+import readingTime from "reading-time";
 
 export default async function SlugPage({ params })  {
 
   const { slug } = params
 
-  const readMatterFile = (filePath: string) => {
-    return new Promise((resolve, reject) => {
-      try {
-        const { data, content } = matter.read(filePath);
-        resolve({ data, content });
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
-
-  const {data, content} = await readMatterFile(`./data/projects/${slug}.mdx`) as {data: {title: string}, content: string}
+  const fileContent = await fs.promises.readFile(`./data/projects/${slug}.mdx`, "utf-8");
+  const { data, content } = matter(fileContent);
+  const file = { title: data.title, content };
+  const roundedReadingTime = Math.round(readingTime(file.content).minutes)
 
   return (
     <main className='body'>
       <h1>
-        {data.title}
+        {file.title}
+        {roundedReadingTime}
       </h1>
-      <p>{content}</p>
+      <p>{file.content}</p>
     </main>
   )
 }

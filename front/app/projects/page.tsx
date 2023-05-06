@@ -12,6 +12,10 @@ export default async function Projects() {
 
   const fileNames = fs.readdirSync("./data/projects")
 
+  console.log('====================================');
+  console.log(fileNames);
+  console.log('====================================');
+
   const projects = (
     await Promise.all(fileNames.map(fileName => matter.read((`./data/projects/${fileName}`)).data)))
     .sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime())
