@@ -21,3 +21,13 @@ export default async function SlugPage({ params })  {
     </main>
   )
 }
+
+export async function generateStaticParams() {
+  const fileNames = fs.readdirSync("./data/projects");
+  const paths = fileNames.map((fileName) => ({
+    params: { slug: fileName.replace(".mdx", "") },
+  }));
+  return paths;
+}
+
+
