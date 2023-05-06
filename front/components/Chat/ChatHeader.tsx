@@ -11,7 +11,7 @@ export default function ChatHeader({}: Props) {
         </p>
         <div className="flex gap-1.5 items-center">
           <p className="w-2 h-2 rounded-full bg-green-500 animate-pulse"/>
-          <p className="font-medium">My subconscious</p>
+          <p className="font-medium"> Me</p>
         </div>
       </div>
     </div>

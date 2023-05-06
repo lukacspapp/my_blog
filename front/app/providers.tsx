@@ -8,6 +8,7 @@ import "tailwindcss/tailwind.css"
 import Footer from '../components/Footer'
 import Gradient from '../components/Gradient'
 import Navigation from '../components/Navigation/Navigation'
+import { MessagesProvider } from '../context/messages'
 
 export function Providers({ children }) {
 
@@ -21,7 +22,9 @@ export function Providers({ children }) {
           <TooltipProvider>
             <Navigation />
           </TooltipProvider>
-          {children}
+          <MessagesProvider>
+            {children}
+          </MessagesProvider>
           <TooltipProvider>
             <Footer />
           </TooltipProvider>
