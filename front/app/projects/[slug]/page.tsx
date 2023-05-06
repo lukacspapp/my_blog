@@ -1,33 +1,19 @@
-import fs from "fs";
 import matter from "gray-matter";
+import path from "path"; // Add this import
 import readingTime from "reading-time";
 
-export default async function SlugPage({ params })  {
+export default async function SlugPage({ params }) {
+  const { slug } = params;
 
-  const { slug } = params
+  // Update this part to resolve the file path correctly
+  const filePath = path.join(process.cwd(), "data", "projects", `${slug}.mdx`);
+  const file = matter.read(filePath);
 
-  const fileContent = await fs.promises.readFile(`./data/projects/${slug}.mdx`, "utf-8");
-  const { data, content } = matter(fileContent);
-  const file = { title: data.title, content };
-  const roundedReadingTime = Math.round(readingTime(file.content).minutes)
+  const roundedReadingTime = Math.round(readingTime(file.content).minutes);
 
   return (
-    <main className='body'>
-      <h1>
-        {file.title}
-        {roundedReadingTime}
-      </h1>
+    <main className="body">
       <p>{file.content}</p>
     </main>
-  )
+  );
 }
-
-export async function generateStaticParams() {
-  const fileNames = fs.readdirSync("./data/projects");
-  const paths = fileNames.map((fileName) => ({
-    params: { slug: fileName.replace(".mdx", "") },
-  }));
-  return paths;
-}
-
-
