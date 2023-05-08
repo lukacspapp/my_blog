@@ -63,14 +63,14 @@ export default function Journal({ projects }): JSX.Element {
             />
           </div>
           {/* Entries */}
-          {projects.map(meta => (
-            <Link legacyBehavior key={meta.slug} href={`/projects/${meta.slug}`} passHref>
+          {projects.map(project => (
+            <Link legacyBehavior key={project.slug} href={`/projects/${project.slug}`} passHref>
               <a className={cardStyle} onMouseOver={handleMouseOver}>
                 <aside className={asideStyle} onMouseOver={handleMouseOver}>
-                  {formatDate(normalizeUtc(new Date(meta.publishedAt)), false)}, 2023
+                  {formatDate(normalizeUtc(new Date(project.createdAt)), false)}, 2023
                 </aside>
-                <h2 className="text-lg font-semibold">{meta.title}</h2>
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-500">{meta.description}</p>
+                <h2 className="text-lg font-semibold">{project.title}</h2>
+                <p className="mt-2 text-sm text-gray-500 dark:text-gray-500">{project.description}</p>
               </a>
             </Link>
           ))}

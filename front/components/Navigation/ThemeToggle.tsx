@@ -5,7 +5,7 @@ import { useTheme } from "next-themes"
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import { DarkModeSwitch } from "react-toggle-dark-mode"
-import { linkStyle } from "../../types/styleTypes"
+import { linkStyle } from "../../styles/styles"
 
 const DynamicDarkModeSwitch = dynamic(
   () => {

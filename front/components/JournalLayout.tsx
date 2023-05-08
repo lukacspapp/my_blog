@@ -14,6 +14,7 @@ export default function JournalLayout({ content }) {
       <div className="fixed top-0 -ml-6 h-full border-l-2 border-dotted border-divider" />
 
       {/* Render the content */}
+      {/* dangeourly set html */}
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </article>
   )

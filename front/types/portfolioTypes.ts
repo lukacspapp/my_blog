@@ -7,6 +7,27 @@ export interface Experience {
   startDate: string,
   image: Image
 }
+export interface ProjectsData {
+  projects: Projects[]
+}
+
+export interface Projects {
+  description: string,
+  slug: string,
+  title: string,
+  createdAt: string
+}
+
+export interface ProjectData {
+  project: Project
+}
+
+export interface Project {
+  content: string,
+  description: string,
+  title: string
+}
+
 
 export interface Technology {
   Image: Image,
