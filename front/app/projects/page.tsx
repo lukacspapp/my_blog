@@ -1,5 +1,3 @@
-import fs from 'fs'
-import matter from "gray-matter"
 import Description from "../../components/Github/Desciption"
 import ProjectList from '../../components/ProjectList'
 import TransitionPage from "../../components/TransitionPage"
@@ -10,17 +8,9 @@ const description = 'A list of projects I have worked on.'
 
 export default async function Projects() {
 
-  const valami = await getProjects()
+  const projects = await getProjects()
 
-
-  const fileNames = fs.readdirSync("./data/projects")
-
-  const projects = (
-    await Promise.all(fileNames.map(fileName => matter.read((`./data/projects/${fileName}`)).data)))
-    .sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime())
-
-
-  const sortedProjects = valami.map((project) => project).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+  const sortedProjects = projects.map((project) => project).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 
   return (
     <main className='body'>

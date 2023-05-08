@@ -5,7 +5,7 @@ import TransitionPage from "../../../components/TransitionPage";
 import { formatDate, normalizeUtc } from "../../../lib/date";
 import { getProject } from "../../../lib/services";
 
-export default async function SlugPage({ params }) {
+export default async function SlugPage({ params } : { params: { slug: string } }) {
 
   const { slug } = params;
   const project = await getProject(slug);
