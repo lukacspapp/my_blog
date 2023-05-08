@@ -3,11 +3,15 @@ import matter from "gray-matter"
 import Description from "../../components/Github/Desciption"
 import ProjectList from '../../components/ProjectList'
 import TransitionPage from "../../components/TransitionPage"
+import { getProjects } from '../../lib/services'
 
 const title = 'Projects'
 const description = 'A list of projects I have worked on.'
 
 export default async function Projects() {
+
+  const valami = await getProjects()
+
 
   const fileNames = fs.readdirSync("./data/projects")
 
@@ -16,11 +20,13 @@ export default async function Projects() {
     .sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime())
 
 
+  const sortedProjects = valami.map((project) => project).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+
   return (
     <main className='body'>
       <TransitionPage title={title} description={description}>
         <Description title={title} description={description} />
-        <ProjectList projects={projects} />
+        <ProjectList projects={sortedProjects} />
       </TransitionPage>
     </main>
   )

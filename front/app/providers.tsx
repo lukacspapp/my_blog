@@ -4,6 +4,7 @@ import { TooltipProvider } from '@radix-ui/react-tooltip'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Inspect from 'inspx'
 import { ThemeProvider } from 'next-themes'
+import { usePathname } from 'next/navigation'
 import "tailwindcss/tailwind.css"
 import Footer from '../components/Footer'
 import Gradient from '../components/Gradient'
@@ -12,7 +13,11 @@ import { MessagesProvider } from '../context/messages'
 
 export function Providers({ children }) {
 
+  const router = usePathname()
+
   const queryClient = new QueryClient()
+
+  const footer = router === '/' ? null : <Footer />
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -26,7 +31,7 @@ export function Providers({ children }) {
             {children}
           </MessagesProvider>
           <TooltipProvider>
-            <Footer />
+            {footer}
           </TooltipProvider>
         </Inspect>
       </ThemeProvider>
