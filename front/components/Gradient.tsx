@@ -10,7 +10,7 @@ export default function Gradient() {
           backgroundImage:
             "linear-gradient(270deg, #F59E0B, #FDB44B, #FB7185, #6D28D9, #4338CA, #1E3A8A)",
           backgroundSize: "200% 200%",
-          animation: "gradient 3s linear infinite",
+          animation: "gradient 5s linear infinite",
         }}
       />
     </div>
