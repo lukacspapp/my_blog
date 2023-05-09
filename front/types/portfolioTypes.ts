@@ -23,9 +23,13 @@ export interface ProjectData {
 }
 
 export interface Project {
-  content: string,
+  content: ProjectContent,
   description: string,
   title: string
+}
+
+export interface ProjectContent {
+  markdown: string
 }
 
 

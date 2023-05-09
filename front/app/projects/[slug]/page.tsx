@@ -11,7 +11,9 @@ export default async function SlugPage({ params } : { params: { slug: string } }
 
   const project = await getProject(slug);
 
-  const roundedReadingTime = Math.round(readingTime(project.content).minutes);
+  const roundedReadingTime = Math.round(readingTime(project.content.markdown).minutes);
+
+  // TODO: If minutes reading is correct
 
   return (
     <main className="body">
