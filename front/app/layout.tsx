@@ -1,4 +1,5 @@
 import "tailwindcss/tailwind.css";
+import '../styles/global.css';
 import { Providers } from './providers';
 
 export default async function RootLayout({

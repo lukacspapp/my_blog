@@ -1,0 +1,50 @@
+.gradient-bg {
+  background: linear-gradient(270deg, #ff0000, #ff7a00, #ffbb00, #ffdd00, #fff700, #a0ff00, #44ff00, #00ff55, #00ffbb, #00ddff, #007aff, #0028ff, #5100ff, #a500ff, #ff00e1, #ff0073);
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+      background-position: 100% 0;
+  }
+  50% {
+      background-position: 0 100%;
+  }
+  100% {
+      background-position: 100% 0;
+  }
+}
+
+
+:root {
+  --color-start-light: #F59E0B;
+  --color-middle-light: #FDB44B;
+  --color-end-light: #FB7185;
+
+  --color-start-dark: #6D28D9;
+  --color-middle-dark: #4338CA;
+  --color-end-dark: #1E3A8A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-start: var(--color-start-dark);
+    --color-middle: var(--color-middle-dark);
+    --color-end: var(--color-end-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-start: var(--color-start-light);
+    --color-middle: var(--color-middle-light);
+    --color-end: var(--color-end-light);
+  }
+}
+
+
+
+
+
+
