@@ -4,8 +4,15 @@ export default function Gradient() {
 
   return (
     <div className="mx-auto max-w-screen-lg">
-      <span className={gradient} />
+      <span
+        className={gradient}
+        style={{
+          backgroundImage:
+            "linear-gradient(270deg, #F59E0B, #FDB44B, #FB7185, #6D28D9, #4338CA, #1E3A8A)",
+          backgroundSize: "200% 200%",
+          animation: "gradient 3s linear infinite",
+        }}
+      />
     </div>
   )
 }
-

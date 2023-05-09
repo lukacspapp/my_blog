@@ -4,6 +4,11 @@ import clsx from "clsx"
 import Link from "next/link"
 import { useRef, useState } from "react"
 import { formatDate, normalizeUtc } from "../lib/date"
+import { Projects } from "../types/portfolioTypes"
+
+type ProjectListProps = {
+  projects: Projects
+}
 
 const cardStyle =
   "flex flex-col px-4 py-6 relative hover:highlight sm:hover:!bg-transparent rounded-xl transition-colors duration-300"
@@ -11,7 +16,7 @@ const asideStyle =
   "absolute [writing-mode:vertical-rl] h-full top-0 -left-12 md:-left-14 pr-11 text-center text-sm text-gray-400 dark:text-gray-600 font-['Luxurious_Roman']"
 
 // Inspiration: https://emilkowal.ski/ui/tabs
-export default function Journal({ projects }): JSX.Element {
+export default function ProjectList({ projects }): JSX.Element {
   const [highlightedTab, setHighlightedTab] = useState<HTMLElement | null>(null)
   const [isHoveredFromNull, setIsHoveredFromNull] = useState(true)
   const [transform, setTransform] = useState("translate(0, 0")
