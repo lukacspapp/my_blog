@@ -46,6 +46,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-hotkeys-hook": "^3.4.7",
+    "react-markdown": "^8.0.7",
     "react-scroll": "^1.8.9",
     "react-simple-typewriter": "^5.0.1",
     "react-social-icons": "^5.15.0",

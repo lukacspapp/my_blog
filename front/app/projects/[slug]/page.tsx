@@ -22,7 +22,7 @@ export default async function SlugPage({ params } : { params: { slug: string } }
         </aside>
       </div>
       <Description title={project.title} description={project.description}/>
-      <JournalLayout content={project.content} />
+      <JournalLayout content={project.content.markdown} />
       </TransitionPage>
     </main>
   );

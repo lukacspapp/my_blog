@@ -1,4 +1,5 @@
 import Head from "next/head"
+import ReactMarkdown from "react-markdown"
 
 type JournalLayoutProps = {
   content: string
@@ -13,13 +14,10 @@ export default function JournalLayout({ content }: JournalLayoutProps) {
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github-dark.min.css"
         />
       </Head>
-
-      {/* Book Binding */}
       <div className="fixed top-0 -ml-6 h-full border-l-2 border-dotted border-divider" />
-
-      {/* Render the content */}
-      {/* dangeourly set html */}
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <ReactMarkdown>
+        {content}
+      </ReactMarkdown>
     </article>
   )
 }
