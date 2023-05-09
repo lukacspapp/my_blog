@@ -110,8 +110,17 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        movingGradient: {
+          '0%': {
+            transform: 'rotate(0deg) translateX(-50%)',
+          },
+          '100%': {
+            transform: 'rotate(360deg) translateX(-50%)',
+          },
+        },
       },
       animation: {
+        movingGradient: 'movingGradient 10s linear infinite',
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slide-in": "slide-in 0.2s ease-out",

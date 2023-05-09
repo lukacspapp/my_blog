@@ -8,6 +8,7 @@ import { getProject } from "../../../lib/services";
 export default async function SlugPage({ params } : { params: { slug: string } }) {
 
   const { slug } = params;
+
   const project = await getProject(slug);
 
   const roundedReadingTime = Math.round(readingTime(project.content).minutes);

@@ -22,11 +22,11 @@ export async function getProjects(): Promise<Projects[]> {
 export async function getProject(slug: string): Promise<Project> {
   const query = gql`
     query MyQuery {
-      project(where: {slug: "swl"}) {
-        content
-        description
-        title
-      }
+      project(where: {slug: "${slug}"}) {
+    content
+    description
+    title
+  }
     }
   `
   const { project } : ProjectData = await request(graphqlAPI, query)
