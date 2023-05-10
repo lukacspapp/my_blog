@@ -10,7 +10,7 @@ export default async function Projects() {
 
   const projects = await getProjects()
 
-  const sortedProjects = projects.map((project) => project).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+  const sortedProjects = projects.map((project) => project).sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime())
 
   return (
     <main className='body'>

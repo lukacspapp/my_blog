@@ -15,7 +15,7 @@ export interface Projects {
   description: string,
   slug: string,
   title: string,
-  createdAt: string
+  created: string
 }
 
 export interface ProjectData {
