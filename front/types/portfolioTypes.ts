@@ -23,6 +23,7 @@ export interface ProjectData {
 }
 
 export interface Project {
+  created: string,
   content: ProjectContent,
   description: string,
   title: string
