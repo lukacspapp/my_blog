@@ -16,3 +16,28 @@ export function formatDate(date: Date, showYear = true): string {
   }
   return result
 }
+
+function getOrdinalSuffix(n: number): string {
+  if (n > 3 && n < 21) return 'th';
+  switch (n % 10) {
+    case 1: return 'st';
+    case 2: return 'nd';
+    case 3: return 'rd';
+    default: return 'th';
+  }
+}
+
+
+export function na(dateString: string): string {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const formattedDay = `${day}${getOrdinalSuffix(day)}`;
+  const month = date.toLocaleString('en-US', { month: 'long' });
+  const year = date.getFullYear();
+
+  return `${month} ${formattedDay}, ${year}`;
+}
+
+
+
+

@@ -3,7 +3,7 @@
 import clsx from "clsx"
 import Link from "next/link"
 import { useRef, useState } from "react"
-import { formatDate, normalizeUtc } from "../lib/date"
+import { na } from "../lib/date"
 import { Projects } from "../types/portfolioTypes"
 
 type ProjectListProps = {
@@ -72,7 +72,7 @@ export default function ProjectList({ projects }): JSX.Element {
             <Link legacyBehavior key={project.slug} href={`/projects/${project.slug}`} passHref>
               <a className={cardStyle} onMouseOver={handleMouseOver}>
                 <aside className={asideStyle} onMouseOver={handleMouseOver}>
-                  {formatDate(normalizeUtc(new Date(project.createdAt)), false)}, 2023
+                  {na(project.created)}
                 </aside>
                 <h2 className="text-lg font-semibold">{project.title}</h2>
                 <p className="mt-2 text-sm text-gray-500 dark:text-gray-500">{project.description}</p>

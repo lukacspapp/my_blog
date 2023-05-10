@@ -10,7 +10,7 @@ export async function getProjects(): Promise<Projects[]> {
         description
         slug
         title
-        createdAt
+        created
       }
     }
   `
@@ -26,6 +26,7 @@ export async function getProject(slug: string): Promise<Project> {
         content {
           markdown
         },
+        created
         description
         title
       }
