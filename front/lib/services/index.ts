@@ -26,6 +26,7 @@ export async function getProject(slug: string): Promise<Project> {
         content {
           markdown
         },
+        created
         description
         title
       }
