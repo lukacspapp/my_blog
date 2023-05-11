@@ -5,6 +5,7 @@ import clsx from "clsx"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import ContactDialog from "./ContactDialog"
 import ThemeToggle from "./ThemeToggle"
 
 // Source: https://github.com/vercel/next.js/issues/4515#issuecomment-810635574
@@ -71,10 +72,14 @@ export default function Navigation(): JSX.Element {
               <span className="sr-only">Projects</span>
               <ClipboardIcon className={iconStyle} />
           </Link>
-          <Link href="/contact" className={linkStyle}>
-              <span className="sr-only">Journal</span>
-              <ChatBubbleLeftIcon className={iconStyle} />
-          </Link>
+          <ContactDialog
+            children={
+              <Link href={''} className={linkStyle}>
+                  <span className="sr-only">Contact</span>
+                  <ChatBubbleLeftIcon className={iconStyle} />
+              </Link>
+            }
+          />
 
           <div className="divider-y h-5" />
 
