@@ -1,4 +1,4 @@
-import { ClipboardIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import { DocumentDuplicateIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import * as Dialog from '@radix-ui/react-dialog';
 
 const DialogDemo = ({ children }) => (
@@ -15,12 +15,12 @@ const DialogDemo = ({ children }) => (
           <Dialog.Title className="text-gray-600 dark:text-gray-400 text-lg flex-row justify-between p-4 font-medium">
             Contact
           </Dialog.Title>
-          <Dialog.Description className="text-gray-600 h-40 p-5 dark:text-gray-400 mt-2 mb-4 items-center">
+          <Dialog.Description className="text-gray-600 p-5 dark:text-gray-400 mt-2 mb-4 items-center">
             <div
-              className="flex flex-row justify-between items-center w-2"
+              className="flex flex-row justify-between items-center space-x-6 md:space-x-0 md:grid md:grid-cols-2"
             >
               <div
-                className="flex flex-col w-52"
+                className="flex flex-col"
               >
                 <p className='mb-1'>
                   Email
@@ -29,45 +29,35 @@ const DialogDemo = ({ children }) => (
                   papplukacs@hotmail.com
                 </p>
               </div>
+              <div
+                className="flex flex-row items-start space-x-2"
+              >
                 <div
-                  className="flex flex-col w-auto m-3"
+                  className="border-2 mb-2 rounded-md border-gray-500 dark:border-[#282828]"
                 >
-                  <div
-                    className="border-2 mb-2 rounded-md border-gray-500 dark:border-[#282828]"
+                  <a
+                    href="mailto:papplukacs@hotmail.com"
+                    className="  flex dark:border-[#282828] pl-3 pt-2 pr-2 pb-2"
+                    rel="noreferrer noopener"
+                    target="_blank"
                   >
-                    <a
-                      href="mailto:papplukacs@hotmail.com"
-                      className="  flex dark:border-[#282828] pl-3 pt-2 pr-2 pb-2"
-                      rel="noreferrer noopener"
-                      target="_blank"
-                    >
-                      <ClipboardIcon className="h-5 w-5 text-gray-500" />
-                      <p
-                        className="text-sm text-gray-500"
-                      >
-                        Compose
-                      </p>
-                    </a>
-                  </div>
-                  <div
-                    className="border-2 rounded-md border-gray-500 dark:border-[#282828]"
+                    <PencilSquareIcon className="h-5 w-5 text-gray-500" />
+                  </a>
+                </div>
+                <div
+                  className="border-2 rounded-md border-gray-500 dark:border-[#282828]"
+                >
+                  <button
+                    className="flex pl-3 p-2 dark:border-[#282828]"
+                    onClick={() => {
+                      navigator.clipboard.writeText("papplukacs@hotmail.com");
+                    }}
                   >
-                    <button
-                      className="flex pl-3 p-2 dark:border-[#282828]"
-                      onClick={() => {
-                        navigator.clipboard.writeText("papplukacs@hotmail.com");
-                      }}
-                    >
-                      <DocumentDuplicateIcon className="h-5 w-5 text-gray-500" />
-                      <p
-                        className="text-sm ml-2 text-gray-500"
-                      >
-                        Copy
-                      </p>
-                    </button>
-                  </div>
+                    <DocumentDuplicateIcon className="h-5 w-5 text-gray-500" />
+                  </button>
                 </div>
               </div>
+            </div>
 
           </Dialog.Description>
         </Dialog.Content>
@@ -75,6 +65,5 @@ const DialogDemo = ({ children }) => (
     </Dialog.Portal>
   </Dialog.Root>
 );
-
 
 export default DialogDemo;
