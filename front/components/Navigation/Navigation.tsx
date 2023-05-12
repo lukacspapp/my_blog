@@ -74,10 +74,10 @@ export default function Navigation(): JSX.Element {
           </Link>
           <ContactDialog
             children={
-              <Link href={''} className={linkStyle}>
+              <div className={linkStyle}>
                   <span className="sr-only">Contact</span>
                   <ChatBubbleLeftIcon className={iconStyle} />
-              </Link>
+              </div>
             }
           />
 

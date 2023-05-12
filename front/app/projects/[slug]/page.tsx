@@ -23,7 +23,7 @@ export default async function SlugPage({ params } : { params: { slug: string } }
           {na(project.created)} • {roundedReadingTime} min read
         </aside>
       </div>
-      <Description title={project.title} description={project.description}/>
+      <Description title={project.title.replace(/\d+$/, '')} description={project.description}/>
       <JournalLayout content={project.content.markdown} />
       </TransitionPage>
     </main>

@@ -74,7 +74,9 @@ export default function ProjectList({ projects }): JSX.Element {
                 <aside className={asideStyle} onMouseOver={handleMouseOver}>
                   {na(project.created)}
                 </aside>
-                <h2 className="text-lg font-semibold">{project.title}</h2>
+                <h2 className="text-lg font-semibold">
+                  {project.title.replace(/\d+$/, '')}
+                </h2>
                 <p className="mt-2 text-sm text-gray-500 dark:text-gray-500">{project.description}</p>
               </a>
             </Link>

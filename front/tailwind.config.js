@@ -62,9 +62,21 @@ module.exports = {
         15: ".15",
       },
       keyframes: {
+        "dialog-slide-in": {
+          "0%": { opacity: 0, transform: "translate(-50%, -60%)" },
+          "100%": { opacity: 1, transform: "translate(-50%, -50%)" },
+        },
         "slide-in": {
-          "0%": { opacity: 0, transform: "translateY(16px)" },
-          "100%": { opacity: 1, transform: "translateY(0)" },
+          "0%": { opacity: 0, transform: "translate(-50%, -50%)" },
+          "100%": { opacity: 1, transform: "translate(-50%, -50%)" },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
         },
         "slide-out": {
           "0%": { opacity: 1, transform: "translateY(0px)" },
@@ -121,6 +133,7 @@ module.exports = {
       },
       animation: {
         movingGradient: 'movingGradient 10s linear infinite',
+        "dialog-slide-in": "dialog-slide-in 0.3s ease-out",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slide-in": "slide-in 0.2s ease-out",
