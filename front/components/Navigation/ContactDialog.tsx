@@ -1,4 +1,4 @@
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { ClipboardIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import * as Dialog from '@radix-ui/react-dialog';
 
 const DialogDemo = ({ children }) => (
@@ -16,17 +16,42 @@ const DialogDemo = ({ children }) => (
             Contact
           </Dialog.Title>
           <Dialog.Description className="text-gray-600 p-4 dark:text-gray-400 mt-2 mb-4 items-center">
-            Email {` `}
-            <EnvelopeIcon className="h-5 w-5 inline-block" />
-            {` `}
-            <a
-              className="text-violet11 hover:text-violet10 dark:text-violet9 dark:hover:text-violet8"
-              href="mailto:papplukacs@hotmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <div
+              className="flex flex-row justify-between pl-4 items-center"
             >
-              papplukacs@hotmail.com
-            </a>
+              <div
+                className="flex flex-col w-52"
+              >
+                <p className='mb-1'>
+                  Email
+                </p>
+                <p className='text-sm text-gray-500'>
+                  papplukacs@hotmail.com
+                </p>
+              </div>
+              <div
+                className="flex flex-row rounded-md border-2 border-gray-500 dark:border-[#282828]"
+              >
+                <a
+                  href="mailto:papplukacs@hotmail.com"
+                  className=" border-r-2 flex dark:border-[#282828] pl-3 pt-2 pr-2 pb-2"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  <ClipboardIcon className="h-5 w-5 text-gray-500" />
+                  Compose
+                </a>
+                <button
+                  className="flex pl-3 pt-2 pr-2 pb-2"
+                  onClick={() => {
+                    navigator.clipboard.writeText("papplukacs@hotmail.com");
+                  }}
+                >
+                  <DocumentDuplicateIcon className="h-5 w-5 text-gray-500" />
+                  Copy
+                </button>
+              </div>
+            </div>
           </Dialog.Description>
         </Dialog.Content>
       </div>
