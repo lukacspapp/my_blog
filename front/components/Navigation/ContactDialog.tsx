@@ -1,3 +1,4 @@
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import * as Dialog from '@radix-ui/react-dialog';
 
 const DialogDemo = ({ children }) => (
@@ -16,6 +17,8 @@ const DialogDemo = ({ children }) => (
           </Dialog.Title>
           <Dialog.Description className="text-gray-600 p-4 dark:text-gray-400 mt-2 mb-4 items-center">
             Email {` `}
+            <EnvelopeIcon className="h-5 w-5 inline-block" />
+            {` `}
             <a
               className="text-violet11 hover:text-violet10 dark:text-violet9 dark:hover:text-violet8"
               href="mailto:papplukacs@hotmail.com"
