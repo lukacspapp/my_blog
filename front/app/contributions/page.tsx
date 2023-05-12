@@ -2,11 +2,13 @@ import Image from "next/image";
 import BrowserFrame from "../../components/BrowserFrame";
 import AnimatedDescription from "../../components/Description/AnimatedDescription";
 
+const title = "Github Contributions"
+const description = "visualize, analyze and contrast your commits"
 
 export default async function page() {
   return (
     <main className="body">
-      <AnimatedDescription title={'Github Contributions'} description={''} />
+      <AnimatedDescription title={title} description={description} />
           <BrowserFrame
             href="/github?search=lukacspapp"
             title="Github Contributions"

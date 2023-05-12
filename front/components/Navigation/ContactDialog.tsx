@@ -15,7 +15,7 @@ const DialogDemo = ({ children }) => (
             Contact
           </Dialog.Title>
           <Dialog.Description className="text-gray-600 p-4 dark:text-gray-400 mt-2 mb-4 items-center">
-            Feel free to contact me at{" "}
+            Email {` `}
             <a
               className="text-violet11 hover:text-violet10 dark:text-violet9 dark:hover:text-violet8"
               href="mailto:papplukacs@hotmail.com"
