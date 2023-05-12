@@ -10,7 +10,7 @@ const DialogDemo = ({ children }) => (
       <Dialog.Overlay className="bg-[#0a0a0a] opacity-70 fixed inset-0" />
       <div className="animate-slide-in fixed top-[50%] left-[50%]">
         <Dialog.Content
-          className="animate-dialog-slide-in border-[#272727] border flex flex-col justify-between items-stretch z-10 fixed top-[50%] left-[50%] max-h-[85vh] w-[80vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[8px] bg-[#0a0a0a] p-[10px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
+          className="animate-dialog-slide-in border-[#272727] border flex flex-col justify-between items-stretch z-10 fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[8px] bg-[#0a0a0a] p-[10px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
         >
           <Dialog.Title className="text-gray-400 dark:text-gray-600 text-lg flex-row justify-between p-4 font-medium">
             Contact
