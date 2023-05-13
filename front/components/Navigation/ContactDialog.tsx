@@ -17,7 +17,7 @@ const DialogDemo = ({ children }) => (
           </Dialog.Title>
           <Dialog.Description className="text-gray-400 p-5 dark:text-gray-400 mt-2 mb-4 items-center">
             <div
-              className="flex flex-row justify-between items-center space-x-6 md:space-x-0 md:grid md:grid-cols-2"
+              className="flex flex-row justify-between items-center space-x-6"
             >
               <div
                 className="flex flex-col"
