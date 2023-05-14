@@ -247,15 +247,7 @@ input {
   }
 }
 
-.toast::before {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid white;
-  transform: translateX(-50%);
+button.active {
+  /* styles to indicate that the button is active */
+  background-color: #ccc;
 }

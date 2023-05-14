@@ -30,6 +30,15 @@ const Toast = ({ message, id, removeToast }) => {
 export function ContactDialog({ children }) {
 
   const [toasts, setToasts] = useState<{ id: string; message: string }[]>([]);
+  const [isActive, setIsActive] = useState(false);
+
+  const handleTouchStart = () => {
+    setIsActive(true);
+  };
+
+  const handleTouchEnd = () => {
+    setIsActive(false);
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText("papplukacs@hotmail.com");
@@ -93,12 +102,15 @@ export function ContactDialog({ children }) {
                     className="border-2 rounded-md border-gray-500 dark:border-gray-400"
                   >
                     <button
-                      className="flex pl-3 p-2 dark:border-[#282828] transition-colors duration-300 ease-in-out hover:bg-gray-300 rounded-md dark:hover:bg-gray-600"
+                      onTouchStart={handleTouchStart}
+                      onTouchEnd={handleTouchEnd}
+                      className={`flex pl-3 p-2 dark:border-[#282828] transition-colors duration-300 ease-in-out rounded-md dark:hover:bg-gray-600 ${isActive ? "active" : ""}`}
                       onClick={handleCopy}
                     >
                       <p className="mr-1 text-black dark:text-white">Copy</p>
                       <DocumentDuplicateIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                     </button>
+
                   </div>
                 </div>
               </Dialog.Description>
@@ -106,8 +118,8 @@ export function ContactDialog({ children }) {
           </div>
         </Dialog.Portal>
         {toasts.map((toast) => (
-        <Toast key={toast.id} id={toast.id} message={toast.message} removeToast={removeToast} />
-      ))}
+          <Toast key={toast.id} id={toast.id} message={toast.message} removeToast={removeToast} />
+        ))}
       </Dialog.Root>
     </>
   )
