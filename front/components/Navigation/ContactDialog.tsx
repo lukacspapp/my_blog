@@ -10,22 +10,24 @@ const DialogDemo = ({ children }) => (
       <Dialog.Overlay className="bg-[#fd9090] dark:bg-[#382173] opacity-70 fixed inset-0" />
       <div className="animate-slide-in fixed top-[50%] left-[50%]">
         <Dialog.Content
-          className="animate-dialog-slide-in border-gray-500 dark:border-gray-400 border flex flex-col justify-between items-stretch z-10 fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[8px] bg-[#ffffff] dark:bg-[#0a0a0a] p-[10px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
+          className="animate-dialog-slide-in border-gray-500 dark:border-gray-400 border flex flex-col justify-between items-stretch z-10 fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] rounded-[8px] bg-[#ffffff] dark:bg-[#0a0a0a] p-[10px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
         >
-          <Dialog.Title className="text-black dark:text-white text-lg flex-row justify-between p-4 font-medium">
-            Contact
-          </Dialog.Title>
-          <Dialog.Description className="text-gray-400 p-5 dark:text-gray-400 mt-2 mb-4 items-center">
-            <div
-              className="flex flex-row justify-between items-center space-x-6"
+          <Dialog.Title>
+            <h1
+              className="text-black text-lg font-semibold dark:text-white flex-row justify-between p-4"
             >
+              Contact
+            </h1>
+          </Dialog.Title>
+          <Dialog.Description
+            className="text-gray-400 p-5 dark:text-gray-400 mt-2 flex justify-between items-center">
               <div
                 className="flex flex-col"
               >
-                <p className='mb-1 text-black dark:text-white'>
+                <p className='text-[18px] font-semibold text-black dark:text-white'>
                   Email
                 </p>
-                <p className='text-sm text-gray-500 dark:text-gray-400'>
+                <p className='text-md text-gray-500 dark:text-gray-400'>
                   papplukacs@hotmail.com
                 </p>
               </div>
@@ -41,7 +43,7 @@ const DialogDemo = ({ children }) => (
                     rel="noreferrer noopener"
                     target="_blank"
                   >
-                    <p className='mr-1 text-black dark:text-white'>Compose</p>
+                    <p className='mr-1 text-md text-black dark:text-white'>Compose</p>
                     <PencilSquareIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                   </a>
                 </div>
@@ -59,8 +61,6 @@ const DialogDemo = ({ children }) => (
                   </button>
                 </div>
               </div>
-            </div>
-
           </Dialog.Description>
         </Dialog.Content>
       </div>
