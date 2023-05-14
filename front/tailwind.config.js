@@ -70,6 +70,14 @@ module.exports = {
           "0%": { opacity: 0, transform: "translate(-50%, -50%)" },
           "100%": { opacity: 1, transform: "translate(-50%, -50%)" },
         },
+        'pop-in': {
+          '0%': { transform: 'translateY(-100%)', opacity: 0 },
+          '100%': { transform: 'translateY(0)', opacity: 1 },
+        },
+        'pop-out': {
+          '0%': { transform: 'translateY(0)', opacity: 1 },
+          '100%': { transform: 'translateY(-100%)', opacity: 0 },
+        },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
@@ -114,6 +122,24 @@ module.exports = {
           "0%": { transform: "translateX(64px)" },
           "100%": { transform: "translateX(0)" },
         },
+        'slide-down': {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        'slide-down-up': {
+          '0%': { transform: 'translateY(-100%)' },
+          '10%': { transform: 'translateY(0)' },
+          '90%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-100%)' },
+        },
+          slideDown: {
+            '0%': { transform: 'translateY(-100%)', opacity: 0 },
+            '100%': { transform: 'translateY(0)', opacity: 1 },
+          },
+          slideUp: {
+            '0%': { transform: 'translateY(0)', opacity: 1 },
+            '100%': { transform: 'translateY(-100%)', opacity: 0 },
+          },
         "accordion-down": {
           from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -132,12 +158,18 @@ module.exports = {
         },
       },
       animation: {
+        'slide-down-up': 'slide-down-up 3s ease-in-out',
+        slideDown: 'slideDown 0.5s forwards',
+        slideUp: 'slideUp 0.5s forwards',
         movingGradient: 'movingGradient 10s linear infinite',
+        'pop-in-out': 'pop-in 0.5s forwards, pop-out 0.5s 2.5s forwards',
         "dialog-slide-in": "dialog-slide-in 0.3s ease-out",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slide-in": "slide-in 0.2s ease-out",
         "slide-out": "slide-out 0.2s ease",
+        'slide-in-out': 'slide-in 0.5s forwards, slide-out 0.5s 2.5s forwards',
+        'slide-down': 'slide-down 0.5s ease-out',
         "text-shimmer": "text-shimmer 2s ease-out infinite alternate",
         tilt: "tilt 10s infinite linear",
         "grow-start": "grow-start 2s ease-out infinite 0.2s",

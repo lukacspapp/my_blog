@@ -5,7 +5,7 @@ import clsx from "clsx"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import ContactDialog from "./ContactDialog"
+import { ContactDialog } from "./ContactDialog"
 import ThemeToggle from "./ThemeToggle"
 
 // Source: https://github.com/vercel/next.js/issues/4515#issuecomment-810635574
@@ -22,14 +22,6 @@ export default function Navigation(): JSX.Element {
 
   // When mounted on client, show theme switcher
   useEffect(() => setMounted(true), [])
-
-  function handleDarkModeSwitch() {
-    if (resolvedTheme === "dark") {
-      setTheme("light")
-    } else if (resolvedTheme === "light") {
-      setTheme("dark")
-    }
-  }
 
   // Sticky Scroll Listener
   useEffect(() => {
