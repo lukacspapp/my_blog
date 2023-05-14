@@ -41,7 +41,7 @@ const DialogDemo = ({ children }) => (
                     rel="noreferrer noopener"
                     target="_blank"
                   >
-                    <p className='mr-1 text-gray-500 dark:text-gray-400'>Compose</p>
+                    <p className='mr-1 text-black dark:text-white'>Compose</p>
                     <PencilSquareIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                   </a>
                 </div>
@@ -54,7 +54,7 @@ const DialogDemo = ({ children }) => (
                       navigator.clipboard.writeText("papplukacs@hotmail.com");
                     }}
                   >
-                    <p className="mr-1 text-gray-500 dark:text-gray-400">Copy</p>
+                    <p className="mr-1 text-black dark:text-white">Copy</p>
                     <DocumentDuplicateIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                   </button>
                 </div>
