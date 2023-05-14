@@ -37,10 +37,11 @@ const DialogDemo = ({ children }) => (
                 >
                   <a
                     href="mailto:papplukacs@hotmail.com"
-                    className="  flex dark:border-[#282828] pl-3 pt-2 pr-2 pb-2"
+                    className="  flex dark:border-[#282828] pl-3 pt-2 pr-2 pb-2 transition-colors duration-300 ease-in-out hover:bg-gray-300 rounded-md dark:hover:bg-gray-600"
                     rel="noreferrer noopener"
                     target="_blank"
                   >
+                    <p className='mr-1 text-gray-500 dark:text-gray-400'>Compose</p>
                     <PencilSquareIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                   </a>
                 </div>
@@ -48,11 +49,12 @@ const DialogDemo = ({ children }) => (
                   className="border-2 rounded-md border-gray-500 dark:border-gray-400"
                 >
                   <button
-                    className="flex pl-3 p-2 dark:border-[#282828]"
+                    className="flex pl-3 p-2 dark:border-[#282828] transition-colors duration-300 ease-in-out hover:bg-gray-300 rounded-md dark:hover:bg-gray-600"
                     onClick={() => {
                       navigator.clipboard.writeText("papplukacs@hotmail.com");
                     }}
                   >
+                    <p className="mr-1 text-gray-500 dark:text-gray-400">Copy</p>
                     <DocumentDuplicateIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                   </button>
                 </div>
