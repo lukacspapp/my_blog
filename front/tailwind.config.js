@@ -158,7 +158,7 @@ module.exports = {
         },
       },
       animation: {
-        'slide-down-up': 'slide-down-up 2s ease-in-out',
+        'slide-down-up': 'slide-down-up 1.5s ease-in-out',
         slideDown: 'slideDown 0.5s forwards',
         slideUp: 'slideUp 0.5s forwards',
         movingGradient: 'movingGradient 10s linear infinite',
