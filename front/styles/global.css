@@ -246,3 +246,8 @@ input {
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
+button.active {
+  /* styles to indicate that the button is active */
+  background-color: #ccc;
+}
