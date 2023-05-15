@@ -82,7 +82,7 @@ export default function GithubContributions() {
       <div className={clsx("flex flex-col items-center", isLoading ? "cursor-wait" : "")}>
         <Description title={title} description={description} hideBreak />
         <form
-          className="relative mb-7 w-full rounded-md shadow-sm md:w-20"
+          className="relative mb-7 w-full rounded-md shadow-sm md:w-96"
           onSubmit={event => {
             event.preventDefault()
             handleInput()
