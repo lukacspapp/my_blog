@@ -21,6 +21,9 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      width: {
+        'inherit': 'inherit',
+      },
       fontFamily: {
         sans: [
           "-apple-system",

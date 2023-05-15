@@ -82,7 +82,7 @@ export default function GithubContributions() {
       <div className={clsx("flex flex-col items-center", isLoading ? "cursor-wait" : "")}>
         <Description title={title} description={description} hideBreak />
         <form
-          className="relative mb-7 w-full rounded-md shadow-sm md:w-96"
+          className="relative mb-7 w-full rounded-md shadow-sm md:w-20"
           onSubmit={event => {
             event.preventDefault()
             handleInput()
@@ -90,7 +90,7 @@ export default function GithubContributions() {
         >
           <input
             className={clsx(
-              "block w-full rounded-lg border bg-white p-4 text-xl border-divider glass dark:bg-gray-800 md:w-96",
+              "box-border w-inherit rounded-lg border bg-white p-4 text-xl border-divider glass dark:bg-gray-800 md:w-96",
               "focus:border-blue-300 focus:ring-blue-300 dark:focus:border-blue-900 dark:focus:ring-blue-900",
               isLoading ? "cursor-wait" : "cursor-auto"
             )}
@@ -98,7 +98,7 @@ export default function GithubContributions() {
             placeholder="username"
             ref={usernameRef}
           />
-          <button className="absolute inset-y-0 right-0 flex items-center" onClick={() => handleInput()}>
+          <button className="absolute inset-y-0 right-0 p-3 flex items-center" onClick={() => handleInput()}>
             {!isLoading ? (
               <MagnifyingGlassCircleIcon className="h-8 w-8 text-gray-400 dark:text-gray-500" aria-hidden="true" />
             ) : (
