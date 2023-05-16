@@ -4,7 +4,6 @@ import { Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { useEffect, useState } from "react"
 import AnimatedDescription from "./Description/AnimatedDescription"
-import TransitionPage from "./TransitionPage"
 import TypeWriter from "./TypeWriter"
 
 const darkGradient = "bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-transparent bg-clip-text";
@@ -15,7 +14,9 @@ const description = "Full Stack Developer"
 const words = 'TypeScript, MySQL, Next.js, React, Node.js'
 
 
-export default function About(): JSX.Element {
+export default function About({bio}: any): JSX.Element {
+
+  const {email, excerpt, name, skills, company} = bio
 
   const [show, setShow] = useState(false)
 
@@ -29,11 +30,8 @@ export default function About(): JSX.Element {
 
 
   return (
-    <TransitionPage
-      title={title}
-      description="On a journey to create best in class best in class apps, obsessed with designing fluid interfaces, and perfectionist at heart."
-    >
-      <AnimatedDescription title={title} description={description} />
+    <>
+      <AnimatedDescription title={name} description={excerpt} />
       <Transition
         show={show}
         enter="transition-all duration-500"
@@ -91,7 +89,7 @@ export default function About(): JSX.Element {
                 'relative bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent'
               )}
             >
-              {" "} <TypeWriter vocations={words} />
+              {" "} <TypeWriter vocations={skills} />
             </span>
           </span>
         </p>
@@ -101,15 +99,15 @@ export default function About(): JSX.Element {
             className={clsx(
               lightGradient
             )}
-            href="https://www.attractiontickets.com/en"
+            href={company.website}
             target="_blank"
             rel="noopener noreferrer"
           >
-            AttractionTickets.com
+            {company.name}
           </a>
 
         </p>
       </Transition>
-    </TransitionPage>
+    </>
   )
 }

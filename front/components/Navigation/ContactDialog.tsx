@@ -26,8 +26,13 @@ const Toast = ({ message, id, removeToast }) => {
   );
 };
 
+type ContactDialogProps = {
+  children: React.ReactNode
+  email: string
+}
 
-export function ContactDialog({ children }) {
+
+export function ContactDialog({ children, email } : ContactDialogProps): JSX.Element {
 
   const [toasts, setToasts] = useState<{ id: string; message: string }[]>([]);
   const [isActive, setIsActive] = useState(false);
@@ -41,7 +46,7 @@ export function ContactDialog({ children }) {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("papplukacs@hotmail.com");
+    navigator.clipboard.writeText(email);
 
     // Add a new toast with a unique id
     setToasts((oldToasts) => [...oldToasts, { id: nanoid(), message: "Copied to clipboard!" }]);

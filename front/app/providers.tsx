@@ -11,7 +11,7 @@ import Gradient from '../components/Gradient'
 import Navigation from '../components/Navigation/Navigation'
 import { MessagesProvider } from '../context/messages'
 
-export function Providers({ children }) {
+export function Providers({ children, email }) {
 
   const router = usePathname()
 
@@ -25,7 +25,7 @@ export function Providers({ children }) {
         <Inspect>
           <Gradient />
           <TooltipProvider>
-            <Navigation />
+            <Navigation email={email} />
           </TooltipProvider>
           <MessagesProvider>
             {children}

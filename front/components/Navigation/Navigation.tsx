@@ -14,7 +14,7 @@ const linkStyle = "text-sm font-medium text-black dark:text-white opacity-70 hov
 const iconStyle = "h-5 w-5"
 const transitionStyle = "duration-300"
 
-export default function Navigation(): JSX.Element {
+export default function Navigation({email}): JSX.Element {
 
   const [, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
@@ -65,6 +65,7 @@ export default function Navigation(): JSX.Element {
               <ClipboardIcon className={iconStyle} />
           </Link>
           <ContactDialog
+            email={email}
             children={
               <div className={linkStyle}>
                   <span className="sr-only">Contact</span>

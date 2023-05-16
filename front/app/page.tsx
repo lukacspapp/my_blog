@@ -1,13 +1,16 @@
 
 import "tailwindcss/tailwind.css"
 import About from "../components/About"
+import { getBio } from "../lib/services"
 
-export default function Page(): JSX.Element {
+export default async function Page() {
+
+  const bio = await getBio()
 
   return (
     <>
       <main className="body">
-        <About />
+        <About bio={bio}/>
         {/* <Chat /> */}
       </main>
     </>
