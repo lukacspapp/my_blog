@@ -61,7 +61,7 @@ export function ContactDialog({ children }) {
           <Dialog.Overlay className="bg-[#fd9090] dark:bg-[#382173] opacity-70 fixed inset-0" />
           <div className="animate-slide-in fixed top-[50%] left-[50%]">
             <Dialog.Content
-              className="animate-dialog-slide-in sm:bg-white border-gray-500 dark:border-gray-400 border flex flex-col justify-between items-stretch z-10 fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] sm:width-[315px] translate-x-[-50%] translate-y-[-50%] rounded-[8px] bg-[#ffffff] dark:bg-[#0a0a0a] p-[10px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
+              className="animate-dialog-slide-in sm:bg-white border-gray-500 dark:border-gray-600 border flex flex-col justify-between items-stretch z-10 fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] sm:width-[315px] translate-x-[-50%] translate-y-[-50%] rounded-[8px] bg-[#ffffff] dark:bg-[#0a0a0a] p-[10px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
             >
               <Dialog.Title>
                 <h1
@@ -86,7 +86,7 @@ export function ContactDialog({ children }) {
                   className="flex flex-row items-start space-x-2"
                 >
                   <div
-                    className="border-2 mb-2 rounded-md border-gray-500 dark:border-gray-400"
+                    className="border-2 mb-2 rounded-md border-gray-500 dark:border-gray-600"
                   >
                     <a
                       href="mailto:papplukacs@hotmail.com"
@@ -99,7 +99,7 @@ export function ContactDialog({ children }) {
                     </a>
                   </div>
                   <div
-                    className="border-2 rounded-md border-gray-500 dark:border-gray-400"
+                    className="border-2 rounded-md border-gray-500 dark:border-gray-600"
                   >
                     <button
                       onTouchStart={handleTouchStart}
