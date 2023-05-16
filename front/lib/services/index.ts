@@ -36,3 +36,23 @@ export async function getProject(slug: string): Promise<Project> {
 
   return project
 }
+
+export async function getBio() {
+  const query = gql`
+    query MyQuery {
+      bios {
+        email
+        excerpt
+        name
+        skills
+        company {
+          name
+          website
+        }
+      }
+    }
+  `
+  const { bios } = await request(graphqlAPI, query) as any
+
+  return bios[0]
+}

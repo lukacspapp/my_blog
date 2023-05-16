@@ -6,8 +6,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export const wrapperStyle = "group flex h-full w-full flex-col overflow-hidden rounded-lg border border-divider"
-export const tabStyle =
-  "mx-auto w-[calc(100%-16px)] whitespace-nowrap rounded-md bg-gray-200 py-1 px-4 text-center text-sm dark:bg-gray-700 xs:w-72 sm:w-80"
+export const tabStyle = "mx-auto w-[calc(100%-16px)] whitespace-nowrap rounded-md bg-gray-200 py-1 px-4 text-center text-sm dark:bg-gray-700 xs:w-72 sm:w-80"
 
 export const circleStyle = "h-3 w-3 rounded-full bg-gray-200 dark:bg-gray-700 opacity-0 xs:opacity-100 text-black flex"
 export const circleIconStyle = "m-auto h-2.5 w-2.5"

@@ -37,7 +37,3 @@ export function na(dateString: string): string {
 
   return `${month} ${formattedDay}, ${year}`;
 }
-
-
-
-

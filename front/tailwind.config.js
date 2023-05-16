@@ -2,11 +2,6 @@ const defaultTheme = require("tailwindcss/defaultTheme")
 const plugin = require("tailwindcss/plugin")
 const colors = require("tailwindcss/colors")
 
-const growBeforeView = { opacity: 0, transform: "scale(0.90) translateY(-32px)" }
-const growInView = { opacity: 1, transform: "scale(0.95) translateY(-16px)" }
-const growInFocus = { opacity: 1, transform: "scale(1.00)" }
-const growOutView = { opacity: 0, transform: "scale(1.05) translateY(16px)" }
-
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -47,7 +42,6 @@ module.exports = {
         systemGreen: "#5FC454",
         gray: {
           ...colors.neutral,
-
           50: "#FEFEFE",
           100: "#fafafa",
           200: "#f5f5f5",
@@ -73,22 +67,6 @@ module.exports = {
           "0%": { opacity: 0, transform: "translate(-50%, -50%)" },
           "100%": { opacity: 1, transform: "translate(-50%, -50%)" },
         },
-        'pop-in': {
-          '0%': { transform: 'translateY(-100%)', opacity: 0 },
-          '100%': { transform: 'translateY(0)', opacity: 1 },
-        },
-        'pop-out': {
-          '0%': { transform: 'translateY(0)', opacity: 1 },
-          '100%': { transform: 'translateY(-100%)', opacity: 0 },
-        },
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        fadeOut: {
-          '0%': { opacity: '1' },
-          '100%': { opacity: '0' },
-        },
         "slide-out": {
           "0%": { opacity: 1, transform: "translateY(0px)" },
           "100%": { opacity: 0, transform: "translateY(16px)" },
@@ -102,29 +80,6 @@ module.exports = {
           "25%": { transform: "rotate(0.5deg)" },
           "75%": { transform: "rotate(-0.5deg)" },
         },
-        "grow-end": {
-          "0%": growBeforeView,
-          "50%": growInView,
-          "100%": growInView,
-        },
-        "grow-middle": {
-          "0%": growInView,
-          "50%": growInFocus,
-          "100%": growInFocus,
-        },
-        "grow-start": {
-          "0%": growInFocus,
-          "50%": growOutView,
-          "100%": growOutView,
-        },
-        "blob-left": {
-          "0%": { transform: "translateX(-64px)" },
-          "100%": { transform: "translateX(0)" },
-        },
-        "blob-right": {
-          "0%": { transform: "translateX(64px)" },
-          "100%": { transform: "translateX(0)" },
-        },
         'slide-down': {
           '0%': { transform: 'translateY(-100%)' },
           '100%': { transform: 'translateY(0)' },
@@ -135,14 +90,6 @@ module.exports = {
           '90%': { transform: 'translateY(0)' },
           '100%': { transform: 'translateY(-100%)' },
         },
-          slideDown: {
-            '0%': { transform: 'translateY(-100%)', opacity: 0 },
-            '100%': { transform: 'translateY(0)', opacity: 1 },
-          },
-          slideUp: {
-            '0%': { transform: 'translateY(0)', opacity: 1 },
-            '100%': { transform: 'translateY(-100%)', opacity: 0 },
-          },
         "accordion-down": {
           from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -151,35 +98,17 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
-        movingGradient: {
-          '0%': {
-            transform: 'rotate(0deg) translateX(-50%)',
-          },
-          '100%': {
-            transform: 'rotate(360deg) translateX(-50%)',
-          },
-        },
       },
       animation: {
         'slide-down-up': 'slide-down-up 1.5s ease-in-out',
-        slideDown: 'slideDown 0.5s forwards',
-        slideUp: 'slideUp 0.5s forwards',
-        movingGradient: 'movingGradient 10s linear infinite',
-        'pop-in-out': 'pop-in 0.5s forwards, pop-out 0.5s 2.5s forwards',
         "dialog-slide-in": "dialog-slide-in 0.3s ease-out",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slide-in": "slide-in 0.2s ease-out",
         "slide-out": "slide-out 0.2s ease",
-        'slide-in-out': 'slide-in 0.5s forwards, slide-out 0.5s 2.5s forwards',
         'slide-down': 'slide-down 0.5s ease-out',
         "text-shimmer": "text-shimmer 2s ease-out infinite alternate",
-        tilt: "tilt 10s infinite linear",
-        "grow-start": "grow-start 2s ease-out infinite 0.2s",
-        "grow-middle": "grow-middle 2s ease-out infinite 0.2s",
-        "grow-end": "grow-end 2s infinite ease 0.2s",
-        "blob-left": "blob-left 2s ease-in-out -1.5s infinite alternate",
-        "blob-right": "blob-right 2s ease-in-out -1.5s infinite alternate",
+        "tilt": "tilt 10s infinite linear",
       },
     },
   },
