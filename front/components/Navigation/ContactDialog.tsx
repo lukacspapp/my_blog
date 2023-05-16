@@ -18,7 +18,7 @@ const Toast = ({ message, id, removeToast }) => {
       className="fixed inset-x-0 top-0 flex justify-center items-center z-50"
     >
       <div
-        className="m-3 py-2 px-3 rounded-md bg-white dark:bg-[#0a0a0a] dark:text-white text-black border-gray-500 border dark:border-gray-400 text-center shadow-lg animate-slide-down-up"
+        className="m-3 py-2 px-3 rounded-md bg-white dark:bg-[#0a0a0a] dark:text-white text-black border-gray-500 border dark:border-gray-600 text-center shadow-lg animate-slide-down-up"
       >
         {message}
       </div>
