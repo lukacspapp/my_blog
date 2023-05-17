@@ -1,6 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from "next"
-import { normalizeUtc } from "../../lib/date"
-import { ContributionsCollectionType, UserInformationType } from "../../types/githubTypes"
+import { normalizeUtc } from "../../../lib/date"
+import { ContributionsCollectionType, UserInformationType } from "../../../types/githubTypes"
 
 const api = "https://api.github.com/graphql"
 const ghToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN
@@ -121,9 +120,12 @@ export async function getGithubContributions(username: string): Promise<UserInfo
   return { collections, insights: { longestStreak, currentStreak, totalContributions, firstContributionDate } }
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse<any>) => {
-  const { username } = req.query
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const username = searchParams.get("username") ?? "lukacspapp";
+
   const data = await getGithubContributions(String(username))
 
-  res.status(200).json(data)
+  return new Response(JSON.stringify(data))
+
 }
