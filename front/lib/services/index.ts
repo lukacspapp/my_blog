@@ -1,9 +1,9 @@
 import { gql, request } from 'graphql-request';
-import { Project, ProjectData, Projects, ProjectsData } from '../../types/portfolioTypes';
+import { Project, ProjectData, ProjectsData } from '../../types/portfolioTypes';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT ?? ''
 
-export async function getProjects(): Promise<Projects[]> {
+export async function getProjects(): Promise<Project[]> {
   const query = gql`
     query MyQuery {
       projects {

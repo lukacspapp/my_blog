@@ -1,8 +1,8 @@
 export interface ProjectsData {
-  projects: Projects[]
+  projects: Project[]
 }
-
-export interface Projects {
+export interface Project {
+  content: any
   description: string,
   slug: string,
   title: string,
@@ -11,13 +11,6 @@ export interface Projects {
 
 export interface ProjectData {
   project: Project
-}
-
-export interface Project {
-  created: string,
-  content: ProjectContent,
-  description: string,
-  title: string
 }
 
 export interface ProjectContent {
