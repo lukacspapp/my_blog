@@ -17,7 +17,7 @@ const title = "Github Contributions"
 const description = "visualize, analyze and contrast your commits"
 
 const fetcher = (username: string): Promise<UserInformationType> =>
-  fetch(`/api/hello?username=${username}`).then(res => res.json() as Promise<UserInformationType>)
+  fetch(`/api/git?username=${username}`).then(res => res.json() as Promise<UserInformationType>)
 
 const DEFAULT_INSIGHTS: UserInsightsType = {
   longestStreak: 0,
@@ -42,8 +42,6 @@ export default function GithubContributions() {
   // Update router based on input
   function handleInput() {
     const username = usernameRef.current?.value || ""
-    console.log(usernameRef);
-
 
     // Only push router if it doesn't already have the same username
     if (searchParam === username) return
