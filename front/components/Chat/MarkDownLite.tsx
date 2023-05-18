@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-export function MarkdownLite({ text }: { text: string }) {
+export default function MarkdownLite({ text }: { text: string }) {
   const linkRegex = /\[(.+?)\]\((.+?)\)/g
   const parts = []
 
@@ -45,5 +45,3 @@ export function MarkdownLite({ text }: { text: string }) {
     </>
   )
 }
-
-export default MarkdownLite

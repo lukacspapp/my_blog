@@ -1,4 +1,4 @@
-import Description from "../../components/Github/Desciption"
+import Description from '../../components/Description/Description'
 import ProjectList from '../../components/ProjectList'
 import TransitionPage from "../../components/TransitionPage"
 import { getProjects } from '../../lib/services'

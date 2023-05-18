@@ -4,6 +4,7 @@ import * as Tooltip from "@radix-ui/react-tooltip"
 import clsx from "clsx"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
+import Shimmer from "./Shimmer"
 
 interface ILinkPreview {
   name: string
@@ -23,15 +24,6 @@ const blueHighlight = clsx(
   "after:bg-blue-600 after:hover:bg-blue-700 dark:after:bg-blue-300 dark:after:hover:bg-blue-400"
 )
 
-function Shimmer({ w, h, theme }: { w: number; h: number; theme?: string }): JSX.Element {
-  return (
-    <svg className="rounded-md" width={w} height={h} version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <rect id="r" width={w} height={h} fill={theme === "dark" ? "#171717" : "#e2e8f0"} />
-      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" />
-    </svg>
-  )
-}
-
 export default function LinkPreview({
   name,
   href,
@@ -40,6 +32,7 @@ export default function LinkPreview({
   style = "blue",
   showExternalIndicator = true,
 }: ILinkPreview) {
+
   const [isLoading, setIsLoading] = useState(true)
   const { resolvedTheme } = useTheme()
 

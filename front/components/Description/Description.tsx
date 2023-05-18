@@ -1,9 +1,9 @@
 import { descriptionStyle, titleStyle } from "../../styles/styles";
-import { Description } from "../../types/portfolioTypes";
+import { DescriptionType } from "../../types/portfolioTypes";
 
 
 
-export default function Description({ title, description, hideBreak = false }: Description): JSX.Element {
+export default function Description({ title, description, hideBreak = false } : DescriptionType) {
   return (
     <>
       <h1 className={titleStyle}>{title}</h1>

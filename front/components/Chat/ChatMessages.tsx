@@ -5,7 +5,6 @@ import { MessagesContext } from "../../context/messages"
 import { cn } from "../../lib/utils"
 import MarkdownLite from './MarkDownLite'
 
-
 interface ChatMessagesProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default function ChatMessages({className, ...props}: ChatMessagesProps) {

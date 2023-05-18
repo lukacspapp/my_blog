@@ -1,5 +1,6 @@
+
 import readingTime from "reading-time";
-import Description from "../../../components/Github/Desciption";
+import Description from "../../../components/Description/Description";
 import JournalLayout from "../../../components/JournalLayout";
 import TransitionPage from "../../../components/TransitionPage";
 import { na } from "../../../lib/date";

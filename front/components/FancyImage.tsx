@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import NextImage from "next/image"
 
-interface IFancyImage {
+interface FancyImageProps {
   src: string
   alt: string
   width: number
@@ -10,7 +10,7 @@ interface IFancyImage {
   className?: string
 }
 
-export default function FancyImage({ src, alt, width, height, caption, className }: IFancyImage): JSX.Element {
+export default function FancyImage({ src, alt, width, height, caption, className }: FancyImageProps): JSX.Element {
   return (
     <div className="flex flex-col items-center ">
       <span className={clsx(className || "", "overflow-hidden rounded-xl")}>

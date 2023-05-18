@@ -2,22 +2,24 @@
 
 import { ChatBubbleLeftIcon, ClipboardIcon, CommandLineIcon, HomeIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
-import { useTheme } from "next-themes"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { ContactDialog } from "./ContactDialog"
+import { linkStyle } from "../../styles/styles"
+import { ContactDialog } from "./Contact/ContactDialog"
 import ThemeToggle from "./ThemeToggle"
 
 // Source: https://github.com/vercel/next.js/issues/4515#issuecomment-810635574
 
-const linkStyle = "text-sm font-medium text-black dark:text-white opacity-70 hover:opacity-100"
 const iconStyle = "h-5 w-5"
 const transitionStyle = "duration-300"
 
-export default function Navigation({email}): JSX.Element {
+type NavigationProps = {
+  email: string
+}
+
+export default function Navigation({email} : NavigationProps) {
 
   const [, setMounted] = useState(false)
-  const { resolvedTheme, setTheme } = useTheme()
   const [showBlur, setShowBlur] = useState(false)
 
   // When mounted on client, show theme switcher
