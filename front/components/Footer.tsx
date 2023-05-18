@@ -1,4 +1,4 @@
-import LinkPreview from "./LinkPreview";
+import LinkPreview from "./Link/LinkPreview";
 
 export default function Footer(): JSX.Element {
 

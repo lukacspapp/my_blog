@@ -8,15 +8,13 @@ export interface Project {
   title: string,
   created: string
 }
-
 export interface ProjectData {
   project: Project
 }
-
 export interface ProjectContent {
   markdown: string
 }
-export interface Description  {
+export interface DescriptionType  {
   title: string
   description: string
   hideBreak?: boolean

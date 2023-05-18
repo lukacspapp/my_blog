@@ -1,8 +1,6 @@
 'use client'
 
-type Props = {}
-
-export default function ChatHeader({}: Props) {
+export default function ChatHeader() {
   return (
     <div className='w-full flex gap-3 justify-start items-center dark:text-white'>
       <div className='flex flex-col text-sm items-start'>

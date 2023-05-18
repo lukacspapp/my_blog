@@ -5,9 +5,7 @@ import ChatHeader from './ChatHeader'
 import ChatInput from './ChatInput'
 import ChatMessages from './ChatMessages'
 
-type Props = {}
-
-export default function Chat({}: Props) {
+export default function Chat() {
   return (
     <Accordion
       type='single'

@@ -8,8 +8,8 @@ import { useHotkeys } from "react-hotkeys-hook";
 import useSWR from "swr";
 import { DEFAULT_USERNAME } from "../../lib/constant";
 import { UserInformationType, UserInsightsType } from "../../types/githubTypes";
+import Description from "../Description/Description";
 import TransitionPage from "../TransitionPage";
-import Description from "./Desciption";
 import InsightsGroup from "./InsightsGroup";
 import YearlyChart from "./YearlyChart";
 
