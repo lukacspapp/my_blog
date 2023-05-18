@@ -6,7 +6,7 @@ import { getProjects } from '../../lib/services'
 const title = 'Projects'
 const description = 'A list of projects I have worked on.'
 
-export default async function Projects() {
+export default async function ProjectsPage() {
 
   const projects = await getProjects()
 

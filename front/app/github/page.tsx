@@ -1,6 +1,6 @@
-import GithubContributions from "../../components/Github/Github";
+import GithubContributions from "../../components/Github/GithubContributions";
 
-export default async function githubPage() {
+export default async function GithubPage() {
 
 
   return (

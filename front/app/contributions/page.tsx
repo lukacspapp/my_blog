@@ -5,7 +5,7 @@ import AnimatedDescription from "../../components/Description/AnimatedDescriptio
 const title = "Github Contributions"
 const description = "visualize, analyze and contrast your commits"
 
-export default async function page() {
+export default async function ContributionsPage() {
   return (
     <main className="body">
       <AnimatedDescription title={title} description={description} />
