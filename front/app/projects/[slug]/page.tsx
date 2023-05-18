@@ -13,8 +13,6 @@ export default async function SlugPage({ params }: { params: { slug: string } })
 
   const roundedReadingTime = Math.round(readingTime(project.content.markdown).minutes);
 
-  // TODO: If minutes reading is correct
-
   return (
     <main className="body">
       <TransitionPage title={project.title} description={project.description}>

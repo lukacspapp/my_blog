@@ -4,10 +4,10 @@ import clsx from "clsx"
 import Link from "next/link"
 import { useRef, useState } from "react"
 import { na } from "../lib/date"
-import { Projects } from "../types/portfolioTypes"
+import { Project } from "../types/portfolioTypes"
 
 type ProjectListProps = {
-  projects: Projects
+  projects: Project[]
 }
 
 const cardStyle =
