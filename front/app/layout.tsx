@@ -1,7 +1,9 @@
+import PlausibleProvider from 'next-plausible';
 import "tailwindcss/tailwind.css";
 import { getBio } from "../lib/services";
 import '../styles/global.css';
 import { Providers } from './providers';
+
 
 export default async function RootLayout({
   children,
@@ -13,7 +15,12 @@ export default async function RootLayout({
 
   return (
     <html suppressHydrationWarning lang="en" className='nightwind h-full'>
-      <head />
+      <head>
+        <PlausibleProvider
+          domain="lukacsjpapp.com"
+          trackFileDownloads={true}
+        />
+      </head>
       <body className="bg-gray-50 selection:bg-teal-300 selection:text-gray-900 dark:bg-gray-900 dark:selection:bg-rose-600 dark:selection:text-rose-50">
         <Providers email={email}>
           {children}
