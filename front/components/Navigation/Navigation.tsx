@@ -9,8 +9,6 @@ import { linkStyle } from "../../styles/styles"
 import { ContactDialog } from "./Contact/ContactDialog"
 import ThemeToggle from "./ThemeToggle"
 
-// Source: https://github.com/vercel/next.js/issues/4515#issuecomment-810635574
-
 const iconStyle = "h-5 w-5"
 const transitionStyle = "duration-300"
 
