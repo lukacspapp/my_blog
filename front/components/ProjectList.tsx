@@ -15,8 +15,8 @@ const cardStyle =
 const asideStyle =
   "absolute [writing-mode:vertical-rl] h-full top-0 -left-12 md:-left-14 pr-11 text-center text-sm text-gray-400 dark:text-gray-600 font-['Luxurious_Roman']"
 
-// Inspiration: https://emilkowal.ski/ui/tabs
-export default function ProjectList({ projects }): JSX.Element {
+export default function ProjectList({ projects } : ProjectListProps) {
+
   const [highlightedTab, setHighlightedTab] = useState<HTMLElement | null>(null)
   const [isHoveredFromNull, setIsHoveredFromNull] = useState(true)
   const [transform, setTransform] = useState("translate(0, 0")
@@ -25,8 +25,8 @@ export default function ProjectList({ projects }): JSX.Element {
   const highlightRef = useRef<HTMLDivElement>(null)
 
   function handleMouseOver(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+
     const node = event.target as HTMLElement
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const parent = parentRef.current!
 
     setIsHoveredFromNull(!highlightedTab)
