@@ -73,7 +73,7 @@ export function ContactDialog({ children, email } : ContactDialogProps): JSX.Ele
                   >
                     <a
                       href="mailto:papplukacs@hotmail.com"
-                      className="  flex dark:border-[#282828] pl-3 pt-2 pr-2 pb-2 transition-colors duration-300 ease-in-out hover:bg-gray-300 rounded-md dark:hover:bg-gray-600"
+                      className=" flex dark:border-[#282828] rounded-[3px] pl-3 pt-2 pr-2 pb-2 transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600"
                       rel="noreferrer noopener"
                       target="_blank"
                     >
@@ -82,18 +82,17 @@ export function ContactDialog({ children, email } : ContactDialogProps): JSX.Ele
                     </a>
                   </div>
                   <div
-                    className="border-2 rounded-md border-gray-500 dark:border-gray-600"
+                    className="border-2 mb-2 rounded-md border-gray-500 dark:border-gray-600"
                   >
                     <button
-                      onTouchStart={handleTouchStart}
-                      onTouchEnd={handleTouchEnd}
-                      className={`flex pl-3 p-2 dark:border-[#282828] transition-colors duration-300 ease-in-out rounded-md dark:hover:bg-gray-600 ${isActive ? "active" : ""}`}
                       onClick={handleCopy}
+                      className="flex cursor-pointer dark:border-[#282828] rounded-[3px] pl-3 pt-2 pr-2 pb-2 transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600"
                     >
-                      <p className="mr-1 text-black dark:text-white">Copy</p>
+                      <p className='mr-1 text-md text-black dark:text-white'>
+                        Copy
+                      </p>
                       <DocumentDuplicateIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                     </button>
-
                   </div>
                 </div>
               </Dialog.Description>

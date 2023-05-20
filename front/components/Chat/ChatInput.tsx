@@ -25,7 +25,7 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
     setIsMessageUpdating
   } = useContext(MessagesContext)
 
-  const { mutate, isLoading,  } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: async (message: Message) => {
       const res = await fetch('/api/message', {
         method: 'POST',
