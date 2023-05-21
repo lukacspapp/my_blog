@@ -2,7 +2,7 @@
 
 import { HomeIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
-import { FileJsonIcon, GitCommitIcon, MailIcon } from "lucide-react"
+import { Clipboard, GitCommitIcon, MailIcon } from "lucide-react"
 import { usePlausible } from 'next-plausible'
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -76,7 +76,7 @@ export default function Navigation({ email }: NavigationProps) {
             href="/projects" className={linkStyle}
           >
             <span className="sr-only">Projects</span>
-            <FileJsonIcon className={iconStyle} />
+            <Clipboard className={iconStyle} />
           </Link>
           <ContactDialog
             email={email}
