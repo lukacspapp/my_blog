@@ -14,6 +14,9 @@ export default function About({bio}: any): JSX.Element {
   const {excerpt, name, skills, company} = bio
 
   const [show, setShow] = useState(false)
+  const [, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
 
   useEffect(() => {
     const timeout = setTimeout(() => {
