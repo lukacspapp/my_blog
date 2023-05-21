@@ -1,7 +1,8 @@
 'use client'
 
-import { ChatBubbleLeftIcon, ClipboardIcon, CommandLineIcon, HomeIcon } from "@heroicons/react/24/outline"
+import { HomeIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
+import { FileJsonIcon, GitCommitIcon, MailIcon } from "lucide-react"
 import { usePlausible } from 'next-plausible'
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -68,21 +69,21 @@ export default function Navigation({ email }: NavigationProps) {
             href="/contributions" className={linkStyle}
           >
             <span className="sr-only">Contributions</span>
-            <CommandLineIcon className={iconStyle} />
+            <GitCommitIcon className={iconStyle} />
           </Link>
           <Link
             onClick={() => plausible('Projects Link Clicked')}
             href="/projects" className={linkStyle}
           >
             <span className="sr-only">Projects</span>
-            <ClipboardIcon className={iconStyle} />
+            <FileJsonIcon className={iconStyle} />
           </Link>
           <ContactDialog
             email={email}
             children={
               <div className={linkStyle}>
                 <span className="sr-only">Contact</span>
-                <ChatBubbleLeftIcon className={iconStyle} />
+                <MailIcon className={iconStyle} />
               </div>
             }
           />
