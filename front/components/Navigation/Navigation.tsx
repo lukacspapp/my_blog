@@ -10,7 +10,7 @@ import { linkStyle } from "../../styles/styles"
 import { ContactDialog } from "./Contact/ContactDialog"
 import ThemeToggle from "./ThemeToggle"
 
-const iconStyle = "h-5 w-5"
+const iconStyle = "h-5 w-5 cursor-pointer"
 const transitionStyle = "duration-300"
 
 type NavigationProps = {
