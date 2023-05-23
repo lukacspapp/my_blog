@@ -24,7 +24,7 @@ export async function getProject(slug: string): Promise<Project> {
     query MyQuery {
       project(where: {slug: "${slug}"}) {
         content {
-          markdown
+          html
         },
         created
         description

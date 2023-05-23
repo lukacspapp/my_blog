@@ -1,5 +1,5 @@
 import Head from "next/head"
-import ReactMarkdown from "react-markdown"
+import ReactHtmlParser from "react-html-parser"
 
 type JournalLayoutProps = {
   content: string
@@ -15,9 +15,7 @@ export default function JournalLayout({ content }: JournalLayoutProps) {
         />
       </Head>
       <div className="fixed top-0 -ml-6 h-full border-l-2 border-dotted border-divider" />
-      <ReactMarkdown>
-        {content}
-      </ReactMarkdown>
+        {ReactHtmlParser(content)}
     </article>
   )
 }
