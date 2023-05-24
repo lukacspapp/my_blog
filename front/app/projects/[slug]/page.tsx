@@ -1,5 +1,4 @@
 
-import readingTime from "reading-time";
 import Description from "../../../components/Description/Description";
 import JournalLayout from "../../../components/JournalLayout";
 import TransitionPage from "../../../components/TransitionPage";
@@ -12,7 +11,7 @@ export default async function ProjectSlugPage({ params }: { params: { slug: stri
 
   const project = await getProject(slug);
 
-  const roundedReadingTime = Math.round(readingTime(project.content.markdown).minutes);
+  const roundedReadingTime = 3
 
   return (
     <main className="body">
@@ -22,7 +21,7 @@ export default async function ProjectSlugPage({ params }: { params: { slug: stri
             {na(project.created)} • {roundedReadingTime} min read
           </aside>
           <Description title={project.title.replace(/\d+$/, '')} description={project.description} />
-          <JournalLayout content={project.content.markdown} />
+          <JournalLayout content={project.content.html} />
         </div>
       </TransitionPage>
     </main>
