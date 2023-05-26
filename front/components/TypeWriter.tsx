@@ -6,9 +6,8 @@ type TypeWriterProps = {
   vocations: string
 }
 
-export default function TypeWriter ({vocations}) {
-
-  const [text] = useTypewriter({
+export default function TypeWriter({ vocations }: TypeWriterProps) {
+  const [text, isDone] = useTypewriter({
     words: vocations.split(', '),
     typeSpeed: 70,
     deleteSpeed: 50,
@@ -18,7 +17,7 @@ export default function TypeWriter ({vocations}) {
   return (
     <>
       <span>{text}.</span>
-      <Cursor  cursorColor='white' />
+      {isDone && <Cursor cursorColor='white' />}
     </>
   )
 }
