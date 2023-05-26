@@ -7,8 +7,10 @@ type TypeWriterProps = {
 }
 
 export default function TypeWriter({ vocations }: TypeWriterProps) {
+
   const [text, isDone] = useTypewriter({
     words: vocations.split(', '),
+    loop: true,
     typeSpeed: 70,
     deleteSpeed: 50,
     delaySpeed: 2000,
