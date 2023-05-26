@@ -83,7 +83,6 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
     }
   })
 
-
   return (
     <div {...props} className={cn('border-t border-zinc-300', className)}>
       <div className='relative mt-4 flex-1 overflow-hidden rounded-lg border-none outline-none'>

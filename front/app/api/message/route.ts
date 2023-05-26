@@ -6,7 +6,7 @@ export async function GET() {
 // import { ChatGPTMessage, OpenAIStream } from "../../../lib/openai-stream";
 // import { MessagesSchema } from "../../../lib/validator/message";
 
-// export async function POST(req: Request, res: Response) {
+// export async function POST(req: Request) {
 //   const { message } = await req.json();
 
 //   const parsedMessages = MessagesSchema.parse(message);
@@ -22,7 +22,7 @@ export async function GET() {
 //   })
 
 //   const payload = {
-//     model: 'gpt-4',
+//     model: 'gpt-3.5-turbo',
 //     messages: outboundMessages,
 //     temperature: 0.4,
 //     top_p: 1,
