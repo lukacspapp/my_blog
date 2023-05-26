@@ -16,7 +16,7 @@ export default function TypeWriter ({vocations}) {
 
   const [text] = useTypewriter({
     words: vocations.split(', '),
-    loop: false,
+    loop: true,
     delaySpeed: 2000,
   })
 
