@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 
 type TypeWriterProps = {
@@ -9,21 +8,17 @@ type TypeWriterProps = {
 
 export default function TypeWriter ({vocations}) {
 
-  const [, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
-
-
   const [text] = useTypewriter({
     words: vocations.split(', '),
-    loop: true,
+    typeSpeed: 70,
+    deleteSpeed: 50,
     delaySpeed: 2000,
   })
 
   return (
     <>
       <span>{text}.</span>
-      <Cursor cursorColor='white' />
+      <Cursor  cursorColor='white' />
     </>
   )
 }
