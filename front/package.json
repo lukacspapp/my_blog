@@ -24,6 +24,7 @@
     "d3": "^7.6.1",
     "eslint-config-next": "^13.4.2",
     "eventsource-parser": "^1.0.0",
+    "framer-motion": "^10.12.16",
     "graphql": "^16.6.0",
     "graphql-request": "^6.0.0",
     "inspx": "^0.0.1-alpha.6",
