@@ -19,7 +19,7 @@ export default function TypeWriter({ vocations }: TypeWriterProps) {
   return (
     <>
       <span>{text}.</span>
-      {isDone && <Cursor cursorColor='white' />}
+      {isDone && <Cursor cursorColor='#ef4444' />}
     </>
   )
 }

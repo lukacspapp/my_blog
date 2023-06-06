@@ -7,20 +7,13 @@ import { useEffect, useState } from 'react';
 import "tailwindcss/tailwind.css";
 import AnimatedDescription from '../components/Description/AnimatedDescription';
 
-const title = "404"
-const description = "Something Went Wrong"
+const title = "Computer Says No"
+const description = "This is not the page you are looking for"
 
-interface ErrorProps {
-  error: Error;
-}
 
-export default function Error({ error }: ErrorProps) {
+export default function NotFound() {
 
   const router = useRouter();
-
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
 
   const [show, setShow] = useState(false)
 
@@ -41,16 +34,6 @@ export default function Error({ error }: ErrorProps) {
         enterFrom="scale-90 opacity-0"
         enterTo="scale-100 opacity-100"
       >
-        <p className='text-center text-gray-600 dark:text-gray-400'>
-          {error.name}
-          <br />
-          <p
-            className='inline-block px-4 py-2 text-sm font-bold text-gray-600 dark:text-gray-400 bg-gray-800 rounded-md'
-          >
-            {error.message}
-          </p>
-        </p>
-        <br />
         <div className='flex flex-row justify-center space-x-2'>
           <div
             className="border-2 mb-2 rounded-md border-gray-500 dark:border-gray-600"
