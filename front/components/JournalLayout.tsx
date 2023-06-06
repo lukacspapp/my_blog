@@ -9,15 +9,12 @@ type JournalLayoutProps = {
 
 export default function JournalLayout({ content }: JournalLayoutProps) {
 
-  console.log(content);
 
-
-  function wrapImagesWithFramerMotion(html) {
+  function wrapImagesWithFramerMotion(html: string) {
     const images = html.match(/<img[^>]+>/g);
 
     if (images) {
       images.forEach((img) => {
-        const src = img.match(/src="([^"]*)/)[1];
       });
       return html;
     }

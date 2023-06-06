@@ -30,7 +30,7 @@
     "inspx": "^0.0.1-alpha.6",
     "lucide-react": "^0.188.0",
     "nanoid": "^4.0.2",
-    "next": "^13.4.2",
+    "next": "^13.4.4",
     "next-plausible": "^3.7.2",
     "next-themes": "^0.2.1",
     "radix-ui": "^1.0.1",
