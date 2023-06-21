@@ -13,15 +13,6 @@ interface ContactDialogProps {
 export function ContactDialog({ children, email } : ContactDialogProps): JSX.Element {
 
   const [toasts, setToasts] = useState<{ id: string; message: string }[]>([]);
-  const [isActive, setIsActive] = useState(false);
-
-  const handleTouchStart = () => {
-    setIsActive(true);
-  };
-
-  const handleTouchEnd = () => {
-    setIsActive(false);
-  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);

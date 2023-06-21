@@ -1,9 +1,10 @@
 import clsx, { ClassValue } from "clsx";
 import * as d3 from "d3";
-import { RefObject } from "react";
+import { RefObject, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ContributionsCollectionType } from "../types/githubTypes";
 import { formatDate, normalizeUtc } from "./date";
+import { nanoid } from "nanoid";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -12,6 +13,16 @@ export function cn(...inputs: ClassValue[]) {
 export function drawChart(payload: ContributionsCollectionType, svgRef: RefObject<SVGSVGElement>, theme: string | undefined) {
   const contributions = payload.data.user.contributionsCollection.contributionCalendar.weeks
 
+  const tooltip = d3.select("body").append("div")
+  .attr("id", "tooltip")
+  .style("display", "none")
+  .style("position", "absolute")
+  .style("pointer-events", "none")
+  .style("background-color", "rgba(0, 0, 0, 0.8)")
+  .style("color", "#fff")
+  .style("padding", "4px 8px")
+  .style("border-radius", "4px")
+  .style("font-size", "12px");
   const chartWidth = 740
   const chartHeight = 88
   const topMargin = 12
@@ -48,7 +59,7 @@ export function drawChart(payload: ContributionsCollectionType, svgRef: RefObjec
       FOURTH_QUARTILE: "#03001c",
     },
   }
-  const rectOutline = theme === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(27, 31, 35, 0.06)"
+
   const fontFamily =
     "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
   const today = normalizeUtc(new Date()).toISOString().split("T")[0].substring(5)
@@ -86,46 +97,67 @@ export function drawChart(payload: ContributionsCollectionType, svgRef: RefObjec
     .attr("transform", (d, i) => `translate(${i * 14}, 0)`)
 
   const firstWeek = contributions[0].contributionDays
-  // contributionRects
-  weekPaths
-    .selectAll("rect")
-    .data(d => {
-      return d.contributionDays
-    })
-    .enter()
-    .append("rect")
-    .attr("x", 0)
-    .attr("y", (d, i) => {
-      const dayOfFirstWeek = firstWeek.find(value => value.date === d.date)
-      if (dayOfFirstWeek && firstWeek.length !== 7) {
-        const offset = new Date(firstWeek[0].date).getUTCDay()
-        return (i + offset) * 13
-      }
-      return i * 13
-    })
-    .attr("width", 10)
-    .attr("height", 10)
-    .attr("rx", 2)
-    .attr("ry", 2)
-    .attr(
-      "style",
-      `shape-rendering: geometricPrecision; outline: 1px solid ${rectOutline}; outline-offset: -1px; border-radius: 2px`
-    )
-    .attr("fill", d => {
-      if (today === "10-31") {
-        return theme === "dark"
-          ? colorPalette.halloweenDark[d.contributionLevel]
-          : colorPalette.halloweenLight[d.contributionLevel]
-      }
-      return theme === "dark" ? colorPalette.dark[d.contributionLevel] : colorPalette.light[d.contributionLevel]
-    })
-    .append("title")
-    .text(
-      d =>
-        `${d.contributionCount} contribution${d.contributionCount === 1 ? "" : "s"} on ${formatDate(
-          normalizeUtc(new Date(d.date))
-        )}`
-    )
+
+  weekPaths.each(function (weekData) {
+    const contributionDays = weekData.contributionDays;
+
+    const group = d3
+      .select(this)
+      .selectAll("g")
+      .data(contributionDays)
+      .join("g");
+
+    group
+      .append("rect")
+      .attr("x", 0)
+      .attr("y", (d, i) => {
+        const dayOfFirstWeek = firstWeek.find((value) => value.date === d.date);
+        if (dayOfFirstWeek && firstWeek.length !== 7) {
+          const offset = new Date(firstWeek[0].date).getUTCDay();
+          return (i + offset) * 13;
+        }
+        return i * 13;
+      })
+      .attr("width", 10)
+      .attr("height", 10)
+      .attr("rx", 2)
+      .attr("ry", 2)
+      .attr("style", `shape-rendering: geometricPrecision; outline-offset: -1px; border-radius: 2px`)
+      .attr("fill", (d) => {
+        if (today === "10-31") {
+          return theme === "dark" ? colorPalette.halloweenDark[d.contributionLevel] : colorPalette.halloweenLight[d.contributionLevel];
+        }
+        return theme === "dark" ? colorPalette.dark[d.contributionLevel] : colorPalette.light[d.contributionLevel];
+      })
+      .append("title")
+      .text((d) => `${d.contributionCount} contribution${d.contributionCount === 1 ? "" : "s"} on ${formatDate(normalizeUtc(new Date(d.date)))}`);
+
+      group
+      .on("mouseover", function (event, d) {
+        const rect  = d3.select(this);
+        const contributionCount = d.contributionCount;
+
+        rect.style("cursor", "pointer");
+
+        // Position the tooltip relative to the rect element
+        const tooltipWidth = tooltip.node().offsetWidth;
+        const tooltipHeight = tooltip.node().offsetHeight;
+        const tooltipLeft = event.pageX - tooltipWidth / 2;
+        const tooltipTop = event.pageY - tooltipHeight - 10;
+
+        // Show the tooltip and set its content
+        tooltip
+          .style("left", `${tooltipLeft}px`)
+          .style("top", `${tooltipTop}px`)
+          .style("display", "block")
+          .text(`${contributionCount} commits`);
+      })
+      .on("mouseout", function (event, d) {
+        // Hide the tooltip when leaving the element
+        tooltip.style("display", "none");
+      });
+
+  });
 
   // Top Axis
   const topAxis = svg.append("g").attr("id", "topAxis")
