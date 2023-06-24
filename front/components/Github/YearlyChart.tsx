@@ -1,11 +1,16 @@
 
 
 import { useTheme } from "next-themes"
-import { useLayoutEffect, useRef } from "react"
+import { Dispatch, SetStateAction, useLayoutEffect, useRef } from "react"
 import { drawChart } from "../../lib/utils"
 import { ContributionsCollectionType } from "../../types/githubTypes"
 
-export default function YearlyChart({ collection }: { collection: ContributionsCollectionType }) {
+type YearlyChartProps = {
+  collection: ContributionsCollectionType;
+  show: boolean
+}
+
+export default function YearlyChart( { collection, show }: YearlyChartProps) {
   const { resolvedTheme } = useTheme()
   const svgRef = useRef<SVGSVGElement>(null)
 
@@ -16,7 +21,7 @@ export default function YearlyChart({ collection }: { collection: ContributionsC
     // exit early is ref is not defined
     if (!svgRef.current) return
 
-    drawChart(collection, svgRef, resolvedTheme)
+    drawChart(collection, svgRef, resolvedTheme, show)
   }, [svgRef, collection, resolvedTheme])
 
   return (

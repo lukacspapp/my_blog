@@ -3,7 +3,7 @@
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Fragment, useLayoutEffect, useRef } from "react";
+import { Fragment, useLayoutEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import useSWR from "swr";
 import { DEFAULT_USERNAME } from "../../lib/constant";
@@ -29,12 +29,20 @@ const DEFAULT_INSIGHTS: UserInsightsType = {
 export default function GithubContributions() {
 
   const usernameRef = useRef<HTMLInputElement>(null)
-  const searchd = useSearchParams()
+  const search = useSearchParams()
   const router = useRouter()
 
-  const searchParam = searchd ? searchd.get('search') : null
+  const searchParam = search ? search.get('search') : null
 
   const { data, error, isLoading } = useSWR<UserInformationType, Error>(searchParam, fetcher)
+
+  const [toast, setToast] = useState(null)
+
+  let show = false
+
+  console.log('====================================');
+  console.log(show);
+  console.log('====================================');
 
   const insights = data?.insights || DEFAULT_INSIGHTS
   const collections = data?.collections || []
@@ -96,6 +104,7 @@ export default function GithubContributions() {
             placeholder="username"
             ref={usernameRef}
           />
+          {/* Toast that displays the conntributions */}
           <button className="absolute inset-y-0 right-0 p-3 flex items-center" onClick={() => handleInput()}>
             {!isLoading ? (
               <MagnifyingGlassCircleIcon className="h-8 w-8 text-gray-400 dark:text-gray-500" aria-hidden="true" />
@@ -142,7 +151,7 @@ export default function GithubContributions() {
       >
         {collections.map((collection, index) => (
           <Fragment key={index}>
-            <YearlyChart key={index} collection={collection} />
+            <YearlyChart key={index} collection={collection} show={show} />
             {index === 0 && (
               <>
                 <InsightsGroup insights={insights} />

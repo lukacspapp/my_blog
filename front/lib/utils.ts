@@ -1,18 +1,23 @@
 import clsx, { ClassValue } from "clsx";
 import * as d3 from "d3";
-import { RefObject, useState } from "react";
+import { RefObject } from "react";
 import { twMerge } from "tailwind-merge";
 import { ContributionsCollectionType } from "../types/githubTypes";
 import { formatDate, normalizeUtc } from "./date";
-import { nanoid } from "nanoid";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function drawChart(payload: ContributionsCollectionType, svgRef: RefObject<SVGSVGElement>, theme: string | undefined) {
-  const contributions = payload.data.user.contributionsCollection.contributionCalendar.weeks
+export function drawChart(
+  payload: ContributionsCollectionType,
+  svgRef: RefObject<SVGSVGElement>,
+  theme: string | undefined,
+  show: boolean
+  ) {
 
+  const contributions = payload.data.user.contributionsCollection.contributionCalendar.weeks
+  let showing = show
   const tooltip = d3.select("body").append("div")
   .attr("id", "tooltip")
   .style("display", "none")
@@ -122,21 +127,17 @@ export function drawChart(payload: ContributionsCollectionType, svgRef: RefObjec
       .attr("height", 10)
       .attr("rx", 2)
       .attr("ry", 2)
-      .attr("style", `shape-rendering: geometricPrecision; outline-offset: -1px; border-radius: 2px`)
+      .attr("style", `shape-rendering: geometricPrecision; outline-offset: -1px; border-radius: 5px`)
       .attr("fill", (d) => {
         if (today === "10-31") {
           return theme === "dark" ? colorPalette.halloweenDark[d.contributionLevel] : colorPalette.halloweenLight[d.contributionLevel];
         }
         return theme === "dark" ? colorPalette.dark[d.contributionLevel] : colorPalette.light[d.contributionLevel];
       })
-      .append("title")
-      .text((d) => `${d.contributionCount} contribution${d.contributionCount === 1 ? "" : "s"} on ${formatDate(normalizeUtc(new Date(d.date)))}`);
-
       group
       .on("mouseover", function (event, d) {
         const rect  = d3.select(this);
         const contributionCount = d.contributionCount;
-
         rect.style("cursor", "pointer");
 
         // Position the tooltip relative to the rect element
@@ -150,7 +151,9 @@ export function drawChart(payload: ContributionsCollectionType, svgRef: RefObjec
           .style("left", `${tooltipLeft}px`)
           .style("top", `${tooltipTop}px`)
           .style("display", "block")
-          .text(`${contributionCount} commits`);
+          .text(
+            `${contributionCount} contribution${contributionCount === 1 ? "" : "s"} on ${formatDate( normalizeUtc(new Date(d.date)))}`
+          );
       })
       .on("mouseout", function (event, d) {
         // Hide the tooltip when leaving the element
