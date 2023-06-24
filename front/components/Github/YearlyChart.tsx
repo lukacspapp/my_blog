@@ -5,7 +5,11 @@ import { useLayoutEffect, useRef } from "react"
 import { drawChart } from "../../lib/utils"
 import { ContributionsCollectionType } from "../../types/githubTypes"
 
-export default function YearlyChart({ collection }: { collection: ContributionsCollectionType }) {
+type YearlyChartProps = {
+  collection: ContributionsCollectionType;
+}
+
+export default function YearlyChart( { collection }: YearlyChartProps) {
   const { resolvedTheme } = useTheme()
   const svgRef = useRef<SVGSVGElement>(null)
 
