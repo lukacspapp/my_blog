@@ -134,32 +134,13 @@ export function drawChart(
         }
         return theme === "dark" ? colorPalette.dark[d.contributionLevel] : colorPalette.light[d.contributionLevel];
       })
-      group
-      .on("mouseover", function (event, d) {
-        const rect  = d3.select(this);
-        const contributionCount = d.contributionCount;
-        rect.style("cursor", "pointer");
-
-        // Position the tooltip relative to the rect element
-        const tooltipWidth = tooltip.node().offsetWidth;
-        const tooltipHeight = tooltip.node().offsetHeight;
-        const tooltipLeft = event.pageX - tooltipWidth / 2;
-        const tooltipTop = event.pageY - tooltipHeight - 10;
-
-        // Show the tooltip and set its content
-        tooltip
-          .style("left", `${tooltipLeft}px`)
-          .style("top", `${tooltipTop}px`)
-          .style("display", "block")
-          .text(
-            `${contributionCount} contribution${contributionCount === 1 ? "" : "s"} on ${formatDate( normalizeUtc(new Date(d.date)))}`
-          );
-      })
-      .on("mouseout", function (event, d) {
-        // Hide the tooltip when leaving the element
-        tooltip.style("display", "none");
-      });
-
+      .append("title")
+      .text(
+        d =>
+          `${d.contributionCount} contribution${d.contributionCount === 1 ? "" : "s"} on ${formatDate(
+            normalizeUtc(new Date(d.date))
+          )}`
+      )
   });
 
   // Top Axis
