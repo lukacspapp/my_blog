@@ -13,11 +13,10 @@ export function drawChart(
   payload: ContributionsCollectionType,
   svgRef: RefObject<SVGSVGElement>,
   theme: string | undefined,
-  show: boolean
   ) {
 
   const contributions = payload.data.user.contributionsCollection.contributionCalendar.weeks
-  let showing = show
+
   const tooltip = d3.select("body").append("div")
   .attr("id", "tooltip")
   .style("display", "none")

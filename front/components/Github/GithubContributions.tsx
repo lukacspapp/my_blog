@@ -36,13 +36,7 @@ export default function GithubContributions() {
 
   const { data, error, isLoading } = useSWR<UserInformationType, Error>(searchParam, fetcher)
 
-  const [toast, setToast] = useState(null)
-
   let show = false
-
-  console.log('====================================');
-  console.log(show);
-  console.log('====================================');
 
   const insights = data?.insights || DEFAULT_INSIGHTS
   const collections = data?.collections || []
@@ -151,7 +145,7 @@ export default function GithubContributions() {
       >
         {collections.map((collection, index) => (
           <Fragment key={index}>
-            <YearlyChart key={index} collection={collection} show={show} />
+            <YearlyChart key={index} collection={collection} />
             {index === 0 && (
               <>
                 <InsightsGroup insights={insights} />
