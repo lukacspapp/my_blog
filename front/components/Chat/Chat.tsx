@@ -1,11 +1,24 @@
 'use client'
 
+import { useSession, signIn } from 'next-auth/react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion'
 import ChatHeader from './ChatHeader'
 import ChatInput from './ChatInput'
 import ChatMessages from './ChatMessages'
 
 export default function Chat() {
+
+  const {data: session} = useSession()
+
+  console.log('====================================');
+  console.log('session', session);
+  console.log('====================================');
+
+  if (!session) {
+    return <button onClick={() => signIn()}>SignIn</button>
+  }
+
+
   return (
     <Accordion
       type='single'
