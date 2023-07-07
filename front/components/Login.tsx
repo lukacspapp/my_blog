@@ -1,21 +1,21 @@
 'use client'
 
-import { LogIn, LogInIcon } from "lucide-react"
+import { LogIn } from "lucide-react"
+import { signIn } from "next-auth/react"
 
 export default function Login() {
   return (
     <div
-      className='fixed border border-black/10 shadow-black rounded-full border-gray-500 dark:border-gray-600 right-8 bottom-8 dark:bg-gray-700 bg-white shadow-lg overflow-hidden'
+      className='fixed border dark:shadow-black border-[#e5e5e5] rounded-full dark:border-[#2c2c2c] right-8 bottom-8 dark:bg-gray-700 bg-white shadow-lg overflow-hidden'
     >
 
       <button
-        className="bg-black flex cursor-pointer items-center dark:border-[#282828] rounded-[3px] p-3 transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600"
+        className="dark:bg-black/10 bg-white flex cursor-pointer items-center rounded-[3px] p-3 transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600"
       >
         <LogIn
           className="h-5 w-5"
+          onClick={() => signIn()}
         />
-
-
       </button>
     </div>
   )

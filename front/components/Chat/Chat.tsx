@@ -9,12 +9,6 @@ export default function Chat() {
 
   const { data: session } = useSession()
 
-  console.log('====================================');
-  console.log('session', session);
-  console.log('====================================');
-
-
-
   return (
     <Accordion
       type='single'
@@ -25,8 +19,11 @@ export default function Chat() {
         className='border-b border-divider border-none'
         value='item-1'
       >
-        {/* <ChatAccordion /> */}
-        <Login />
+        {session ?
+          <ChatAccordion />
+          :
+          <Login />
+        }
       </AccordionItem>
     </Accordion>
   )

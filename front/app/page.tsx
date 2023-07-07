@@ -14,7 +14,6 @@ export default async function Page() {
     <>
       <main className="body">
         <About bio={bio}/>
-        <Chat />
       </main>
     </>
   )
