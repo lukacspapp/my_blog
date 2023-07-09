@@ -60,7 +60,7 @@ export function ContactDialog({ children, email } : ContactDialogProps): JSX.Ele
                   className="flex flex-row items-start space-x-2"
                 >
                   <div
-                    className="border-2 mb-2 rounded-md border-gray-500 dark:border-gray-600"
+                    className="border-[1px] mb-2 rounded-md border-gray-500 dark:border-gray-600"
                   >
                     <a
                       href="mailto:papplukacs@hotmail.com"
@@ -73,7 +73,7 @@ export function ContactDialog({ children, email } : ContactDialogProps): JSX.Ele
                     </a>
                   </div>
                   <div
-                    className="border-2 mb-2 rounded-md border-gray-500 dark:border-gray-600"
+                    className="border-[1px] mb-2 rounded-md border-gray-500 dark:border-gray-600"
                   >
                     <button
                       onClick={handleCopy}

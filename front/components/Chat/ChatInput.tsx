@@ -83,8 +83,8 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
   })
 
   return (
-    <div {...props} className={cn('border-t border-zinc-300 p-1', className)}>
-      <div className='relative mt-2 flex-1 overflow-hidden rounded-lg border-none outline-none'>
+    <div {...props} className={cn('border-t border-zinc-300 p-[2px]', className)}>
+      <div className='relative mt-2 mx-2 flex-1 overflow-hidden rounded-lg border-none outline-none'>
         <TextareaAutosize
           ref={textAreaRef}
           onKeyDown={(e) => {

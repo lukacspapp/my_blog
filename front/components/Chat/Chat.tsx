@@ -3,7 +3,7 @@
 import { useSession } from 'next-auth/react'
 import { Accordion, AccordionItem } from '../ui/accordion'
 import ChatAccordion from './ChatAccordion'
-import Login from '../Login'
+import Login from '../Auth/Login'
 
 export default function Chat() {
 

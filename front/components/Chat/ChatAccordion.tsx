@@ -10,7 +10,7 @@ export default function ChatAccordion({ }) {
     <div
       className='fixed right-8 w-80 bottom-8 dark:bg-gray-700 bg-white shadow-lg rounded-md overflow-hidden'>
       <div className='flex flex-col h-full w-full'>
-        <AccordionTrigger className='px-6 border-b border-zinc-300'>
+        <AccordionTrigger className='px-6 border-b-4 border-red-600'>
           <ChatHeader />
         </AccordionTrigger>
         <AccordionContent>
