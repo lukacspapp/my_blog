@@ -1,7 +1,7 @@
 import { gql, request } from 'graphql-request';
 import { Project, ProjectData, ProjectsData } from '../../types/portfolioTypes';
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT ?? ''
+export const graphqlAPI = process.env.GRAPHCMS_READ_ENDPOINT ?? ''
 
 export async function getProjects(): Promise<Project[]> {
   const query = gql`
@@ -55,4 +55,17 @@ export async function getBio() {
   const { bios } = await request(graphqlAPI, query) as any
 
   return bios[0]
+}
+
+export async function createAuth0User(email: string) {
+  const mutation = gql`
+    mutation createAuth0User(email: string) {
+      createUser(data: {email: email}) {
+        id,
+      }
+    }
+    `
+  const { createAuth0User } = await request(graphqlAPI, mutation) as any
+
+  return createAuth0User
 }
