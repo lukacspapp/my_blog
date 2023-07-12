@@ -1,7 +1,7 @@
 import { gql, request } from 'graphql-request';
 import { Project, ProjectData, ProjectsData } from '../../types/portfolioTypes';
 
-export const graphqlAPI = process.env.GRAPHCMS_READ_ENDPOINT ?? ''
+export const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT ?? ''
 
 export async function getProjects(): Promise<Project[]> {
   const query = gql`
