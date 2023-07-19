@@ -1,9 +1,7 @@
 import NextAuth from "next-auth"
 import GitHubProvider from "next-auth/providers/github";
 import FaceBookProvider from "next-auth/providers/facebook";
-import request, { gql } from "graphql-request";
-
-const hygraphAPI = process.env.GRAPHCMS_WRITE_ENDPOINT ?? ''
+import { createAuth0User, getAuth0Users } from "../../../../lib/services";
 
 const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
@@ -25,6 +23,30 @@ const handler = NextAuth({
 
       // ! Steps
 
+      const users = await getAuth0Users()
+      let isUserRegistered = false
+
+      if (users.map((user) => user.email).includes(session.user?.email)) {
+        return session
+      } else {
+        const response = await createAuth0User(session.user?.email!)
+        console.log('❤️',response)
+
+
+        if (response.errors) {
+          return response.errors
+
+        }
+
+        return {
+          ...session,
+          user: response.data?.createAuth0User
+        }
+
+      }
+
+
+
       // 1. Check if user exists in hygraph
       // 2. If not, create user in hygraph
       // 3. Return session
@@ -37,16 +59,9 @@ const handler = NextAuth({
       //   }
       // `
 
-      // const mutation = gql`
-      //   mutation MyMutation {
-      //     createAuth0User(data: {email: "${email}"}) {
-      //       id,
-      //       email
-      //     }
-      //   },
-      // `
+      // const { auth0Users } = await request(graphqlAPI, query) as any
 
-      return session
+
   },
 }
 })
