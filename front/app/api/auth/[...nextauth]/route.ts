@@ -26,6 +26,13 @@ const handler = NextAuth({
       const users = await getAuth0Users()
       let isUserRegistered = false
 
+      console.log('====================================');
+      console.log('🚀', session);
+      console.log('====================================');
+
+      console.log('🚀', users);
+
+
       if (users.map((user) => user.email).includes(session.user?.email)) {
         return session
       } else {
