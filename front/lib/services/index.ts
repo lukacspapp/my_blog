@@ -74,7 +74,7 @@ export async function getAuth0Users() {
 export async function createAuth0User(email: string) {
   const mutation = gql`
         mutation MyMutation {
-          createAuth0User(data: {email: "${email}"}) {
+          createAuth0User(data: {email: "sanyi@mail.com", stages: PUBLISHED}) {
             id,
             email
           }
