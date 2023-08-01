@@ -1,6 +1,6 @@
 import PlausibleProvider from 'next-plausible';
 import "tailwindcss/tailwind.css";
-import { getBio, getAuth0Users } from "../lib/services";
+import { getBio } from "../lib/services";
 import '../styles/global.css';
 import { Providers } from './providers';
 
