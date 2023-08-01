@@ -12,6 +12,7 @@ import Navigation from '../components/Navigation/Navigation'
 import { MessagesProvider } from '../context/messages'
 import Chat from '../components/Chat/Chat'
 
+
 export function Providers({ children, email }) {
 
   const router = usePathname()
