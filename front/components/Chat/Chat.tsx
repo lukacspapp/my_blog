@@ -1,16 +1,12 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
 import { Accordion, AccordionItem } from '../ui/accordion'
 import ChatAccordion from './ChatAccordion'
 import Login from '../Auth/Login'
 
 export default function Chat() {
 
-  const { data: session } = useSession()
-
-  console.log(session);
-
+  const session = false
 
   return (
     <Accordion

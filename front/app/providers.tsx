@@ -10,7 +10,6 @@ import Footer from '../components/Footer'
 import Gradient from '../components/Gradient'
 import Navigation from '../components/Navigation/Navigation'
 import { MessagesProvider } from '../context/messages'
-import { SessionProvider } from "next-auth/react";
 import Chat from '../components/Chat/Chat'
 
 export function Providers({ children, email }) {
@@ -29,12 +28,10 @@ export function Providers({ children, email }) {
           <TooltipProvider>
             <Navigation email={email} />
           </TooltipProvider>
-          <SessionProvider>
             <MessagesProvider>
               {children}
               <Chat />
             </MessagesProvider>
-          </SessionProvider>
           <TooltipProvider>
             {footer}
           </TooltipProvider>

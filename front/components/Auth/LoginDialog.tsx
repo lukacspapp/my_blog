@@ -1,5 +1,4 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { signIn } from 'next-auth/react';
 
 export default function LoginDialog({ children }) {
   return (
@@ -23,7 +22,6 @@ export default function LoginDialog({ children }) {
                     aria-label="Continue with google"
                     role="button"
                     className=" items-center py-2.5 px-3 flex mb-2 justify-center rounded-md transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border border-solid border-gray-500 dark:border-gray-600"
-                    onClick={() => signIn('google')}
                   >
                     <svg
                       width={19}
@@ -57,7 +55,6 @@ export default function LoginDialog({ children }) {
                     aria-label="Continue with Facebook"
                     role="button"
                     className="py-2.5 px-5 mb-2 transition-colors justify-center  duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border rounded-md border-solid border-gray-500 dark:border-gray-600 flex items-center"
-                    onClick={() => signIn('facebook')}
                   >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +75,6 @@ export default function LoginDialog({ children }) {
                     aria-label="Continue with GitHub"
                     role="button"
                     className="py-2.5 px-3 transition-colors justify-center duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border rounded-md border-solid border-gray-500 dark:border-gray-600 flex items-center"
-                    onClick={() => signIn('github')}
                   >
                     <svg className='w-5 h-5' viewBox="0 0 24 24" fill="currentColor">
                       <path

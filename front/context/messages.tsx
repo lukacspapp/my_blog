@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid'
 import { createContext, useState } from 'react'
 import { Message } from '../lib/validator/message'
-import { useSession } from 'next-auth/react'
 import { timeOfDay } from '../lib/date'
 
 const defaultValue = [
@@ -28,15 +27,6 @@ export const MessagesContext = createContext<{
 })
 
 export function MessagesProvider({ children }: { children: React.ReactNode }) {
-
-  const {data: session} = useSession()
-
-  const name = session ? session.user?.name : null
-  const formattedName = name ? name.split(' ')[0] : null
-
-  if (formattedName) {
-    defaultValue[0].text = `Good ${timeOfDay()} ${formattedName}, Ask me something?`
-  }
 
   const [messages, setMessages] = useState(defaultValue)
   const [isMessageUpdating, setIsMessageUpdating] = useState<boolean>(false)
