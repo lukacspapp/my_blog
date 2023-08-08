@@ -1,4 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
+import Loginer from './Loginer';
 
 export default function LoginDialog({ children }) {
   return (
@@ -16,7 +17,8 @@ export default function LoginDialog({ children }) {
                   Sign In
                 </h1>
               </Dialog.Title>
-              <Dialog.Description className="text-gray-400 p-2 dark:text-gray-400 w-auto mt-2 block sm:flex justify-between items-center">
+    <Loginer />
+              {/* <Dialog.Description className="text-gray-400 p-2 dark:text-gray-400 w-auto mt-2 block sm:flex justify-between items-center">
                 <div className="flex flex-col sm:flex-wrap mb-4">
                   <button
                     aria-label="Continue with google"
@@ -85,7 +87,7 @@ export default function LoginDialog({ children }) {
                     </svg>
                   </button>
                 </div>
-              </Dialog.Description>
+              </Dialog.Description> */}
             </Dialog.Content>
           </div>
         </Dialog.DialogPortal>

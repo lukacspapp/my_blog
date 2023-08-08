@@ -3,6 +3,7 @@
 import { Transition } from '@headlessui/react';
 import { RefreshCcw } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import "tailwindcss/tailwind.css";
 import AnimatedDescription from '../components/Description/AnimatedDescription';
@@ -16,6 +17,7 @@ interface ErrorProps {
 
 export default function Error({ error }: ErrorProps) {
 
+  const pathName = usePathname();
   const router = useRouter();
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function Error({ error }: ErrorProps) {
             className="border-2 mb-2 rounded-md border-gray-500 dark:border-gray-600"
           >
             <button
-              onClick={() => {router.push('/')}
+              onClick={() => {pathName === '/' ? router.refresh() : router.replace('/')}
               }
               className="flex cursor-pointer dark:border-[#282828] rounded-[3px] pl-3 pt-2 pr-2 pb-2 transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600"
             >
