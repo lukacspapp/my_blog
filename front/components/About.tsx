@@ -5,11 +5,31 @@ import clsx from "clsx"
 import { useEffect, useState } from "react"
 import AnimatedDescription from "./Description/AnimatedDescription"
 import TypeWriter from "./TypeWriter"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { useUserStore } from "../lib/store/userStore"
 
 const darkGradient = "bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-transparent bg-clip-text";
 const lightGradient = "animate-text-shimmer bg-[linear-gradient(110deg,#f97316,45%,#f5f5f5,55%,#f97316)] bg-[length:250%_100%] dark:bg-[linear-gradient(110deg,#d1fb9d,45%,#6b46c1,55%,#d1fb9d)] inline-block cursor-ne-resize bg-clip-text text-transparent transition-transform ease-in-out hover:scale-105";
 
 export default function About({bio}: any): JSX.Element {
+
+  const supabase = createClientComponentClient()
+
+  const user = useUserStore(state => state.user)
+
+  async function sendData() {
+
+    const { data, error } = await supabase
+      .from('chat prompts')
+      .insert([
+        {
+          some_column: 'someValue',
+          other_column: 'otherValue'
+        },
+      ])
+      .select()
+  }
+
 
   const {excerpt, name, skills, company} = bio
 
@@ -27,6 +47,8 @@ export default function About({bio}: any): JSX.Element {
   }, [])
 
 
+
+
   return (
     <>
       <AnimatedDescription title={name} description={excerpt} />
@@ -37,6 +59,7 @@ export default function About({bio}: any): JSX.Element {
         enterTo="scale-100 opacity-100"
       >
         <p className="text-gray-600 dark:text-gray-400">
+          {user?.avatar}
           Web Developer fueled by{" "}
           <span className="group relative top-[7px] inline-block cursor-text overflow-hidden">
             <span className="invisible">passion for coding</span>
@@ -105,6 +128,7 @@ export default function About({bio}: any): JSX.Element {
           </a>
         </p>
       </Transition>
+      <button>Send</button>
     </>
   )
 }

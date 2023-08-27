@@ -3,7 +3,8 @@ import "tailwindcss/tailwind.css";
 import { getBio } from "../lib/services";
 import '../styles/global.css';
 import { Providers } from './providers';
-
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 
 export default async function RootLayout({
   children,
@@ -11,7 +12,16 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
+
   const { email } = await getBio()
+  const supabase = createServerComponentClient({ cookies })
+
+  const { data: prompts , error } = await supabase
+  .from('chat prompts')
+  .select('*')
+
+  console.log(supabase);
+  console.log(prompts);
 
   return (
     <html suppressHydrationWarning lang="en" className='nightwind h-full'>

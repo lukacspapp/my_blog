@@ -40,6 +40,7 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
     },
     onMutate: (message: Message) => {
       addMessage(message)
+      // async function that adds the message to the db for the user
     },
     onSuccess: async (stream) => {
 

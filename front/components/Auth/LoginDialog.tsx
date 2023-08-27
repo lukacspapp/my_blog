@@ -1,7 +1,8 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import Loginer from './Loginer';
+import { useUserStore } from '../../lib/store/userStore';
 
 export default function LoginDialog({ children }) {
+
   return (
     <>
       <Dialog.Root>
@@ -17,10 +18,9 @@ export default function LoginDialog({ children }) {
                   Sign In
                 </h1>
               </Dialog.Title>
-    <Loginer />
-              {/* <Dialog.Description className="text-gray-400 p-2 dark:text-gray-400 w-auto mt-2 block sm:flex justify-between items-center">
+              <Dialog.Description className="text-gray-400 p-2 dark:text-gray-400 w-auto mt-2 block sm:flex justify-between items-center">
                 <div className="flex flex-col sm:flex-wrap mb-4">
-                  <button
+                  {/* <button
                     aria-label="Continue with google"
                     role="button"
                     className=" items-center py-2.5 px-3 flex mb-2 justify-center rounded-md transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border border-solid border-gray-500 dark:border-gray-600"
@@ -52,8 +52,8 @@ export default function LoginDialog({ children }) {
                         fill="#EB4335"
                       />
                     </svg>
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     aria-label="Continue with Facebook"
                     role="button"
                     className="py-2.5 px-5 mb-2 transition-colors justify-center  duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border rounded-md border-solid border-gray-500 dark:border-gray-600 flex items-center"
@@ -72,7 +72,7 @@ export default function LoginDialog({ children }) {
                       fill="#1877f2"
                     />
                     </svg>
-                  </button>
+                  </button> */}
                   <button
                     aria-label="Continue with GitHub"
                     role="button"
@@ -87,7 +87,7 @@ export default function LoginDialog({ children }) {
                     </svg>
                   </button>
                 </div>
-              </Dialog.Description> */}
+              </Dialog.Description>
             </Dialog.Content>
           </div>
         </Dialog.DialogPortal>
