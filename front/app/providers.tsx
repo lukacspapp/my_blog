@@ -25,24 +25,29 @@ export function Providers({ children, email }) {
   async function signInWithGitHub() {
     const data = await supabase.auth.signInWithOAuth({
       provider: 'github',
-      options: {
-        scopes: 'user'
-      }
     })
+
+  }
+
+  async function getsession() {
+    const { data, error } = await supabase.auth.getSession()
     console.log(data)
   }
 
   async function signout() {
     const { error } = await supabase.auth.signOut()
   }
+
   const router = usePathname()
 
   const queryClient = new QueryClient()
 
   const footer = router === '/' ? null : <Footer />
 
-  useEffect(() => {
 
+
+  useEffect(() => {
+    getsession()
   });
 
   return (
@@ -53,6 +58,9 @@ export function Providers({ children, email }) {
           <TooltipProvider>
             <Navigation email={email}  />
           </TooltipProvider>
+          <button onClick={getsession}>
+            users
+          </button>
           <button onClick={signout}>Sign out</button>
           <button
             onClick={signInWithGitHub}
