@@ -6,7 +6,7 @@ import Login from '../Auth/Login'
 
 export default function Chat() {
 
-  const session = false
+  const session = null
 
   return (
     <Accordion

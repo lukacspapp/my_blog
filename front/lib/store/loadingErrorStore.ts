@@ -1,16 +1,17 @@
+import { AuthError } from '@supabase/supabase-js';
 import { error } from 'console';
 import { create } from 'zustand'
 
 type State = {
   loading: boolean,
-  error: null | string;
+  error: null | AuthError;
   setLoading: (loading: boolean) => void;
-  setError: (error: null | string) => void;
+  setError: (error: null | AuthError) => void;
 }
 
 export const useLoadingErrorStore = create<State>((set) => ({
   loading: false,
   error: null,
   setLoading: (loading: boolean) => set({ loading }),
-  setError: (error: null | string) => set({ error })
+  setError: (error: null | AuthError) => set({ error })
 }))

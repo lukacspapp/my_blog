@@ -1,7 +1,33 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { useUserStore } from '../../lib/store/userStore';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { Provider } from '@supabase/supabase-js';
+import { useLoadingErrorStore } from '../../lib/store/loadingErrorStore';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function LoginDialog({ children }) {
+
+  const router = useRouter()
+  const supabase = createClientComponentClient()
+  const error = useLoadingErrorStore(state => state.error)
+  const setError = useLoadingErrorStore(state => state.setError)
+
+  async function signInWithProvider(provider: Provider) {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: provider,
+    })
+
+    if (error) setError(error)
+    if (data) router.refresh()
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setError(null)
+    }, 2000)
+    return () => clearTimeout(timer)
+  }, [error])
+
 
   return (
     <>
@@ -74,6 +100,7 @@ export default function LoginDialog({ children }) {
                     </svg>
                   </button> */}
                   <button
+                    onClick={() => signInWithProvider('github')}
                     aria-label="Continue with GitHub"
                     role="button"
                     className="py-2.5 px-3 transition-colors justify-center duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border rounded-md border-solid border-gray-500 dark:border-gray-600 flex items-center"
@@ -88,6 +115,13 @@ export default function LoginDialog({ children }) {
                   </button>
                 </div>
               </Dialog.Description>
+              {error && (
+                <Dialog.Description className="text-red-500 p-2 dark:text-red-500 w-auto block sm:flex justify-between items-center">
+                    <p className="text-sm font-semibold">
+                      There was a problem with Logging you in.
+                    </p>
+                </Dialog.Description>
+              )}
             </Dialog.Content>
           </div>
         </Dialog.DialogPortal>

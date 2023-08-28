@@ -1,14 +1,14 @@
 import { create } from 'zustand'
-import { User } from '../../types/userType'
+import { Session } from '@supabase/supabase-js';
 
 type State = {
-  user: User | null;
-  setUser: (user: User) => void;
+  user: Session | null;
+  setUser: (user: Session) => void;
   logout: () => void;
 }
 
 export const useUserStore = create<State>((set) => ({
   user: null,
-  setUser: (user: User) => set({ user }),
+  setUser: (user: Session) => set({ user }),
   logout: () => set({ user: null }),
 }))

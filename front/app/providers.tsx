@@ -14,6 +14,8 @@ import Chat from '../components/Chat/Chat'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import { useUserStore } from '../lib/store/userStore'
+import { Provider } from '@supabase/supabase-js'
+import { useLoadingErrorStore } from '../lib/store/loadingErrorStore'
 
 
 export function Providers({ children, email }) {
@@ -21,16 +23,14 @@ export function Providers({ children, email }) {
   const user = useUserStore(state => state.user)
   const setUser = useUserStore(state => state.setUser)
   const supabase = createClientComponentClient()
+  const error = useLoadingErrorStore(state => state.error);
+  const setError = useLoadingErrorStore(state => state.setError);
 
-  async function signInWithGitHub() {
-    const data = await supabase.auth.signInWithOAuth({
-      provider: 'github',
-    })
-
-  }
-
-  async function getsession() {
+  async function getSession() {
     const { data, error } = await supabase.auth.getSession()
+
+    if (error) setError(error)
+
     console.log(data)
   }
 
@@ -44,10 +44,8 @@ export function Providers({ children, email }) {
 
   const footer = router === '/' ? null : <Footer />
 
-
-
   useEffect(() => {
-    getsession()
+    getSession()
   });
 
   return (
@@ -58,13 +56,7 @@ export function Providers({ children, email }) {
           <TooltipProvider>
             <Navigation email={email}  />
           </TooltipProvider>
-          <button onClick={getsession}>
-            users
-          </button>
           <button onClick={signout}>Sign out</button>
-          <button
-            onClick={signInWithGitHub}
-          >Login</button>
             <MessagesProvider>
               {children}
               <Chat />

@@ -20,7 +20,6 @@ export default async function RootLayout({
   .from('chat prompts')
   .select('*')
 
-  console.log(supabase);
   console.log(prompts);
 
   return (
