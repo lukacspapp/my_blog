@@ -3,8 +3,11 @@
 import { Accordion, AccordionItem } from '../ui/accordion'
 import ChatAccordion from './ChatAccordion'
 import Login from '../Auth/Login'
+import { useUserStore } from '../../lib/store/userStore'
 
-export default function Chat() {
+export default function Chat({prompts}) {
+
+  const user = useUserStore(state => state.user)
 
   const session = null
 
@@ -18,7 +21,7 @@ export default function Chat() {
         className='border-b border-divider border-none'
         value='item-1'
       >
-        {session ?
+        {user ?
           <ChatAccordion />
           :
           <Login />

@@ -4,7 +4,7 @@ import { TooltipProvider } from '@radix-ui/react-tooltip'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Inspect from 'inspx'
 import { ThemeProvider } from 'next-themes'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import "tailwindcss/tailwind.css"
 import Footer from '../components/Footer'
 import Gradient from '../components/Gradient'
@@ -18,27 +18,27 @@ import { Provider } from '@supabase/supabase-js'
 import { useLoadingErrorStore } from '../lib/store/loadingErrorStore'
 
 
-export function Providers({ children, email }) {
+export function Providers({ children, email, prompts }) {
 
+  const routerPush = useRouter()
+
+  const router = usePathname()
   const user = useUserStore(state => state.user)
   const setUser = useUserStore(state => state.setUser)
   const supabase = createClientComponentClient()
-  const error = useLoadingErrorStore(state => state.error);
   const setError = useLoadingErrorStore(state => state.setError);
 
   async function getSession() {
     const { data, error } = await supabase.auth.getSession()
 
     if (error) setError(error)
-
-    console.log(data)
+    if (data && data.session) setUser(data.session)
   }
 
   async function signout() {
     const { error } = await supabase.auth.signOut()
+    routerPush.refresh()
   }
-
-  const router = usePathname()
 
   const queryClient = new QueryClient()
 
@@ -46,7 +46,7 @@ export function Providers({ children, email }) {
 
   useEffect(() => {
     getSession()
-  });
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -54,12 +54,12 @@ export function Providers({ children, email }) {
         <Inspect>
           <Gradient />
           <TooltipProvider>
+            <button onClick={signout}>Sign out</button>
             <Navigation email={email}  />
           </TooltipProvider>
-          <button onClick={signout}>Sign out</button>
             <MessagesProvider>
               {children}
-              <Chat />
+              <Chat prompts={prompts} />
             </MessagesProvider>
           <TooltipProvider>
             {footer}

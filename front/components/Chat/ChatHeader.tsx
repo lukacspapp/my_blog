@@ -1,11 +1,24 @@
 'use client'
 
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { useLoadingErrorStore } from "../../lib/store/loadingErrorStore"
+
 export default function ChatHeader() {
+
+  const supabase = createClientComponentClient()
+  const setError = useLoadingErrorStore(state => state.setError)
+
+  async function signout() {
+    const { error } = await supabase.auth.signOut()
+
+    if (error) setError(error)
+  }
+
   return (
     <div className='w-full flex gap-3 justify-start items-center dark:text-white'>
       <div className='flex flex-col text-sm items-start'>
         <button
-
+          onClick={signout}
         >
           Sign Out
         </button>
@@ -19,4 +32,8 @@ export default function ChatHeader() {
       </div>
     </div>
   )
+}
+
+function useErrorStore(arg0: (state: any) => any) {
+  throw new Error("Function not implemented.")
 }

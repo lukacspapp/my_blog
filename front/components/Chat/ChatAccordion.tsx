@@ -5,7 +5,7 @@ import ChatHeader from "./ChatHeader"
 import ChatInput from "./ChatInput"
 import ChatMessages from "./ChatMessages"
 
-export default function ChatAccordion({ }) {
+export default function ChatAccordion() {
   return (
     <div
       className='fixed right-8 w-80 bottom-8 dark:bg-gray-700 bg-white shadow-lg rounded-md overflow-hidden'>
