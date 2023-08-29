@@ -9,8 +9,6 @@ export default function Chat({prompts}) {
 
   const user = useUserStore(state => state.user)
 
-  const session = null
-
   return (
     <Accordion
       type='single'
@@ -22,7 +20,7 @@ export default function Chat({prompts}) {
         value='item-1'
       >
         {user ?
-          <ChatAccordion />
+          <ChatAccordion prompts={prompts} />
           :
           <Login />
         }

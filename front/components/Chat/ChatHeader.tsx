@@ -3,7 +3,9 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { useLoadingErrorStore } from "../../lib/store/loadingErrorStore"
 
-export default function ChatHeader() {
+export default function ChatHeader({ prompts }) {
+
+  console.log(prompts.length)
 
   const supabase = createClientComponentClient()
   const setError = useLoadingErrorStore(state => state.setError)
@@ -28,6 +30,11 @@ export default function ChatHeader() {
         <div className="flex gap-1.5 items-center">
           <p className="w-2 h-2 rounded-full bg-green-500 animate-pulse"/>
           <p className="font-medium"> Me</p>
+        </div>
+        <div
+          className='flex gap-1.5 items-center'
+        >
+          you have {10 - prompts.length} prompts left
         </div>
       </div>
     </div>
