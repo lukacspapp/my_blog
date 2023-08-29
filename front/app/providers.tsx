@@ -37,7 +37,13 @@ export function Providers({ children, email, prompts }) {
 
   async function signout() {
     const { error } = await supabase.auth.signOut()
-    routerPush.refresh()
+
+    if (error) setError(error)
+
+    if (!error) {
+      setUser(null)
+      routerPush.push('/')
+    }
   }
 
   const queryClient = new QueryClient()
@@ -46,7 +52,8 @@ export function Providers({ children, email, prompts }) {
 
   useEffect(() => {
     getSession()
-  }, []);
+  }, [])
+
 
   return (
     <QueryClientProvider client={queryClient}>
