@@ -9,12 +9,15 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { MessagesContext } from '../../context/messages';
 import { cn } from "../../lib/utils";
 import { Message } from '../../lib/validator/message';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useUserStore } from '../../lib/store/userStore';
 
 interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default function ChatInput({ className, ...props }: ChatInputProps) {
 
-
+  const user = useUserStore(state => state.user)
+  const supabase = createClientComponentClient()
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [input, setInput] = useState<string>('')
   const {
@@ -83,6 +86,20 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
     }
   })
 
+  async function addChatPromptToDb(prompt: string) {
+    const { data, error } = await supabase
+    .from('chat prompts')
+    .insert({
+      id: 33,
+      created_at: new Date(),
+      prompt: prompt,
+      person: user?.user.id
+    })
+
+    console.log(data)
+  }
+
+  '154820be-8b77-429f-a8c2-fc201473d556'
   return (
     <div {...props} className={cn('border-t border-zinc-300 p-[2px]', className)}>
       <div className='relative mt-2 mx-2 flex-1 overflow-hidden rounded-lg border-none outline-none'>
@@ -99,6 +116,7 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
               }
 
               mutate(message)
+              addChatPromptToDb(input)
             }
           }}
           rows={2}
