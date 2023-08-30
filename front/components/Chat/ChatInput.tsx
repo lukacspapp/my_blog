@@ -90,16 +90,14 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
     const { data, error } = await supabase
     .from('chat prompts')
     .insert({
-      id: 33,
+      id: 66,
       created_at: new Date(),
       prompt: prompt,
       person: user?.user.id
     })
-
-    console.log(data)
   }
 
-  '154820be-8b77-429f-a8c2-fc201473d556'
+
   return (
     <div {...props} className={cn('border-t border-zinc-300 p-[2px]', className)}>
       <div className='relative mt-2 mx-2 flex-1 overflow-hidden rounded-lg border-none outline-none'>

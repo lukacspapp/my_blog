@@ -46,10 +46,6 @@ export function Providers({ children, email, prompts }) {
     }
   }
 
-  console.log('====================================');
-  console.log(user);
-  console.log('====================================');
-
   const queryClient = new QueryClient()
 
   const footer = router === '/' ? null : <Footer />

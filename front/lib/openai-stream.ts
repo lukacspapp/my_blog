@@ -78,8 +78,5 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
     },
   });
 
-  console.log("stream", stream);
-
-
   return stream;
 }
