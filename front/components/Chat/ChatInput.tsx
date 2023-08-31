@@ -12,9 +12,11 @@ import { Message } from '../../lib/validator/message';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useUserStore } from '../../lib/store/userStore';
 
-interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
+  getPrompts: () => void
+}
 
-export default function ChatInput({ className, ...props }: ChatInputProps) {
+export default function ChatInput({ className, getPrompts, ...props }: ChatInputProps) {
 
   const user = useUserStore(state => state.user)
   const supabase = createClientComponentClient()
@@ -90,7 +92,7 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
     const { data, error } = await supabase
     .from('chat prompts')
     .insert({
-      id: 66,
+      id: 1222212,
       created_at: new Date(),
       prompt: prompt,
       person: user?.user.id
@@ -115,6 +117,9 @@ export default function ChatInput({ className, ...props }: ChatInputProps) {
 
               mutate(message)
               addChatPromptToDb(input)
+              .then(() => {
+                getPrompts()
+              })
             }
           }}
           rows={2}

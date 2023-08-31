@@ -6,27 +6,22 @@ import { useEffect, useState } from "react"
 
 export default function ChatHeader({ prompts }) {
 
-  const [message, setMessage] = useState(prompts)
-
   const supabase = createClientComponentClient()
   const setError = useLoadingErrorStore(state => state.setError)
-
-  async function signout() {
-    const { error } = await supabase.auth.signOut()
-    if (error) setError(error)
-  }
+  const [msg, setMsg] = useState(prompts)
 
   async function getPrompts() {
     const { data: prompts , error } = await supabase
     .from('chat prompts')
     .select('*')
 
-    if (prompts) setMessage(prompts)
+    if (prompts) setMsg(prompts)
   }
 
   useEffect(() => {
     getPrompts()
-  },[message])
+  }, [prompts])
+
 
   return (
     <div className='w-full flex gap-3 justify-start items-center dark:text-white'>
@@ -38,7 +33,7 @@ export default function ChatHeader({ prompts }) {
         <div
           className='flex gap-1.5 items-center'
         >
-          you have {10 - message.length} prompts left
+          you have {10 - msg.length} prompts left
         </div>
       </div>
     </div>

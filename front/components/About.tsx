@@ -13,23 +13,7 @@ const lightGradient = "animate-text-shimmer bg-[linear-gradient(110deg,#f97316,4
 
 export default function About({bio}: any): JSX.Element {
 
-  const supabase = createClientComponentClient()
-
   const user = useUserStore(state => state.user)
-
-  async function sendData() {
-
-    const { data, error } = await supabase
-      .from('chat prompts')
-      .insert([
-        {
-          some_column: 'someValue',
-          other_column: 'otherValue'
-        },
-      ])
-      .select()
-  }
-
 
   const {excerpt, name, skills, company} = bio
 
@@ -59,7 +43,6 @@ export default function About({bio}: any): JSX.Element {
         enterTo="scale-100 opacity-100"
       >
         <p className="text-gray-600 dark:text-gray-400">
-          {user?.avatar}
           Web Developer fueled by{" "}
           <span className="group relative top-[7px] inline-block cursor-text overflow-hidden">
             <span className="invisible">passion for coding</span>
@@ -128,7 +111,6 @@ export default function About({bio}: any): JSX.Element {
           </a>
         </p>
       </Transition>
-      <button>Send</button>
     </>
   )
 }
