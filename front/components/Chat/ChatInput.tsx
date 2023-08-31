@@ -13,16 +13,17 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useUserStore } from '../../lib/store/userStore';
 
 interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
-  getPrompts: () => void
+  getPrompts: () => void,
+  prompts: Message[]
 }
 
-export default function ChatInput({ className, getPrompts, ...props }: ChatInputProps) {
+export default function ChatInput({ className, getPrompts, prompts, ...props }: ChatInputProps) {
 
-  const user = useUserStore(state => state.user)
-  const supabase = createClientComponentClient()
+
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [input, setInput] = useState<string>('')
   const {
+    messages,
     addMessage,
     removeMessage,
     updateMessage,
@@ -45,7 +46,6 @@ export default function ChatInput({ className, getPrompts, ...props }: ChatInput
     },
     onMutate: (message: Message) => {
       addMessage(message)
-      // async function that adds the message to the db for the user
     },
     onSuccess: async (stream) => {
 
@@ -88,15 +88,21 @@ export default function ChatInput({ className, getPrompts, ...props }: ChatInput
     }
   })
 
-  async function addChatPromptToDb(prompt: string) {
-    const { data, error } = await supabase
-    .from('chat prompts')
-    .insert({
-      id: 1222212,
-      created_at: new Date(),
-      prompt: prompt,
-      person: user?.user.id
-    })
+  async function addChatPromptToDb(messages: Message[], prompts: Message[]) {
+
+    console.log('message', messages);
+    console.log('prompts', prompts);
+
+
+    // const { data, error } = await supabase
+    // .from('chat_prompts')
+    // .insert({
+    //   id: nanoid(),
+    //   created_at: new Date(),
+    //   user_prompt: prompt,
+    //   ai_response: aiResponse,
+    //   user_id: user?.user.id
+    // })
   }
 
 
@@ -116,7 +122,7 @@ export default function ChatInput({ className, getPrompts, ...props }: ChatInput
               }
 
               mutate(message)
-              addChatPromptToDb(input)
+              addChatPromptToDb(messages, prompts)
               .then(() => {
                 getPrompts()
               })

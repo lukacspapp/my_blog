@@ -16,7 +16,7 @@ export default async function RootLayout({
   const supabase = createServerComponentClient({ cookies })
 
   const { data: prompts , error } = await supabase
-  .from('chat prompts')
+  .from('chat_prompts')
   .select('*')
 
   return (

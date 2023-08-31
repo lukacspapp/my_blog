@@ -12,7 +12,7 @@ export default function ChatHeader({ prompts }) {
 
   async function getPrompts() {
     const { data: prompts , error } = await supabase
-    .from('chat prompts')
+    .from('chat_prompts')
     .select('*')
 
     if (prompts) setMsg(prompts)

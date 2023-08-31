@@ -16,7 +16,7 @@ export default function ChatAccordion({ prompts }) {
 
   async function getPrompts() {
     const { data: prompts , error } = await supabase
-    .from('chat prompts')
+    .from('chat_prompts')
     .select('*')
     setMessages(prompts)
   }
@@ -30,8 +30,8 @@ export default function ChatAccordion({ prompts }) {
         </AccordionTrigger>
         <AccordionContent>
           <div className='flex flex-col h-80'>
-            <ChatMessages className='px-2 py-3 flex-1' />
-            <ChatInput getPrompts={getPrompts} />
+            <ChatMessages className='px-2 py-3 flex-1' prompts={messages} />
+            <ChatInput getPrompts={getPrompts} prompts={messages} />
           </div>
         </AccordionContent>
       </div>

@@ -5,12 +5,15 @@ import { MessagesContext } from "../../context/messages"
 import { cn } from "../../lib/utils"
 import MarkdownLite from './MarkDownLite'
 
-interface ChatMessagesProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface ChatMessagesProps extends React.HTMLAttributes<HTMLDivElement> {
+  prompts: string[]
+}
 
-export default function ChatMessages({className, ...props}: ChatMessagesProps) {
+export default function ChatMessages({className, prompts, ...props}: ChatMessagesProps) {
 
   const { messages } = useContext(MessagesContext)
   const inverseMessages = [...messages].reverse()
+
 
   return (
     <div
