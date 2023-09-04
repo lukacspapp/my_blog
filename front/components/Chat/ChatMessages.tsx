@@ -14,10 +14,6 @@ export default function ChatMessages({className, prompts, ...props}: ChatMessage
   const { messages } = useContext(MessagesContext)
   const inverseMessages = [...messages].reverse()
 
-  console.log('====================================');
-  console.log('messages', messages);
-  console.log('====================================');
-
   return (
     <div
       {...props}

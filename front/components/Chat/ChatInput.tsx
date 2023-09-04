@@ -20,10 +20,28 @@ interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function ChatInput({ className, getPrompts, prompts, ...props }: ChatInputProps) {
 
 
+  async function addChatPromptToDb(messages: Message) {
+
+    console.log('message', messages);
+    console.log('prompts', prompts);
+
+
+    // const { data, error } = await supabase
+    // .from('messages')
+    // .insert({
+    //   id: messa,
+    //   created_at: new Date(),
+    //   user_prompt: prompt,
+    //   ai_response: aiResponse,
+    //   user_id: user?.user.id
+    // })
+  }
+
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [input, setInput] = useState<string>('')
   const {
     messages,
+    isMessageUpdating,
     addMessage,
     removeMessage,
     updateMessage,
@@ -46,6 +64,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
     },
     onMutate: (message: Message) => {
       addMessage(message)
+
     },
     onSuccess: async (stream) => {
 
@@ -66,16 +85,23 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
       const reader = stream.getReader()
       const decoder = new TextDecoder()
       let done = false
+      let finishedResponse = '';
+
 
       while (!done) {
         const { value, done: isDone } = await reader.read()
         done = isDone
         const chunkValue = decoder.decode(value)
-        updateMessage(id, (prev) => prev + chunkValue)
+        updateMessage(id, (prev) => {
+          const updatedText = prev + chunkValue;
+          finishedResponse = updatedText;
+          return updatedText
+        })
       }
 
-      setIsMessageUpdating(false)
+      console.log('messages', finishedResponse, responseMessage.id);
       setInput('')
+      setIsMessageUpdating(false)
 
       setTimeout(() => {
         textAreaRef.current?.focus()
@@ -88,23 +114,10 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
     }
   })
 
-  async function addChatPromptToDb(messages: Message[], prompts: Message[]) {
 
-    console.log('message', messages);
-    console.log('prompts', prompts);
-
-
-    // const { data, error } = await supabase
-    // .from('chat_prompts')
-    // .insert({
-    //   id: nanoid(),
-    //   created_at: new Date(),
-    //   user_prompt: prompt,
-    //   ai_response: aiResponse,
-    //   user_id: user?.user.id
-    // })
-  }
-
+console.log('====================================');
+console.log(messages);
+console.log('====================================');
 
   return (
     <div {...props} className={cn('border-t border-zinc-300 p-[2px]', className)}>
@@ -122,10 +135,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
               }
 
               mutate(message)
-              addChatPromptToDb(messages, prompts)
-              .then(() => {
-                getPrompts()
-              })
+              getPrompts()
             }
           }}
           rows={2}
