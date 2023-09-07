@@ -1,6 +1,6 @@
 import { DocumentDuplicateIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import * as Dialog from '@radix-ui/react-dialog';
-import { nanoid } from "nanoid";
+import uuid from 'react-uuid';
 import { useState } from "react";
 import Toast from "./Toast";
 
@@ -18,7 +18,7 @@ export function ContactDialog({ children, email } : ContactDialogProps): JSX.Ele
     navigator.clipboard.writeText(email);
 
     // Add a new toast with a unique id
-    setToasts((oldToasts) => [...oldToasts, { id: nanoid(), message: "Copied to clipboard!" }]);
+    setToasts((oldToasts) => [...oldToasts, { id: uuid(), message: "Copied to clipboard!" }]);
   };
 
   const removeToast = (id) => {

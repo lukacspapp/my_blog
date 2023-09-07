@@ -2,7 +2,7 @@
 
 import { useMutation } from '@tanstack/react-query';
 import { CornerDownLeft, Loader2 } from 'lucide-react';
-import { nanoid } from 'nanoid';
+import uuid from 'react-uuid';
 import { useContext, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -19,29 +19,29 @@ interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function ChatInput({ className, getPrompts, prompts, ...props }: ChatInputProps) {
 
+  const user = useUserStore(state => state.user)
+  const supabase = createClientComponentClient()
 
-  async function addChatPromptToDb(messages: Message) {
+  async function addChatPromptToDb(message: Message) {
 
-    console.log('message', messages);
-    console.log('prompts', prompts);
+    const { id, isUserInput, text} = message;
 
+    const { data, error } = await supabase
+    .from('messages')
+    .insert({
+      id: id,
+      created_at: new Date(),
+      user_input: isUserInput,
+      text: text,
+      user_id: user?.user.id
+    })
 
-    // const { data, error } = await supabase
-    // .from('messages')
-    // .insert({
-    //   id: messa,
-    //   created_at: new Date(),
-    //   user_prompt: prompt,
-    //   ai_response: aiResponse,
-    //   user_id: user?.user.id
-    // })
   }
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [input, setInput] = useState<string>('')
   const {
     messages,
-    isMessageUpdating,
     addMessage,
     removeMessage,
     updateMessage,
@@ -64,13 +64,13 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
     },
     onMutate: (message: Message) => {
       addMessage(message)
-
+      addChatPromptToDb(message)
     },
     onSuccess: async (stream) => {
 
       if (!stream) throw new Error('No stream found')
 
-      const id = nanoid()
+      const id = uuid()
 
       const responseMessage: Message = {
         id,
@@ -99,7 +99,13 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
         })
       }
 
-      console.log('messages', finishedResponse, responseMessage.id);
+      const message: Message = {
+        id: responseMessage.id,
+        isUserInput: responseMessage.isUserInput,
+        text: finishedResponse,
+      }
+
+      addChatPromptToDb(message)
       setInput('')
       setIsMessageUpdating(false)
 
@@ -114,11 +120,6 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
     }
   })
 
-
-console.log('====================================');
-console.log(messages);
-console.log('====================================');
-
   return (
     <div {...props} className={cn('border-t border-zinc-300 p-[2px]', className)}>
       <div className='relative mt-2 mx-2 flex-1 overflow-hidden rounded-lg border-none outline-none'>
@@ -129,7 +130,7 @@ console.log('====================================');
               e.preventDefault()
 
               const message: Message = {
-                id: nanoid(),
+                id: uuid(),
                 isUserInput: true,
                 text: input,
               }

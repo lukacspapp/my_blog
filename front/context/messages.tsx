@@ -1,15 +1,9 @@
-import { nanoid } from 'nanoid'
+import uuid from 'react-uuid';
 import { createContext, useState } from 'react'
 import { Message } from '../lib/validator/message'
 import { timeOfDay } from '../lib/date'
+import { useUserStore } from '../lib/store/userStore';
 
-const defaultValue = [
-  {
-    id: nanoid(),
-    text: 'Hello, Ask me something?',
-    isUserInput: false,
-  },
-]
 export const MessagesContext = createContext<{
   messages: Message[]
   isMessageUpdating: boolean
@@ -26,9 +20,20 @@ export const MessagesContext = createContext<{
   setIsMessageUpdating: () => {},
 })
 
-export function MessagesProvider({ children }: { children: React.ReactNode }) {
+export function MessagesProvider({ children, prompts, session }: { children: React.ReactNode, prompts: any, session: any }) {
 
-  const [messages, setMessages] = useState(defaultValue)
+  const userName = session.session.user.user_metadata.full_name.split(' ')[0]
+
+  const greetingMessage = {
+    id: uuid(),
+    text: `Good ${timeOfDay()} ${userName}, Ask me anything!`,
+    isUserInput: false,
+  }
+
+  const [messages, setMessages] = useState([
+    greetingMessage,
+    ...prompts,
+  ])
   const [isMessageUpdating, setIsMessageUpdating] = useState<boolean>(false)
 
   const addMessage = (message: Message) => {

@@ -12,7 +12,7 @@ export default function ChatHeader({ prompts }) {
 
   async function getPrompts() {
     const { data: prompts , error } = await supabase
-    .from('chat_prompts')
+    .from('messages')
     .select('*')
 
     if (prompts) setMsg(prompts)
@@ -33,7 +33,7 @@ export default function ChatHeader({ prompts }) {
         <div
           className='flex gap-1.5 items-center'
         >
-          you have {10 - msg.length} prompts left
+          you have {10 - msg.filter(m => m.isUserInput).length} prompts left
         </div>
       </div>
     </div>

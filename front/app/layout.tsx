@@ -16,8 +16,11 @@ export default async function RootLayout({
   const supabase = createServerComponentClient({ cookies })
 
   const { data: prompts , error } = await supabase
-  .from('chat_prompts')
+  .from('messages')
   .select('*')
+
+  const { data, error: err } = await supabase.auth.getSession()
+
 
   return (
     <html suppressHydrationWarning lang="en" className='nightwind h-full'>
@@ -28,7 +31,11 @@ export default async function RootLayout({
         />
       </head>
       <body className="bg-gray-50 selection:bg-teal-300 selection:text-gray-900 dark:bg-gray-900 dark:selection:bg-rose-600 dark:selection:text-rose-50">
-        <Providers email={email} prompts={prompts}>
+        <Providers
+          email={email}
+          prompts={prompts}
+          session={data}
+        >
           {children}
         </Providers>
       </body>

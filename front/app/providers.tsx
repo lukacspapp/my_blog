@@ -18,10 +18,9 @@ import { Provider } from '@supabase/supabase-js'
 import { useLoadingErrorStore } from '../lib/store/loadingErrorStore'
 
 
-export function Providers({ children, email, prompts }) {
+export function Providers({ children, email, prompts, session }) {
 
   const routerPush = useRouter()
-
   const router = usePathname()
   const user = useUserStore(state => state.user)
   const setUser = useUserStore(state => state.setUser)
@@ -29,6 +28,7 @@ export function Providers({ children, email, prompts }) {
   const setError = useLoadingErrorStore(state => state.setError);
 
   async function getSession() {
+
     const { data, error } = await supabase.auth.getSession()
 
     if (error) setError(error)
@@ -51,9 +51,9 @@ export function Providers({ children, email, prompts }) {
   const footer = router === '/' ? null : <Footer />
 
   useEffect(() => {
-    getSession()
+    if (!user && session) setUser(session)
+    if (!user && !session) getSession()
   }, [])
-
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -64,7 +64,7 @@ export function Providers({ children, email, prompts }) {
             <button onClick={signout}>Sign out</button>
             <Navigation email={email}  />
           </TooltipProvider>
-            <MessagesProvider>
+            <MessagesProvider prompts={prompts} session={session} >
               {children}
               <Chat prompts={prompts} />
             </MessagesProvider>
