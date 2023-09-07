@@ -7,6 +7,8 @@ import ChatInput from "./ChatInput"
 import ChatMessages from "./ChatMessages"
 import { useLoadingErrorStore } from "../../lib/store/loadingErrorStore"
 import { useState } from "react"
+import { useUserStore } from "../../lib/store/userStore"
+import Image from "next/image"
 
 export default function ChatAccordion({ prompts }) {
 
@@ -20,6 +22,15 @@ export default function ChatAccordion({ prompts }) {
     .select('*')
     setMessages(prompts)
   }
+
+  const user = useUserStore(state => state.user)
+  const avatarImage = user && user.session.user.user_metadata.avatar_url
+
+  const avatar =
+    <div>
+      <Image width={10} height={10} className="w-10 h-10 rounded-full" src={avatarImage} alt=""/>
+      <span className="top-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+    </div>
 
   return (
     <div

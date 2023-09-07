@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 export default function ChatHeader({ prompts }) {
 
   const supabase = createClientComponentClient()
-  const setError = useLoadingErrorStore(state => state.setError)
   const [msg, setMsg] = useState(prompts)
 
   async function getPrompts() {

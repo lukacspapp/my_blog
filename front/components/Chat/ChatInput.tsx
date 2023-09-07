@@ -31,9 +31,9 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
     .insert({
       id: id,
       created_at: new Date(),
-      user_input: isUserInput,
+      isUserInput: isUserInput,
       text: text,
-      user_id: user?.user.id
+      user_id: user?.session.user.id
     })
 
   }
