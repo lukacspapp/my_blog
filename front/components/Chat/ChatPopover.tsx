@@ -11,7 +11,6 @@ import { cn } from "../../lib/utils"
 
 export default function ChatPopover({ prompts, user }) {
 
-
   const [messages, setMessages] = useState(prompts)
 
   const supabase = createClientComponentClient()

@@ -6,6 +6,8 @@ import { Providers } from './providers';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
+export const revalidate = 0;
+
 export default async function RootLayout({
   children,
 }: {
@@ -13,7 +15,7 @@ export default async function RootLayout({
 }) {
 
   const { email } = await getBio()
-  const supabase = createServerComponentClient({ cookies })
+  const supabase = createServerComponentClient({cookies})
 
   const { data: prompts , error } = await supabase
   .from('messages')

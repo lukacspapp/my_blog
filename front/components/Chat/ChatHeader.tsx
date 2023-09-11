@@ -23,7 +23,6 @@ export default function ChatHeader({ prompts }) {
     getPrompts()
   }, [prompts])
 
-
   return (
     <div className='w-full flex gap-3 justify-start items-center p-2 dark:text-white border-b-[1px] border-gray-500'>
       <div className='flex flex-col text-sm items-start'>
@@ -40,7 +39,7 @@ export default function ChatHeader({ prompts }) {
         >
           {!isPrompsLeft ? (
             <span className='text-green-400'>
-              {msg.filter(m => m.isUserInput).length} prompts left
+              {10 - msg.filter(m => m.isUserInput).length} prompts left
             </span>
           ) : (
             <span className='text-red-500'>

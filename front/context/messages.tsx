@@ -20,9 +20,11 @@ export const MessagesContext = createContext<{
   setIsMessageUpdating: () => {},
 })
 
-export function MessagesProvider({ children, prompts, session }: { children: React.ReactNode, prompts: any, session: any }) {
+export function MessagesProvider({ children, prompts }: { children: React.ReactNode, prompts: any }) {
 
-  const userName = session.session.user.user_metadata.full_name.split(' ')[0]
+  const user = useUserStore(state => state.user)
+
+  const userName = user && user.session ? user.user.user_metadata.full_name.split(' ')[0] : 'Guest'
 
   const greetingMessage = {
     id: uuid(),

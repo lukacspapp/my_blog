@@ -66,9 +66,9 @@ export function Providers({ children, email, prompts, session }) {
             <button onClick={signout}>Sign out</button>
             <Navigation email={email}  />
           </TooltipProvider>
-            <MessagesProvider prompts={prompts} session={session} >
+            <MessagesProvider prompts={prompts} >
               {children}
-              {user ?
+              {user && user.session ?
                 <ChatPopover prompts={prompts} user={user} />
                 :
                 <Login />
