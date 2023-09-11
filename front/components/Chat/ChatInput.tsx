@@ -121,8 +121,8 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
   })
 
   return (
-    <div {...props} className={cn('border-t border-zinc-300 p-[2px]', className)}>
-      <div className='relative mt-2 mx-2 flex-1 overflow-hidden rounded-lg border-none outline-none'>
+    <div {...props} className={cn('border-t border-gray-500 p-[2px]', className)}>
+      <div className='relative m-1 flex-1 overflow-hidden rounded-lg border-none outline-none'>
         <TextareaAutosize
           ref={textAreaRef}
           onKeyDown={(e) => {
@@ -158,7 +158,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
           </kbd>
         </div>
         <div
-          className='absolute inset-x-0 bottom-0 border-t border-gray-300 peer-focus:border-t-2 peer-focus:border-indigo-600'
+          className='absolute inset-x-0 bottom-0 border-t border-gray-300 peer-focus:border-t-2 peer-focus:border-[#fd9090] dark:peer-focus:border-[#382173]'
           aria-hidden='true'
         />
       </div>

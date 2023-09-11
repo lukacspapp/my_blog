@@ -16,6 +16,8 @@ import { useEffect, useState } from 'react'
 import { useUserStore } from '../lib/store/userStore'
 import { Provider } from '@supabase/supabase-js'
 import { useLoadingErrorStore } from '../lib/store/loadingErrorStore'
+import ChatPopover from '../components/Chat/ChatPopover'
+import Login from '../components/Auth/Login'
 
 
 export function Providers({ children, email, prompts, session }) {
@@ -66,7 +68,11 @@ export function Providers({ children, email, prompts, session }) {
           </TooltipProvider>
             <MessagesProvider prompts={prompts} session={session} >
               {children}
-              <Chat prompts={prompts} />
+              {!user ?
+                <ChatPopover prompts={prompts} user={user} />
+                :
+                <Login />
+              }
             </MessagesProvider>
           <TooltipProvider>
             {footer}

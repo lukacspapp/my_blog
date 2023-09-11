@@ -9,6 +9,8 @@ export default function ChatHeader({ prompts }) {
   const supabase = createClientComponentClient()
   const [msg, setMsg] = useState(prompts)
 
+  const isPrompsLeft = msg.filter(m => m.isUserInput).length > 10
+
   async function getPrompts() {
     const { data: prompts , error } = await supabase
     .from('messages')
@@ -23,16 +25,28 @@ export default function ChatHeader({ prompts }) {
 
 
   return (
-    <div className='w-full flex gap-3 justify-start items-center dark:text-white'>
+    <div className='w-full flex gap-3 justify-start items-center p-2 dark:text-white border-b-[1px] border-gray-500'>
       <div className='flex flex-col text-sm items-start'>
         <div className="flex gap-1.5 items-center">
-          <p className="w-2 h-2 rounded-full bg-green-500 animate-pulse"/>
-          <p className="font-medium"> Me</p>
+          <button>
+            Logout
+          </button>
+          <button>
+            Delete
+          </button>
         </div>
         <div
           className='flex gap-1.5 items-center'
         >
-          you have {10 - msg.filter(m => m.isUserInput).length} prompts left
+          {!isPrompsLeft ? (
+            <span className='text-green-400'>
+              {msg.filter(m => m.isUserInput).length} prompts left
+            </span>
+          ) : (
+            <span className='text-red-500'>
+              You have no prompts left
+            </span>
+          )}
         </div>
       </div>
     </div>
