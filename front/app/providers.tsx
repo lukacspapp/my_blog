@@ -68,7 +68,7 @@ export function Providers({ children, email, prompts, session }) {
           </TooltipProvider>
             <MessagesProvider prompts={prompts} session={session} >
               {children}
-              {!user ?
+              {user ?
                 <ChatPopover prompts={prompts} user={user} />
                 :
                 <Login />

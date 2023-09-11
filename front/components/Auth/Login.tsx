@@ -2,8 +2,6 @@
 
 import { LogIn } from "lucide-react"
 import LoginDialog from "./LoginDialog"
-import { useUserStore } from "../../lib/store/userStore"
-import Image from "next/image"
 
 export default function Login() {
 
