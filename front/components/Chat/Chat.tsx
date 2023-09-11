@@ -21,7 +21,7 @@ export default function Chat({prompts}) {
         className='border-b border-divider border-none'
         value='item-1'
       >
-        {user ?
+        {!user ?
           <ChatAccordion prompts={prompts} />
           :
           <Login />
