@@ -24,7 +24,10 @@ export function MessagesProvider({ children, prompts }: { children: React.ReactN
 
   const user = useUserStore(state => state.user)
 
-  const userName = user && user.session ? user.user.user_metadata.full_name.split(' ')[0] : 'Guest'
+  console.log('user', user);
+
+
+  const userName = user && user.session ? user.session.user.user_metadata.full_name.split(' ')[0] : 'Guest'
 
   const greetingMessage = {
     id: uuid(),
