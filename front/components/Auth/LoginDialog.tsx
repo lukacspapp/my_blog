@@ -40,9 +40,9 @@ export default function LoginDialog({ children }) {
               className="animate-dialog-slide-in items-center sm:bg-white border-gray-500 dark:border-gray-600 border border-opacity-100 flex flex-col justify-between z-10 fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] sm:width-[315px] translate-x-[-50%] translate-y-[-50%] rounded-[8px] bg-[#ffffff] dark:bg-[#0a0a0a] p-[10px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
             >
               <Dialog.Title>
-                <h1 className="text-black text-lg font-semibold dark:text-white flex-row justify-between p-2">
+                <p className="text-black text-lg font-semibold dark:text-white flex-row justify-between p-2">
                   Sign In
-                </h1>
+                </p>
               </Dialog.Title>
               <Dialog.Description className="text-gray-400 p-2 dark:text-gray-400 w-auto mt-2 block sm:flex justify-between items-center">
                 <div className="flex flex-col sm:flex-wrap mb-4">
