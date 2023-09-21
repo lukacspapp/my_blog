@@ -31,9 +31,7 @@ export function Providers({ children, email, prompts, session }) {
 
   async function getSession() {
 
-    const { data, error } = await supabase.auth.getSession()
-
-    if (error) setError(error)
+    const { data } = await supabase.auth.getSession()
     if (data && data.session) setUser(data.session)
   }
 
@@ -53,9 +51,13 @@ export function Providers({ children, email, prompts, session }) {
   const footer = router === '/' ? null : <Footer />
 
   useEffect(() => {
-    if (!user && session) setUser(session)
-    if (!user && !session) getSession()
+    if (session) setUser(session)
+    if (!session) getSession()
   }, [])
+
+  console.log('====================================');
+  console.log(session);
+  console.log('====================================');
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -68,7 +70,7 @@ export function Providers({ children, email, prompts, session }) {
           </TooltipProvider>
             <MessagesProvider prompts={prompts} >
               {children}
-              {user && user.session ?
+              {user ?
                 <ChatPopover prompts={prompts} user={user} />
                 :
                 <Login />

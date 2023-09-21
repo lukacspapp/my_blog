@@ -36,7 +36,7 @@ export default async function RootLayout({
         <Providers
           email={email}
           prompts={prompts}
-          session={data}
+          session={data.session}
         >
           {children}
         </Providers>
