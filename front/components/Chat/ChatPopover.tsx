@@ -25,6 +25,7 @@ export default function ChatPopover({ prompts }) {
   }
 
   const isPrompsLeft = messages.filter(m => m.isUserInput).length > 10
+console.log(user);
 
   const avatarImage = user && user.user.user_metadata.avatar_url
 

@@ -8,12 +8,14 @@ export const MessagesContext = createContext<{
   messages: Message[]
   isMessageUpdating: boolean
   addMessage: (message: Message) => void
+  addMessages: (messages: Message[]) => void
   removeMessage: (id: string) => void
   updateMessage: (id: string, updateFn: (prevText: string) => string) => void
   setIsMessageUpdating: (isUpdating: boolean) => void
 }>({
   messages: [],
   isMessageUpdating: false,
+  addMessages: () => {},
   addMessage: () => {},
   removeMessage: () => {},
   updateMessage: () => {},
@@ -32,11 +34,12 @@ export function MessagesProvider({ children, prompts }: { children: React.ReactN
     isUserInput: false,
   }
 
-  const [messages, setMessages] = useState([
-    greetingMessage,
-    ...prompts,
-  ])
+  const [messages, setMessages] = useState([greetingMessage, ...prompts])
   const [isMessageUpdating, setIsMessageUpdating] = useState<boolean>(false)
+
+  const addMessages = (messages: Message[]) => {
+    setMessages((prev) => [...prev, ...messages])
+  }
 
   const addMessage = (message: Message) => {
     setMessages((prev) => [...prev, message])
@@ -65,6 +68,7 @@ export function MessagesProvider({ children, prompts }: { children: React.ReactN
       value={{
         messages,
         isMessageUpdating,
+        addMessages,
         addMessage,
         removeMessage,
         updateMessage,

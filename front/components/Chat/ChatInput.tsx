@@ -33,7 +33,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
       created_at: new Date(),
       isUserInput: isUserInput,
       text: text,
-      user_id: user?.session.user.id
+      user_id: user?.user.id
     })
 
   }

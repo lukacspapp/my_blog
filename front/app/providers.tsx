@@ -18,6 +18,7 @@ import { Provider } from '@supabase/supabase-js'
 import { useLoadingErrorStore } from '../lib/store/loadingErrorStore'
 import ChatPopover from '../components/Chat/ChatPopover'
 import Login from '../components/Auth/Login'
+import { useSession } from '../lib/hooks/useSession'
 
 
 export function Providers({ children, email, prompts, session }) {
@@ -28,11 +29,20 @@ export function Providers({ children, email, prompts, session }) {
   const setUser = useUserStore(state => state.setUser)
   const supabase = createClientComponentClient()
   const setError = useLoadingErrorStore(state => state.setError);
+  const [msg, setMsg] = useState(prompts)
+
+  const magyar = useSession()
 
   async function getSession() {
 
     const { data } = await supabase.auth.getSession()
-    if (data && data.session) setUser(data.session)
+
+    if (data && data.session) {
+      const messages = await getPrompts()
+      setMsg(messages)
+      setUser(data)
+    }
+
   }
 
   async function signout() {
@@ -42,9 +52,19 @@ export function Providers({ children, email, prompts, session }) {
 
     if (!error) {
       setUser(null)
+      setMsg([])
       routerPush.push('/')
     }
   }
+
+  async function getPrompts() {
+    const { data: prompts , error } = await supabase
+    .from('messages')
+    .select('*')
+
+    return prompts
+  }
+
 
   const queryClient = new QueryClient()
 
@@ -53,11 +73,9 @@ export function Providers({ children, email, prompts, session }) {
   useEffect(() => {
     if (session) setUser(session)
     if (!session) getSession()
-  }, [])
+  }, [session])
 
-  console.log('====================================');
-  console.log(session);
-  console.log('====================================');
+
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -71,7 +89,7 @@ export function Providers({ children, email, prompts, session }) {
             <MessagesProvider prompts={prompts} >
               {children}
               {user ?
-                <ChatPopover prompts={prompts} user={user} />
+                <ChatPopover prompts={prompts} />
                 :
                 <Login />
               }

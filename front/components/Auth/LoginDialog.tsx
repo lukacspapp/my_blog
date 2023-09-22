@@ -3,21 +3,19 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Provider } from '@supabase/supabase-js';
 import { useLoadingErrorStore } from '../../lib/store/loadingErrorStore';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function LoginDialog({ children }) {
 
   const router = useRouter()
   const supabase = createClientComponentClient()
-  const error = useLoadingErrorStore(state => state.error)
-  const setError = useLoadingErrorStore(state => state.setError)
+  const [error, setError] = useState(null)
 
   async function signInWithProvider(provider: Provider) {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider,
     })
 
-    if (error) setError(error)
     if (data) router.refresh()
   }
 

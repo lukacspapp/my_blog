@@ -14,15 +14,25 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  const { email } = await getBio()
+  let prompts: null | any = []
   const supabase = createServerComponentClient({cookies})
 
-  const { data: prompts , error } = await supabase
-  .from('messages')
-  .select('*')
-
+  const { email } = await getBio()
   const { data, error: err } = await supabase.auth.getSession()
 
+  if (data.session) {
+    const { data , error } = await supabase
+    .from('messages')
+    .select('*')
+
+    prompts = data
+  }
+
+  console.log('====================================');
+  console.log('prompts', prompts);
+  console.log(data.session);
+
+  console.log('====================================');
 
   return (
     <html suppressHydrationWarning lang="en" className='nightwind h-full'>
