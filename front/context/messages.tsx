@@ -1,5 +1,5 @@
 import uuid from 'react-uuid';
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { Message } from '../lib/validator/message'
 import { timeOfDay } from '../lib/date'
 import { useUserStore } from '../lib/store/userStore';
@@ -26,7 +26,7 @@ export function MessagesProvider({ children, prompts }: { children: React.ReactN
 
   const user = useUserStore(state => state.user)
 
-  const userName = user && user.session ? user.session.user.user_metadata.full_name.split(' ')[0] : 'Guest'
+  const userName = user ? user.user.user_metadata.full_name.split(' ')[0] : 'Guest'
 
   const greetingMessage = {
     id: uuid(),
@@ -62,6 +62,12 @@ export function MessagesProvider({ children, prompts }: { children: React.ReactN
       })
     )
   }
+
+  useEffect(() => {
+    if (prompts) {
+      setMessages([greetingMessage, ...prompts])
+    }
+  }, [prompts])
 
   return (
     <MessagesContext.Provider

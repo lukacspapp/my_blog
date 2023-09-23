@@ -10,11 +10,9 @@ import Footer from '../components/Footer'
 import Gradient from '../components/Gradient'
 import Navigation from '../components/Navigation/Navigation'
 import { MessagesProvider } from '../context/messages'
-import Chat from '../components/Chat/Chat'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import { useUserStore } from '../lib/store/userStore'
-import { Provider } from '@supabase/supabase-js'
 import { useLoadingErrorStore } from '../lib/store/loadingErrorStore'
 import ChatPopover from '../components/Chat/ChatPopover'
 import Login from '../components/Auth/Login'
@@ -34,15 +32,9 @@ export function Providers({ children, email, prompts, session }) {
   const magyar = useSession()
 
   async function getSession() {
-
     const { data } = await supabase.auth.getSession()
 
-    if (data && data.session) {
-      const messages = await getPrompts()
-      setMsg(messages)
-      setUser(data)
-    }
-
+    if (data && data.session) setUser(data.session)
   }
 
   async function signout() {
@@ -62,7 +54,7 @@ export function Providers({ children, email, prompts, session }) {
     .from('messages')
     .select('*')
 
-    return prompts
+    if (prompts) setMsg(prompts)
   }
 
 
@@ -71,11 +63,15 @@ export function Providers({ children, email, prompts, session }) {
   const footer = router === '/' ? null : <Footer />
 
   useEffect(() => {
-    if (session) setUser(session)
-    if (!session) getSession()
+    if (session) {
+      setUser(session)
+      setMsg(prompts)
+    }
+    if (!session) {
+      getSession()
+      getPrompts()
+    }
   }, [session])
-
-
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -86,10 +82,10 @@ export function Providers({ children, email, prompts, session }) {
             <button onClick={signout}>Sign out</button>
             <Navigation email={email}  />
           </TooltipProvider>
-            <MessagesProvider prompts={prompts} >
+            <MessagesProvider prompts={msg} >
               {children}
               {user ?
-                <ChatPopover prompts={prompts} />
+                <ChatPopover prompts={msg} getPrompts={getPrompts} />
                 :
                 <Login />
               }

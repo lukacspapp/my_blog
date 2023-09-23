@@ -10,22 +10,11 @@ import Image from "next/image"
 import { cn } from "../../lib/utils"
 import { useUserStore } from "../../lib/store/userStore"
 
-export default function ChatPopover({ prompts }) {
+export default function ChatPopover({ prompts, getPrompts }) {
 
-  const [messages, setMessages] = useState(prompts)
   const user = useUserStore(state => state.user)
 
-  const supabase = createClientComponentClient()
-
-  async function getPrompts() {
-    const { data: prompts , error } = await supabase
-    .from('chat_prompts')
-    .select('*')
-    setMessages(prompts)
-  }
-
-  const isPrompsLeft = messages.filter(m => m.isUserInput).length > 10
-console.log(user);
+  const isPrompsLeft = prompts.filter(m => m.isUserInput).length > 10
 
   const avatarImage = user && user.user.user_metadata.avatar_url
 
