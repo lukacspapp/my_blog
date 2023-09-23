@@ -26,6 +26,10 @@ export function MessagesProvider({ children, prompts }: { children: React.ReactN
 
   const user = useUserStore(state => state.user)
 
+  console.log('====================================');
+  console.log(user);
+  console.log('====================================');
+
   const userName = user ? user.user.user_metadata.full_name : 'Guest'
 
   const greetingMessage = {
