@@ -26,15 +26,11 @@ export function MessagesProvider({ children, prompts }: { children: React.ReactN
 
   const user = useUserStore(state => state.user)
 
-  console.log('====================================');
-  console.log(user);
-  console.log('====================================');
-
-  const userName = user ? user.user.user_metadata.full_name : 'Guest'
+  const userName = user ? user.user.user_metadata.full_name : null
 
   const greetingMessage = {
     id: uuid(),
-    text: `Good ${timeOfDay()} ${userName}, Ask me anything!`,
+    text: `Good ${timeOfDay()} ${userName ? userName : ''}, Ask me anything!`,
     isUserInput: false,
   }
 
