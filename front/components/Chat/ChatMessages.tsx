@@ -1,9 +1,8 @@
 'use client'
 
-import { useContext } from "react"
-import { MessagesContext } from "../../context/messages"
 import { cn } from "../../lib/utils"
 import MarkdownLite from './MarkDownLite'
+import { useMessagesStore } from "../../lib/store/messagesStore"
 
 interface ChatMessagesProps extends React.HTMLAttributes<HTMLDivElement> {
   prompts: string[]
@@ -11,7 +10,8 @@ interface ChatMessagesProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function ChatMessages({className, prompts, ...props}: ChatMessagesProps) {
 
-  const { messages } = useContext(MessagesContext)
+
+  const messages = useMessagesStore(state => state.messages)
   const inverseMessages = [...messages].reverse()
 
   return (

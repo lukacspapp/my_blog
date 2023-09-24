@@ -69,6 +69,12 @@ export function MessagesProvider({ children, prompts }: { children: React.ReactN
     }
   }, [prompts])
 
+  useEffect(() => {
+    if (user) {
+      setMessages([greetingMessage, ...prompts])
+    }
+  }, [user])
+
   return (
     <MessagesContext.Provider
       value={{

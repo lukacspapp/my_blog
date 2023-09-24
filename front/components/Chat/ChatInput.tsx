@@ -3,14 +3,14 @@
 import { useMutation } from '@tanstack/react-query';
 import { CornerDownLeft, Loader2 } from 'lucide-react';
 import uuid from 'react-uuid';
-import { useContext, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import TextareaAutosize from 'react-textarea-autosize';
-import { MessagesContext } from '../../context/messages';
 import { cn } from "../../lib/utils";
 import { Message } from '../../lib/validator/message';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useUserStore } from '../../lib/store/userStore';
+import { useMessagesStore } from '../../lib/store/messagesStore';
 
 interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
   getPrompts: () => void,
@@ -20,6 +20,11 @@ interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function ChatInput({ className, getPrompts, prompts, ...props }: ChatInputProps) {
 
   const user = useUserStore(state => state.user)
+  const messages = useMessagesStore(state => state.messages)
+  const addMessage = useMessagesStore(state => state.addMessage)
+  const removeMessage = useMessagesStore(state => state.removeMessage)
+  const updateMessage = useMessagesStore(state => state.updateMessage)
+  const setIsMessageUpdating = useMessagesStore(state => state.setIsMessageUpdating)
   const supabase = createClientComponentClient()
 
   async function addChatPromptToDb(message: Message) {
@@ -40,13 +45,6 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [input, setInput] = useState<string>('')
-  const {
-    messages,
-    addMessage,
-    removeMessage,
-    updateMessage,
-    setIsMessageUpdating
-  } = useContext(MessagesContext)
 
   const { mutate, isLoading } = useMutation({
     mutationFn: async (message: Message) => {
