@@ -81,7 +81,6 @@ export function Providers({ children, email, prompts, session }) {
         <Inspect>
           <Gradient />
           <TooltipProvider>
-            <button onClick={signout}>Sign out</button>
             <Navigation email={email} />
           </TooltipProvider>
           {children}

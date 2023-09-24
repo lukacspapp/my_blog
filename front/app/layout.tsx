@@ -28,12 +28,6 @@ export default async function RootLayout({
     prompts = data
   }
 
-  console.log('====================================');
-  console.log('prompts', prompts);
-  console.log(data.session);
-
-  console.log('====================================');
-
   return (
     <html suppressHydrationWarning lang="en" className='nightwind h-full'>
       <head>
