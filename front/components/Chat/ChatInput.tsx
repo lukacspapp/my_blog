@@ -20,7 +20,6 @@ interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function ChatInput({ className, getPrompts, prompts, ...props }: ChatInputProps) {
 
   const user = useUserStore(state => state.user)
-  const messages = useMessagesStore(state => state.messages)
   const addMessage = useMessagesStore(state => state.addMessage)
   const removeMessage = useMessagesStore(state => state.removeMessage)
   const updateMessage = useMessagesStore(state => state.updateMessage)
@@ -62,6 +61,8 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
     },
     onMutate: (message: Message) => {
       addMessage(message)
+      console.log(message);
+
       addChatPromptToDb(message)
     },
     onSuccess: async (stream) => {
@@ -71,7 +72,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
       const id = uuid()
 
       const responseMessage: Message = {
-        id,
+        id: id,
         isUserInput: false,
         text: '',
       }
@@ -90,6 +91,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
         const { value, done: isDone } = await reader.read()
         done = isDone
         const chunkValue = decoder.decode(value)
+
         updateMessage(id, (prev) => {
           const updatedText = prev + chunkValue;
           finishedResponse = updatedText;
@@ -118,6 +120,8 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
     }
   })
 
+
+
   return (
     <div {...props} className={cn('border-t border-gray-500 p-[2px]', className)}>
       <div className='relative m-1 flex-1 overflow-hidden rounded-lg border-none outline-none'>
@@ -134,7 +138,6 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
               }
 
               mutate(message)
-              getPrompts()
             }
           }}
           rows={2}

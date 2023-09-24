@@ -12,6 +12,9 @@ import { useUserStore } from "../../lib/store/userStore"
 
 export default function ChatPopover({ prompts, getPrompts }) {
 
+  console.log(prompts);
+
+
   const user = useUserStore(state => state.user)
 
   const isPrompsLeft = prompts.filter(m => m.isUserInput).length > 10

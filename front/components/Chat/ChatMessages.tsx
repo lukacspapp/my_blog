@@ -3,13 +3,13 @@
 import { cn } from "../../lib/utils"
 import MarkdownLite from './MarkDownLite'
 import { useMessagesStore } from "../../lib/store/messagesStore"
+import { useEffect } from "react"
 
 interface ChatMessagesProps extends React.HTMLAttributes<HTMLDivElement> {
-  prompts: string[]
+  prompts: any
 }
 
 export default function ChatMessages({className, prompts, ...props}: ChatMessagesProps) {
-
 
   const messages = useMessagesStore(state => state.messages)
   const inverseMessages = [...messages].reverse()

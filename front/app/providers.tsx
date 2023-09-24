@@ -17,6 +17,7 @@ import { useLoadingErrorStore } from '../lib/store/loadingErrorStore'
 import ChatPopover from '../components/Chat/ChatPopover'
 import Login from '../components/Auth/Login'
 import { useSession } from '../lib/hooks/useSession'
+import { useMessagesStore } from '../lib/store/messagesStore'
 
 
 export function Providers({ children, email, prompts, session }) {
@@ -26,8 +27,9 @@ export function Providers({ children, email, prompts, session }) {
   const user = useUserStore(state => state.user)
   const setUser = useUserStore(state => state.setUser)
   const supabase = createClientComponentClient()
-  const setError = useLoadingErrorStore(state => state.setError);
-  const [msg, setMsg] = useState(prompts)
+  const [err, setErr] = useState<any>(null)
+  const messages = useMessagesStore(state => state.messages)
+  const setMessages = useMessagesStore(state => state.setMessages)
 
   const magyar = useSession()
 
@@ -40,21 +42,21 @@ export function Providers({ children, email, prompts, session }) {
   async function signout() {
     const { error } = await supabase.auth.signOut()
 
-    if (error) setError(error)
+    if (error) setErr(error)
 
     if (!error) {
       setUser(null)
-      setMsg([])
+      setMessages([])
       routerPush.push('/')
     }
   }
 
   async function getPrompts() {
-    const { data: prompts , error } = await supabase
-    .from('messages')
-    .select('*')
+    const { data: prompts, error } = await supabase
+      .from('messages')
+      .select('*')
 
-    if (prompts) setMsg(prompts)
+    if (prompts) setMessages(prompts)
   }
 
 
@@ -65,7 +67,7 @@ export function Providers({ children, email, prompts, session }) {
   useEffect(() => {
     if (session) {
       setUser(session)
-      setMsg(prompts)
+      setMessages(prompts)
     }
     if (!session) {
       getSession()
@@ -80,16 +82,14 @@ export function Providers({ children, email, prompts, session }) {
           <Gradient />
           <TooltipProvider>
             <button onClick={signout}>Sign out</button>
-            <Navigation email={email}  />
+            <Navigation email={email} />
           </TooltipProvider>
-            <MessagesProvider prompts={msg} >
-              {children}
-              {user ?
-                <ChatPopover prompts={msg} getPrompts={getPrompts} />
-                :
-                <Login />
-              }
-            </MessagesProvider>
+          {children}
+          {user ?
+            <ChatPopover prompts={messages} getPrompts={getPrompts} />
+            :
+            <Login />
+          }
           <TooltipProvider>
             {footer}
           </TooltipProvider>

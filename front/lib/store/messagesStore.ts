@@ -11,6 +11,7 @@ type State = {
   addMessages: (messages: Message[]) => void;
   removeMessage: (id: string) => void;
   updateMessage: (id: string, updateFn: (prevText: string) => string) => void;
+  setMessages: (messages: Message[]) => void;
   setIsMessageUpdating: (isUpdating: boolean) => void;
 };
 
@@ -23,5 +24,6 @@ export const useMessagesStore = create<State>((set) => ({
   updateMessage: (id: string, updateFn: (prevText: string) => string) => set((state) => ({
     messages: state.messages.map((message) => (message.id === id ? { ...message, text: updateFn(message.text) } : message)),
   })),
+  setMessages: (messages: Message[]) => set(() => ({ messages })),
   setIsMessageUpdating: (isUpdating: boolean) => set(() => ({ isMessageUpdating: isUpdating })),
 }));
