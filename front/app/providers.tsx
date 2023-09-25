@@ -58,7 +58,9 @@ export function Providers({ children, email, prompts, session }) {
       getPrompts()
     }
   }, [session])
-
+console.log('====================================');
+console.log(user);
+console.log('====================================');
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" storageKey='app-theme' defaultTheme='system'>
