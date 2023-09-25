@@ -155,7 +155,19 @@ console.log(res.body);
             {isLoading ? (
               <Loader2 className='w-3 h-3 animate-spin' />
             ) : (
-              <CornerDownLeft className='w-3 h-3' />
+              <CornerDownLeft
+                className='w-3 h-3'
+                onClick={() => {
+
+                  const message: Message = {
+                    id: uuid(),
+                    isUserInput: true,
+                    text: input,
+                  }
+
+                  mutate(message)
+                }}
+              />
             )}
           </kbd>
         </div>
