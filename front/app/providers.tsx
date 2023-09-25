@@ -22,33 +22,17 @@ import { useMessagesStore } from '../lib/store/messagesStore'
 
 export function Providers({ children, email, prompts, session }) {
 
-  const routerPush = useRouter()
   const router = usePathname()
   const user = useUserStore(state => state.user)
   const setUser = useUserStore(state => state.setUser)
   const supabase = createClientComponentClient()
-  const [err, setErr] = useState<any>(null)
   const messages = useMessagesStore(state => state.messages)
   const setMessages = useMessagesStore(state => state.setMessages)
-
-  const magyar = useSession()
 
   async function getSession() {
     const { data } = await supabase.auth.getSession()
 
     if (data && data.session) setUser(data.session)
-  }
-
-  async function signout() {
-    const { error } = await supabase.auth.signOut()
-
-    if (error) setErr(error)
-
-    if (!error) {
-      setUser(null)
-      setMessages([])
-      routerPush.push('/')
-    }
   }
 
   async function getPrompts() {
