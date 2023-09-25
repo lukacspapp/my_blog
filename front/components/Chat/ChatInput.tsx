@@ -56,6 +56,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
       })
 
       if (!res.ok) throw new Error('Something went wrong')
+console.log(res.body);
 
       return res.body
     },
