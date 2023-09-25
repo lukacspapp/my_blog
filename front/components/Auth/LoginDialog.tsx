@@ -49,7 +49,9 @@ export default function LoginDialog({ children }) {
                     role="button"
                     className="py-2.5 px-5 mb-2 transition-colors justify-center  duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border rounded-md border-solid border-gray-500 dark:border-gray-600 flex items-center"
                   >
-                    <Facebook />
+                    <Facebook
+                      className='w-6 h-6 dark:text-white text-black'
+                    />
                   </button>
                   <button
                     onClick={() => signInWithProvider('github')}
@@ -57,7 +59,9 @@ export default function LoginDialog({ children }) {
                     role="button"
                     className="py-2.5 px-3 transition-colors justify-center duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border rounded-md border-solid border-gray-500 dark:border-gray-600 flex items-center"
                   >
-                    <Github />
+                    <Github
+                      className='w-6 h-6 dark:text-white text-black'
+                    />
                   </button>
                 </div>
               </Dialog.Description>
