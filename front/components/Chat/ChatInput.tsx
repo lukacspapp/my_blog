@@ -26,6 +26,20 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
   const setIsMessageUpdating = useMessagesStore(state => state.setIsMessageUpdating)
   const supabase = createClientComponentClient()
 
+  function sendChatMessage() {
+    if (input.trim() === '') {
+      // Alert the user if the input is empty
+      alert('Please write something before sending.');
+    } else {
+      const message: Message = {
+        id: uuid(),
+        isUserInput: true,
+        text: input,
+      };
+      mutate(message);
+    }
+  };
+
   async function addChatPromptToDb(message: Message) {
 
     const { id, isUserInput, text} = message;
@@ -56,14 +70,11 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
       })
 
       if (!res.ok) throw new Error('Something went wrong')
-console.log(res.body);
 
       return res.body
     },
     onMutate: (message: Message) => {
       addMessage(message)
-      console.log(message);
-
       addChatPromptToDb(message)
     },
     onSuccess: async (stream) => {
@@ -131,14 +142,7 @@ console.log(res.body);
           onKeyDown={(e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
               e.preventDefault()
-
-              const message: Message = {
-                id: uuid(),
-                isUserInput: true,
-                text: input,
-              }
-
-              mutate(message)
+              sendChatMessage()
             }
           }}
           rows={2}
@@ -156,17 +160,10 @@ console.log(res.body);
               <Loader2 className='w-3 h-3 animate-spin' />
             ) : (
               <CornerDownLeft
-                className='w-3 h-3'
-                onClick={() => {
+                // disable the button if the input is empty
 
-                  const message: Message = {
-                    id: uuid(),
-                    isUserInput: true,
-                    text: input,
-                  }
-
-                  mutate(message)
-                }}
+                className={cn(`w-3 h-3 ${input.trim() === '' ? 'text-gray-200 cursor-not-allowed dark:text-gray-300' : 'cursor-pointer text-gray-500 dark:text-gray-800 hover:text-gray-800 dark:hover:text-gray-600'}`)}
+                onClick={sendChatMessage}
               />
             )}
           </kbd>
