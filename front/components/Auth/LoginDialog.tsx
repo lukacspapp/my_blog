@@ -16,7 +16,9 @@ export default function LoginDialog({ children }) {
       provider: provider,
     })
 
-    if (data) router.refresh()
+    console.log('====================================');
+    console.log(data, error);
+    console.log('====================================');
   }
 
   useEffect(() => {
