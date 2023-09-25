@@ -1,5 +1,3 @@
-export const sanyi = ''
-
 import {
   createParser,
   ParsedEvent,
