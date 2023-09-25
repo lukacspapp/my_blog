@@ -1,6 +1,8 @@
 import { CHAT_BOT_PROMPT } from "../../../lib/constant";
 import { ChatGPTMessage, OpenAIStream } from "../../../lib/openai-stream";
 import { MessagesSchema } from "../../../lib/validator/message";
+
+export const runtime = 'edge';
 export async function POST(req: Request) {
   const { message } = await req.json();
 
