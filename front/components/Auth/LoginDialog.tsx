@@ -44,16 +44,6 @@ export default function LoginDialog({ children }) {
               <Dialog.Description className="text-gray-400 p-2 dark:text-gray-400 w-auto mt-2 block sm:flex justify-between items-center">
                 <div className="flex flex-col sm:flex-wrap mb-4">
                   <button
-                    onClick={() => signInWithProvider('facebook')}
-                    aria-label="Continue with Facebook"
-                    role="button"
-                    className="py-2.5 px-5 mb-2 transition-colors justify-center  duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border rounded-md border-solid border-gray-500 dark:border-gray-600 flex items-center"
-                  >
-                    <Facebook
-                      className='w-6 h-6 dark:text-white text-black'
-                    />
-                  </button>
-                  <button
                     onClick={() => signInWithProvider('github')}
                     aria-label="Continue with GitHub"
                     role="button"
