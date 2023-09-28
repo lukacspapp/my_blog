@@ -4,10 +4,6 @@ const nextConfig = {
 
   productionBrowserSourceMaps: true,
 
-  experimental: {
-    appDir: true
-  },
-
   pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
 
   output: 'standalone',

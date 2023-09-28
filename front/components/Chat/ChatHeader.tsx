@@ -37,8 +37,8 @@ export default function ChatHeader({ prompts }) {
   }
 
   useEffect(() => {
-    getPrompts()
-  }, [prompts])
+    setMsg(prompts)
+  },[prompts])
 
   return (
     <div className='w-full flex gap-3 justify-between items-center p-2 dark:text-white border-b-[1px] border-gray-500'>
