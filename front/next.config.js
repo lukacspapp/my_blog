@@ -4,10 +4,6 @@ const nextConfig = {
 
   productionBrowserSourceMaps: true,
 
-  experimental: {
-    appDir: true
-  },
-
   pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
 
   output: 'standalone',
@@ -15,6 +11,8 @@ const nextConfig = {
   images: {
     domains: [
       "media.graphassets.com",
+      "avatars.githubusercontent.com",
+      "platform-lookaside.fbsbx.com"
     ]
   }
 

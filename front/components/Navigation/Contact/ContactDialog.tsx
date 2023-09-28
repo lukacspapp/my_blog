@@ -1,6 +1,6 @@
 import { DocumentDuplicateIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import * as Dialog from '@radix-ui/react-dialog';
-import { nanoid } from "nanoid";
+import uuid from 'react-uuid';
 import { useState } from "react";
 import Toast from "./Toast";
 
@@ -18,7 +18,7 @@ export function ContactDialog({ children, email } : ContactDialogProps): JSX.Ele
     navigator.clipboard.writeText(email);
 
     // Add a new toast with a unique id
-    setToasts((oldToasts) => [...oldToasts, { id: nanoid(), message: "Copied to clipboard!" }]);
+    setToasts((oldToasts) => [...oldToasts, { id: uuid(), message: "Copied to clipboard!" }]);
   };
 
   const removeToast = (id) => {
@@ -60,7 +60,7 @@ export function ContactDialog({ children, email } : ContactDialogProps): JSX.Ele
                   className="flex flex-row items-start space-x-2"
                 >
                   <div
-                    className="border-2 mb-2 rounded-md border-gray-500 dark:border-gray-600"
+                    className="border-[1px] mb-2 rounded-md border-gray-500 dark:border-gray-600"
                   >
                     <a
                       href="mailto:papplukacs@hotmail.com"
@@ -73,7 +73,7 @@ export function ContactDialog({ children, email } : ContactDialogProps): JSX.Ele
                     </a>
                   </div>
                   <div
-                    className="border-2 mb-2 rounded-md border-gray-500 dark:border-gray-600"
+                    className="border-[1px] mb-2 rounded-md border-gray-500 dark:border-gray-600"
                   >
                     <button
                       onClick={handleCopy}

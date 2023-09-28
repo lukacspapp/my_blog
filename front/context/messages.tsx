@@ -1,34 +1,45 @@
-import { nanoid } from 'nanoid'
-import { createContext, useState } from 'react'
+import uuid from 'react-uuid';
+import { createContext, useEffect, useState } from 'react'
 import { Message } from '../lib/validator/message'
+import { timeOfDay } from '../lib/date'
+import { useUserStore } from '../lib/store/userStore';
 
-
-const defaultValue = [
-  {
-    id: nanoid(),
-    text: 'Hello, Ask me something?',
-    isUserInput: false,
-  },
-]
 export const MessagesContext = createContext<{
   messages: Message[]
   isMessageUpdating: boolean
   addMessage: (message: Message) => void
+  addMessages: (messages: Message[]) => void
   removeMessage: (id: string) => void
   updateMessage: (id: string, updateFn: (prevText: string) => string) => void
   setIsMessageUpdating: (isUpdating: boolean) => void
 }>({
   messages: [],
   isMessageUpdating: false,
+  addMessages: () => {},
   addMessage: () => {},
   removeMessage: () => {},
   updateMessage: () => {},
   setIsMessageUpdating: () => {},
 })
 
-export function MessagesProvider({ children }: { children: React.ReactNode }) {
-  const [messages, setMessages] = useState(defaultValue)
+export function MessagesProvider({ children, prompts }: { children: React.ReactNode, prompts: any }) {
+
+  const user = useUserStore(state => state.user)
+
+  const userName = user ? user.user.user_metadata.full_name : null
+
+  const greetingMessage = {
+    id: uuid(),
+    text: `Good ${timeOfDay()} ${userName ? userName : ''}, Ask me anything!`,
+    isUserInput: false,
+  }
+
+  const [messages, setMessages] = useState([greetingMessage, ...prompts])
   const [isMessageUpdating, setIsMessageUpdating] = useState<boolean>(false)
+
+  const addMessages = (messages: Message[]) => {
+    setMessages((prev) => [...prev, ...messages])
+  }
 
   const addMessage = (message: Message) => {
     setMessages((prev) => [...prev, message])
@@ -52,11 +63,24 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
     )
   }
 
+  useEffect(() => {
+    if (prompts) {
+      setMessages([greetingMessage, ...prompts])
+    }
+  }, [prompts])
+
+  useEffect(() => {
+    if (user) {
+      setMessages([greetingMessage, ...prompts])
+    }
+  }, [user])
+
   return (
     <MessagesContext.Provider
       value={{
         messages,
         isMessageUpdating,
+        addMessages,
         addMessage,
         removeMessage,
         updateMessage,

@@ -5,11 +5,15 @@ import clsx from "clsx"
 import { useEffect, useState } from "react"
 import AnimatedDescription from "./Description/AnimatedDescription"
 import TypeWriter from "./TypeWriter"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { useUserStore } from "../lib/store/userStore"
 
 const darkGradient = "bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-transparent bg-clip-text";
 const lightGradient = "animate-text-shimmer bg-[linear-gradient(110deg,#f97316,45%,#f5f5f5,55%,#f97316)] bg-[length:250%_100%] dark:bg-[linear-gradient(110deg,#d1fb9d,45%,#6b46c1,55%,#d1fb9d)] inline-block cursor-ne-resize bg-clip-text text-transparent transition-transform ease-in-out hover:scale-105";
 
 export default function About({bio}: any): JSX.Element {
+
+  const user = useUserStore(state => state.user)
 
   const {excerpt, name, skills, company} = bio
 
@@ -25,6 +29,8 @@ export default function About({bio}: any): JSX.Element {
 
     return () => clearTimeout(timeout)
   }, [])
+
+
 
 
   return (
