@@ -67,7 +67,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: [message] })
+        body: JSON.stringify({ message: [message], user: user.user })
       })
 
       if (!res.ok) throw new Error('Something went wrong')
