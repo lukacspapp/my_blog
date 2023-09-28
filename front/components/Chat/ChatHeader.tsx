@@ -14,7 +14,7 @@ export default function ChatHeader({ prompts }) {
   const setMessages = useMessagesStore(state => state.setMessages)
   const [msg, setMsg] = useState(prompts)
 
-  const isPrompsLeft = msg.filter(m => m.isUserInput).length > 10
+  const isPrompsLeft = msg.filter(m => m.isUserInput).length > 9
 
   async function signout() {
     const { error } = await supabase.auth.signOut()
