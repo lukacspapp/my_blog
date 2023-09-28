@@ -1,14 +1,11 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Provider } from '@supabase/supabase-js';
-import { useLoadingErrorStore } from '../../lib/store/loadingErrorStore';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Facebook, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 export default function LoginDialog({ children }) {
 
-  const router = useRouter()
   const supabase = createClientComponentClient()
   const [error, setError] = useState(null)
 
