@@ -1,12 +1,10 @@
 'use client'
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
-import { useLoadingErrorStore } from "../../lib/store/loadingErrorStore"
 import { useEffect, useState } from "react"
 import { useUserStore } from "../../lib/store/userStore"
 import { useMessagesStore } from "../../lib/store/messagesStore"
 import { useRouter } from "next/navigation"
-import { LogOut } from "lucide-react"
 
 export default function ChatHeader({ prompts }) {
 
@@ -26,14 +24,6 @@ export default function ChatHeader({ prompts }) {
       setMessages([])
       router.push('/')
     }
-  }
-
-  async function getPrompts() {
-    const { data: prompts , error } = await supabase
-    .from('messages')
-    .select('*')
-
-    if (prompts) setMsg(prompts)
   }
 
   useEffect(() => {
