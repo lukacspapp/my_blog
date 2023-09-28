@@ -3,9 +3,11 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Provider } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
 import { Github } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginDialog({ children }) {
 
+  const router = useRouter()
   const supabase = createClientComponentClient()
   const [error, setError] = useState(null)
 
@@ -13,6 +15,7 @@ export default function LoginDialog({ children }) {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider,
     })
+    router.refresh()
   }
 
   useEffect(() => {
