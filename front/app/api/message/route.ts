@@ -1,8 +1,7 @@
-import { CHAT_BOT_PROMPT } from "../../../lib/constant";
 import { ChatGPTMessage, OpenAIStream } from "../../../lib/openai-stream";
 import { MessagesSchema } from "../../../lib/validator/message";
 export async function POST(req: Request) {
-  const { message } = await req.json();
+  const { message, user } = await req.json();
 
   const parsedMessages = MessagesSchema.parse(message);
 
@@ -10,6 +9,11 @@ export async function POST(req: Request) {
     role: message.isUserInput ? 'user' : 'system',
     content: message.text,
   }))
+
+  const CHAT_BOT_PROMPT = `You are Chris, a chatbot named Chris that reluctantly answers questions with sarcastic responses.
+  the user you are talking to a human who's details are as follows:
+  ${JSON.stringify(user)}
+  `
 
   outboundMessages.unshift({
     role: 'system',
