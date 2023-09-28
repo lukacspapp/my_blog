@@ -15,7 +15,6 @@ export default function LoginDialog({ children }) {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider,
     })
-    router.refresh()
   }
 
   useEffect(() => {
