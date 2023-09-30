@@ -12,7 +12,8 @@ const nextConfig = {
     domains: [
       "media.graphassets.com",
       "avatars.githubusercontent.com",
-      "platform-lookaside.fbsbx.com"
+      "platform-lookaside.fbsbx.com",
+      "lh3.googleusercontent.com"
     ]
   }
 
