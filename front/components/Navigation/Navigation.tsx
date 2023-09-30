@@ -131,7 +131,7 @@ export default function Navigation({ email }: NavigationProps) {
             className={clsx(linkStyle, "cursor-ne-resize")}
             target="_blank"
             rel="noopener noreferrer"
-            href="https://www.youtube.com/@lukacspapp59"
+            href="https://www.youtube.com/channel/UC1H__pt-4BY3_V4dpHCescA"
           >
             <span className="sr-only">Youtube account</span>
             <svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
