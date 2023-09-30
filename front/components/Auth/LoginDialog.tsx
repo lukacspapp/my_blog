@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Provider } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
-import { Github } from 'lucide-react';
+import { Github, Chrome } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function LoginDialog({ children }) {
@@ -40,15 +40,31 @@ export default function LoginDialog({ children }) {
                   Sign In
                 </p>
               </Dialog.Title>
-              <Dialog.Description className="text-gray-400 p-2 dark:text-gray-400 w-auto mt-2 block sm:flex justify-between items-center">
-                <div className="flex flex-col sm:flex-wrap mb-4">
+              <Dialog.Description className="text-gray-400 p-2 dark:text-gray-400 w-max mt-2 block sm:flex justify-between items-center">
+                <div className='flex space-x-10 mb-2'>
                   <button
                     onClick={() => signInWithProvider('github')}
                     aria-label="Continue with GitHub"
                     role="button"
                     className="py-2.5 px-3 transition-colors justify-center duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border rounded-md border-solid border-gray-500 dark:border-gray-600 flex items-center"
                   >
+                    <p className='mr-2 dark:text-white text-black text-md'>
+                      GitHub
+                    </p>
                     <Github
+                      className='w-6 h-6 dark:text-white text-black'
+                    />
+                  </button>
+                <button
+                    onClick={() => signInWithProvider('google')}
+                    aria-label="Continue with GitHub"
+                    role="button"
+                    className="py-2.5 px-3 transition-colors justify-center duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600 border rounded-md border-solid border-gray-500 dark:border-gray-600 flex items-center"
+                  >
+                    <p className='mr-2 dark:text-white text-black text-md'>
+                      Google
+                    </p>
+                    <Chrome
                       className='w-6 h-6 dark:text-white text-black'
                     />
                   </button>
