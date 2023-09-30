@@ -2,7 +2,7 @@
 
 import { HomeIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
-import { Clipboard, GitCommitIcon, Github, Linkedin, MailIcon } from "lucide-react"
+import { Clipboard, GitCommitIcon, Github, Linkedin, MailIcon, Youtube } from "lucide-react"
 import { usePlausible } from 'next-plausible'
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -109,6 +109,16 @@ export default function Navigation({ email }: NavigationProps) {
           >
             <span className="sr-only">GitHub account</span>
             <Github className={iconStyle} />
+          </a>
+          <a
+            onClick={() => plausible('Youtube Link Clicked')}
+            className={clsx(linkStyle, "cursor-ne-resize")}
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.youtube.com/@lukacspapp59"
+          >
+            <span className="sr-only">Youtube account</span>
+            <Youtube className={iconStyle} />
           </a>
 
           <div className="divider-y h-5" />
