@@ -1,10 +1,8 @@
 'use client'
 
-import { useState } from "react"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/Popover"
 import ChatInput from "./ChatInput"
 import ChatMessages from "./ChatMessages"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import ChatHeader from "./ChatHeader"
 import Image from "next/image"
 import { cn } from "../../lib/utils"
@@ -13,7 +11,6 @@ import { useUserStore } from "../../lib/store/userStore"
 export default function ChatPopover({ prompts, getPrompts }) {
 
   const user = useUserStore(state => state.user)
-
   const isPrompsLeft = prompts.filter(m => m.isUserInput).length > 9
 
   const avatarImage = user && user.user.user_metadata.avatar_url
