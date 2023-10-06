@@ -45,6 +45,8 @@ export function Providers({ children, email, prompts, session }) {
     const { data: prompts, error } = await supabase
       .from('messages')
       .select('*')
+
+    if (prompts && user) setMessages([welcomeMessage, ...prompts])
   }
 
   const queryClient = new QueryClient()
