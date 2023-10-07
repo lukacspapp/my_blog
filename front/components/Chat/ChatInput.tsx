@@ -152,7 +152,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
           autoFocus
           disabled={isLoading}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={msg ? msg : 'Type a message...'}
+          placeholder={msg ? msg : 'Ask Me something...'}
           className='peer disabled:opacity-50 pr-14 resize-none block w-full border-0 bg-zinc-100 py-1.5 text-gray-900 focus:ring-0 text-sm sm:leading-6'
         />
         <div className='absolute inset-y-0 right-0 flex py-1.5 pr-1.5'>

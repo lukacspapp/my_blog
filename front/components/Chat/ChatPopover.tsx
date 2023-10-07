@@ -12,7 +12,6 @@ export default function ChatPopover({ prompts, getPrompts }) {
 
   const user = useUserStore(state => state.user)
   const isPrompsLeft = prompts.filter(m => m.isUserInput).length > 9
-
   const avatarImage = user && user.user.user_metadata.avatar_url
 
   const avatar =
