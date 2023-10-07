@@ -29,16 +29,23 @@ export function Providers({ children, email, prompts, session }) {
   const messages = useMessagesStore(state => state.messages)
   const setMessages = useMessagesStore(state => state.setMessages)
 
-  const welcomeMessage = user ? {
-    id: uuid(),
-    isUserInput: false,
-    text: getUserName(user.user.user_metadata) ? `Good ${timeOfDay()} ${getUserName(user.user.user_metadata)}, Ask Me Something!` : `Good ${timeOfDay()}, Ask Me Something!`,
-  } : null
+  // const welcomeMessage = user ? {
+  //   id: uuid(),
+  //   isUserInput: false,
+  //   text: getUserName(user.user.user_metadata) ? `Good ${timeOfDay()} ${getUserName(user.user.user_metadata)}, Ask Me Something!` : `Good ${timeOfDay()}, Ask Me Something!`,
+  // } : null
 
   async function getSession() {
     const { data } = await supabase.auth.getSession()
 
-    if (data && data.session) setUser(data.session)
+    if (data && data.session) {
+      setUser(data.session)
+      await getPrompts().then(prompts => {
+        if (prompts) {
+          setMessages(prompts)
+        }
+      })
+    }
   }
 
   async function getPrompts() {
@@ -46,7 +53,7 @@ export function Providers({ children, email, prompts, session }) {
       .from('messages')
       .select('*')
 
-    if (prompts && user) setMessages([welcomeMessage, ...prompts])
+    if (prompts) return prompts
   }
 
   const queryClient = new QueryClient()
@@ -60,16 +67,8 @@ export function Providers({ children, email, prompts, session }) {
     }
     if (!session) {
       getSession()
-      getPrompts()
     }
   }, [session])
-
-
-  useEffect(() => {
-    if (user) {
-      setMessages([welcomeMessage, ...prompts])
-    }
-  }, [user])
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -81,7 +80,10 @@ export function Providers({ children, email, prompts, session }) {
           </TooltipProvider>
           {children}
           {user ?
-            <ChatPopover prompts={messages} getPrompts={getPrompts} />
+            <ChatPopover
+              prompts={messages}
+              getPrompts={getPrompts}
+            />
             :
             <Login />
           }
