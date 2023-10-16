@@ -87,7 +87,7 @@ export default function Navigation({ email }: NavigationProps) {
           <ContactDialog
             email={email}
             children={
-              <div className={linkStyle}>
+              <div className={`${linkStyle} cursor-pointer`}>
                 <span className="sr-only">Contact</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
