@@ -9,3 +9,7 @@ export const MessageSchema = z.object({
 export const MessagesSchema = z.array(MessageSchema);
 
 export type Message = z.infer<typeof MessageSchema>;
+
+export const DbMessageSchema = z.object({
+  id: z.string().uuid()
+})
