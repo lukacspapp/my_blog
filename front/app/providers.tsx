@@ -15,9 +15,6 @@ import { useUserStore } from '../lib/store/userStore'
 import ChatPopover from '../components/Chat/ChatPopover'
 import Login from '../components/Auth/Login'
 import { useMessagesStore } from '../lib/store/messagesStore'
-import uuid from 'react-uuid'
-import { timeOfDay } from '../lib/date'
-import { getUserName } from '../lib/getUserName'
 
 
 export function Providers({ children, email, prompts, session }) {
@@ -28,12 +25,6 @@ export function Providers({ children, email, prompts, session }) {
   const supabase = createClientComponentClient()
   const messages = useMessagesStore(state => state.messages)
   const setMessages = useMessagesStore(state => state.setMessages)
-
-  // const welcomeMessage = user ? {
-  //   id: uuid(),
-  //   isUserInput: false,
-  //   text: getUserName(user.user.user_metadata) ? `Good ${timeOfDay()} ${getUserName(user.user.user_metadata)}, Ask Me Something!` : `Good ${timeOfDay()}, Ask Me Something!`,
-  // } : null
 
   async function getSession() {
     const { data } = await supabase.auth.getSession()

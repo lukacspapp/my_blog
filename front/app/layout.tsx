@@ -5,6 +5,7 @@ import '../styles/global.css';
 import { Providers } from './providers';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import { Message } from '../lib/validator/message';
 
 export const revalidate = 0;
 
@@ -18,14 +19,14 @@ export default async function RootLayout({
   const supabase = createServerComponentClient({cookies})
 
   const { email } = await getBio()
-  const { data, error: err } = await supabase.auth.getSession()
+  const { data } = await supabase.auth.getSession()
 
   if (data.session) {
-    const { data , error } = await supabase
+    const { data } = await supabase
     .from('messages')
     .select('*')
 
-    prompts = data
+    if (data) prompts = data
   }
 
   return (
