@@ -1,8 +1,6 @@
 'use client'
 
-import { HomeIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
-import { Clipboard, GitCommitIcon, Github, Linkedin, MailIcon, Youtube } from "lucide-react"
 import { usePlausible } from 'next-plausible'
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -10,7 +8,6 @@ import { linkStyle } from "../../styles/styles"
 import { ContactDialog } from "./Contact/ContactDialog"
 import ThemeToggle from "./ThemeToggle"
 
-const iconStyle = "h-5 w-5 cursor-pointer"
 const transitionStyle = "duration-300"
 
 type NavigationProps = {

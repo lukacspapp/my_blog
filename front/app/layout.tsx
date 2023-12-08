@@ -5,7 +5,6 @@ import '../styles/global.css';
 import { Providers } from './providers';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { Message } from '../lib/validator/message';
 
 export const revalidate = 0;
 
@@ -35,6 +34,7 @@ export default async function RootLayout({
         <PlausibleProvider
           domain="lukacsjpapp.com"
           trackFileDownloads={true}
+          taggedEvents={true}
         />
       </head>
       <body className="bg-gray-50 selection:bg-teal-300 selection:text-gray-900 dark:bg-gray-900 dark:selection:bg-rose-600 dark:selection:text-rose-50">
