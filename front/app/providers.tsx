@@ -70,14 +70,6 @@ export function Providers({ children, email, prompts, session }) {
             <Navigation email={email} />
           </TooltipProvider>
           {children}
-          {user ?
-            <ChatPopover
-              prompts={messages}
-              getPrompts={getPrompts}
-            />
-            :
-            <Login />
-          }
           <TooltipProvider>
             {footer}
           </TooltipProvider>
