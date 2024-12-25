@@ -44,7 +44,7 @@ export function na(dateString: string): string {
   const date = new Date(dateString);
   const day = date.getDate();
   const formattedDay = `${day}${getOrdinalSuffix(day)}`;
-  const month = date.toLocaleString('en-US', { month: 'long' });
+  const month = date.toLocaleString('en-US', { month: 'short' });
   const year = date.getFullYear();
 
   return `${month} ${formattedDay}, ${year}`;
