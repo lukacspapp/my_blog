@@ -21,7 +21,7 @@ export async function POST(req: Request) {
   })
 
   const payload = {
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-4o-mini',
     messages: outboundMessages,
     temperature: 1,
     top_p: 1,

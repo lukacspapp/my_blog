@@ -9,13 +9,33 @@ const nextConfig = {
   output: 'standalone',
 
   images: {
-    domains: [
-      "media.graphassets.com",
-      "avatars.githubusercontent.com",
-      "platform-lookaside.fbsbx.com",
-      "lh3.googleusercontent.com"
-    ]
-  }
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media.graphassets.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'platform-lookaside.fbsbx.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 
 }
 

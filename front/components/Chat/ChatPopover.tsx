@@ -26,7 +26,7 @@ export default function ChatPopover({ prompts, getPrompts }) {
           className='rounded-full'
         />
       }
-      <span className={cn(`top-0 left-9 absolute  w-3.5 h-3.5 animate-pulse ${isPrompsLeft ? 'bg-red-500' : "bg-green-400" } border-2 border-white dark:border-gray-800 rounded-full`)}></span>
+      <span className={cn(`top-0 left-9 absolute  w-3.5 h-3.5 animate-pulse ${isPrompsLeft ? 'bg-red-500' : "bg-green-400"} border-2 border-white dark:border-gray-800 rounded-full`)}></span>
     </div>
 
   return (
@@ -38,14 +38,14 @@ export default function ChatPopover({ prompts, getPrompts }) {
         <button
           className="w-12 h-12 p-[3px] text-gray-500 dark:text-gray-400 overflow-auto"
         >
-            {avatar}
+          {avatar}
         </button>
       </PopoverTrigger>
       <PopoverContent
         className="bg-white"
       >
         <div className="flex flex-col h-80">
-          <ChatHeader prompts={prompts}/>
+          <ChatHeader prompts={prompts} />
           <ChatMessages className="px-2 py-3 flex-1" prompts={prompts} />
           {!isPrompsLeft ? <ChatInput getPrompts={getPrompts} prompts={prompts} /> : null}
         </div>

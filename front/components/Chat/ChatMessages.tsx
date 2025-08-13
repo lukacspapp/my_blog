@@ -9,7 +9,7 @@ interface ChatMessagesProps extends React.HTMLAttributes<HTMLDivElement> {
   prompts: any
 }
 
-export default function ChatMessages({className, prompts, ...props}: ChatMessagesProps) {
+export default function ChatMessages({ className, prompts, ...props }: ChatMessagesProps) {
 
   const messages = useMessagesStore(state => state.messages)
   const inverseMessages = [...messages].reverse()

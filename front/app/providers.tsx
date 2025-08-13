@@ -28,15 +28,15 @@ export function Providers({ children, email, prompts, session }) {
   const messages = useMessagesStore(state => state.messages)
   const setMessages = useMessagesStore(state => state.setMessages)
 
-  const welcomeMessage = user ? {
-    id: uuid(),
-    isUserInput: false,
-    text: getUserName(user.user.user_metadata) ? `Good ${timeOfDay()} ${getUserName(user.user.user_metadata)}, Ask Me Something!` : `Good ${timeOfDay()}, Ask Me Something!`,
-  } : null
+  // const welcomeMessage = user ? {
+  //   id: uuid(),
+  //   isUserInput: false,
+  //   text: getUserName(user.user.user_metadata) ? `Good ${timeOfDay()} ${getUserName(user.user.user_metadata)}, Ask Me Something!` : `Good ${timeOfDay()}, Ask Me Something!`,
+  // } : null
 
-  function getUserName(userMetadata: any) {
-    return userMetadata?.full_name || userMetadata?.name || userMetadata?.email || undefined;
-  }
+  // function getUserName(userMetadata: any) {
+  //   return userMetadata?.full_name || userMetadata?.name || userMetadata?.email || undefined;
+  // }
   async function getSession() {
     const { data } = await supabase.auth.getSession()
     console.log("Session data:", data);
@@ -72,7 +72,6 @@ export function Providers({ children, email, prompts, session }) {
       getSession()
     }
   }, [session])
-  console.log(welcomeMessage);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -85,7 +84,7 @@ export function Providers({ children, email, prompts, session }) {
           {children}
           {user ?
             <ChatPopover
-              prompts={[messages]}
+              prompts={messages}
               getPrompts={getPrompts}
             />
             :

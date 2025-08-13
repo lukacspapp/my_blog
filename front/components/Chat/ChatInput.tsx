@@ -20,6 +20,7 @@ interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function ChatInput({ className, getPrompts, prompts, ...props }: ChatInputProps) {
 
   const user = useUserStore(state => state.user)
+
   const addMessage = useMessagesStore(state => state.addMessage)
   const removeMessage = useMessagesStore(state => state.removeMessage)
   const updateMessage = useMessagesStore(state => state.updateMessage)
@@ -43,17 +44,17 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
 
   async function addChatPromptToDb(message: Message) {
 
-    const { id, isUserInput, text} = message;
+    const { id, isUserInput, text } = message;
 
     const { data, error } = await supabase
-    .from('messages')
-    .insert({
-      id: id,
-      created_at: new Date(),
-      isUserInput: isUserInput,
-      text: text,
-      user_id: user?.user.id
-    })
+      .from('messages')
+      .insert({
+        id: id,
+        created_at: new Date(),
+        isUserInput: isUserInput,
+        text: text,
+        user_id: user?.user.id
+      })
 
   }
 
@@ -126,7 +127,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
         textAreaRef.current?.focus()
       }, 10)
     },
-    onError: (_,message) => {
+    onError: (_, message) => {
       toast.error('Something went wrong')
       removeMessage(message.id)
       textAreaRef.current?.focus()
