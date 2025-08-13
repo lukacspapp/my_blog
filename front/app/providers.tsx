@@ -15,6 +15,8 @@ import { useUserStore } from '../lib/store/userStore'
 import ChatPopover from '../components/Chat/ChatPopover'
 import Login from '../components/Auth/Login'
 import { useMessagesStore } from '../lib/store/messagesStore'
+import uuid from 'react-uuid'
+import { timeOfDay } from '../lib/date'
 
 
 export function Providers({ children, email, prompts, session }) {
@@ -26,8 +28,18 @@ export function Providers({ children, email, prompts, session }) {
   const messages = useMessagesStore(state => state.messages)
   const setMessages = useMessagesStore(state => state.setMessages)
 
+  const welcomeMessage = user ? {
+    id: uuid(),
+    isUserInput: false,
+    text: getUserName(user.user.user_metadata) ? `Good ${timeOfDay()} ${getUserName(user.user.user_metadata)}, Ask Me Something!` : `Good ${timeOfDay()}, Ask Me Something!`,
+  } : null
+
+  function getUserName(userMetadata: any) {
+    return userMetadata?.full_name || userMetadata?.name || userMetadata?.email || undefined;
+  }
   async function getSession() {
     const { data } = await supabase.auth.getSession()
+    console.log("Session data:", data);
 
     if (data && data.session) {
       setUser(data.session)
@@ -54,12 +66,13 @@ export function Providers({ children, email, prompts, session }) {
   useEffect(() => {
     if (session) {
       setUser(session)
-      setMessages(prompts)
+      setMessages([prompts])
     }
     if (!session) {
       getSession()
     }
   }, [session])
+  console.log(welcomeMessage);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -70,6 +83,14 @@ export function Providers({ children, email, prompts, session }) {
             <Navigation email={email} />
           </TooltipProvider>
           {children}
+          {user ?
+            <ChatPopover
+              prompts={[messages]}
+              getPrompts={getPrompts}
+            />
+            :
+            <Login />
+          }
           <TooltipProvider>
             {footer}
           </TooltipProvider>
