@@ -45,6 +45,8 @@ export function Providers({ children, email, prompts, session }) {
       setUser(data.session)
       await getPrompts().then(prompts => {
         if (prompts) {
+          console.log('Setting messages from prompts:', prompts);
+
           setMessages(prompts)
         }
       })
@@ -62,11 +64,13 @@ export function Providers({ children, email, prompts, session }) {
   const queryClient = new QueryClient()
 
   const footer = router === '/' ? null : <Footer />
-
+  console.log('====================================');
+  console.log(messages);
+  console.log('====================================');
   useEffect(() => {
     if (session) {
       setUser(session)
-      setMessages([prompts])
+      setMessages(prompts)
     }
     if (!session) {
       getSession()

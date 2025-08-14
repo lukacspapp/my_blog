@@ -33,7 +33,7 @@ export default function MarkdownLite({ text }: { text: string }) {
     lastIndex = matchEnd
   }
 
-  if (text && (lastIndex < text.length)) {
+  if ((lastIndex < text.length)) {
     console.log(text);
 
     parts.push(text.slice(lastIndex))

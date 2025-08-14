@@ -45,6 +45,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
   async function addChatPromptToDb(message: Message) {
 
     const { id, isUserInput, text } = message;
+    console.log("Adding chat prompt to DB:", message);
 
     const { data, error } = await supabase
       .from('messages')
@@ -55,6 +56,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
         text: text,
         user_id: user?.user.id
       })
+    console.log('sss', data);
 
   }
 
