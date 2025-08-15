@@ -17,6 +17,7 @@ import Login from '../components/Auth/Login'
 import { useMessagesStore } from '../lib/store/messagesStore'
 import uuid from 'react-uuid'
 import { timeOfDay } from '../lib/date'
+import { getChatMessages } from '../lib/services'
 
 
 export function Providers({ children, email, prompts, session }) {
@@ -43,7 +44,7 @@ export function Providers({ children, email, prompts, session }) {
 
     if (data && data.session) {
       setUser(data.session)
-      await getPrompts().then(prompts => {
+      await getChatMessages(supabase).then(prompts => {
         if (prompts) {
           console.log('Setting messages from prompts:', prompts);
 

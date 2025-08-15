@@ -9,21 +9,6 @@ type JournalLayoutProps = {
 
 export default function JournalLayout({ content }: JournalLayoutProps) {
 
-
-  function wrapImagesWithFramerMotion(html: string) {
-    const images = html.match(/<img[^>]+>/g);
-
-    if (images) {
-      images.forEach((img) => {
-      });
-      return html;
-    }
-  }
-
-  wrapImagesWithFramerMotion(content);
-
-
-
   return (
     <article className="prose prose-neutral prose-headings:font-medium prose-a:no-underline prose-pre:rounded-lg prose-ul:my-5 prose-img:rounded-xl dark:prose-invert">
       <Head>
@@ -33,7 +18,7 @@ export default function JournalLayout({ content }: JournalLayoutProps) {
         />
       </Head>
       <div className="fixed top-0 -ml-6 h-full border-l-2 border-dotted border-divider" />
-        {ReactHtmlParser(content)}
+      {ReactHtmlParser(content)}
     </article>
   )
 }

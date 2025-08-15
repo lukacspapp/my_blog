@@ -59,9 +59,6 @@ export default function LinkPreview({
         >
           {name}
           {showExternalIndicator && " ↗"}
-
-          {/*   Preload image */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={imageSrc} alt="" aria-hidden onLoad={() => setIsLoading(false)} className="hidden" />
         </a>
       </Tooltip.Trigger>
@@ -73,7 +70,6 @@ export default function LinkPreview({
         >
           {isLoading && <Shimmer h={142} w={238} theme={resolvedTheme} />}
 
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={imageSrc}
             alt={alt}

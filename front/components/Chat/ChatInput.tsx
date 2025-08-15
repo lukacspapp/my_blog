@@ -11,6 +11,7 @@ import { Message } from '../../lib/validator/message';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useUserStore } from '../../lib/store/userStore';
 import { useMessagesStore } from '../../lib/store/messagesStore';
+import { addMessageToDb } from '../../lib/services';
 
 interface ChatInputProps extends React.HTMLAttributes<HTMLDivElement> {
   getPrompts: () => void,
@@ -42,24 +43,6 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
     }
   };
 
-  async function addChatPromptToDb(message: Message) {
-
-    const { id, isUserInput, text } = message;
-    console.log("Adding chat prompt to DB:", message);
-
-    const { data, error } = await supabase
-      .from('messages')
-      .insert({
-        id: id,
-        created_at: new Date(),
-        isUserInput: isUserInput,
-        text: text,
-        user_id: user?.user.id
-      })
-    console.log('sss', data);
-
-  }
-
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [input, setInput] = useState<string>('')
 
@@ -79,7 +62,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
     },
     onMutate: (message: Message) => {
       addMessage(message)
-      addChatPromptToDb(message)
+      addMessageToDb(supabase, message, user.user.id)
     },
     onSuccess: async (stream) => {
 
@@ -121,7 +104,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
         text: finishedResponse,
       }
 
-      addChatPromptToDb(message)
+      addMessageToDb(supabase, message, user.user.id)
       setInput('')
       setIsMessageUpdating(false)
 
@@ -159,7 +142,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
           className='peer disabled:opacity-50 pr-14 resize-none block w-full border-0 bg-zinc-100 py-1.5 text-gray-900 focus:ring-0 text-sm sm:leading-6'
         />
         <div className='absolute inset-y-0 right-0 flex py-1.5 pr-1.5'>
-          <kbd className='inline-flex items-center rounded border bg-white border-gray-200 px-1 font-sans text-xs text-gray-400'>
+          <kbd className='inline-flex items-center rounded border bg-gray-400 border-gray-200 px-1 font-sans text-xs text-gray-400'>
             {isLoading ? (
               <Loader2 className='w-3 h-3 animate-spin' />
             ) : (
@@ -171,7 +154,7 @@ export default function ChatInput({ className, getPrompts, prompts, ...props }: 
           </kbd>
         </div>
         <div
-          className='absolute inset-x-0 bottom-0 border-t border-gray-300 peer-focus:border-t-2 peer-focus:border-[#fd9090] dark:peer-focus:border-[#382173]'
+          className='absolute inset-x-0 bottom-0 border-t border-gray-300 peer-focus:border-t-2 peer-focus:border-[#fd9090] dark:peer-focus:border-[#382173] peer-focus:bg-gray-100'
           aria-hidden='true'
         />
       </div>

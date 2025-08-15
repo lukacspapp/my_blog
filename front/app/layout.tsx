@@ -1,10 +1,11 @@
 import PlausibleProvider from 'next-plausible';
 import "tailwindcss/tailwind.css";
-import { getBio } from "../lib/services";
+import { getBio, getChatMessages } from "../lib/services";
 import '../styles/global.css';
 import { Providers } from './providers';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import { Prompt } from '../types/chat';
 
 export const revalidate = 0;
 
@@ -14,12 +15,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  interface Prompt {
-    text: string;
-    id: string;
-    isUserInput: boolean;
-  }
-
   let prompts: Prompt[] = []
   const supabase = createServerComponentClient({ cookies })
 
@@ -27,11 +22,11 @@ export default async function RootLayout({
   const { data } = await supabase.auth.getSession()
 
   if (data.session) {
-    const { data } = await supabase.from('messages').select('*') as { data: Prompt[] }
+    const chatMessages = await getChatMessages(supabase);
+    console.log('data', data);
 
-    if (data) prompts = data
+    if (chatMessages) prompts = chatMessages
   }
-  console.log('Prompts:', prompts);
 
   return (
     <html suppressHydrationWarning lang="en" className='nightwind h-full'>

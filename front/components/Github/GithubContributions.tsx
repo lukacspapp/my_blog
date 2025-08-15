@@ -36,12 +36,9 @@ export default function GithubContributions() {
 
   const { data, error, isLoading } = useSWR<UserInformationType, Error>(searchParam, fetcher)
 
-  let show = false
-
   const insights = data?.insights || DEFAULT_INSIGHTS
   const collections = data?.collections || []
 
-  // Update router based on input
   function handleInput() {
     const username = usernameRef.current?.value || ""
 
@@ -98,7 +95,6 @@ export default function GithubContributions() {
             placeholder="username"
             ref={usernameRef}
           />
-          {/* Toast that displays the conntributions */}
           <button className="absolute inset-y-0 right-0 p-3 flex items-center" onClick={() => handleInput()}>
             {!isLoading ? (
               <MagnifyingGlassCircleIcon className="h-8 w-8 text-gray-400 dark:text-gray-500" aria-hidden="true" />

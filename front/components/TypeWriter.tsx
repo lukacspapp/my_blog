@@ -1,25 +1,24 @@
 'use client'
 
-import { Cursor, useTypewriter } from 'react-simple-typewriter'
+import { ReactTyped } from 'react-typed'
 
 type TypeWriterProps = {
   vocations: string
 }
 
 export default function TypeWriter({ vocations }: TypeWriterProps) {
-
-  const [text, isDone] = useTypewriter({
-    words: vocations.split(', '),
-    loop: true,
-    typeSpeed: 70,
-    deleteSpeed: 50,
-    delaySpeed: 2000,
-  })
-
   return (
     <>
-      <span>{text}.</span>
-      {isDone && <Cursor cursorColor='#ef4444' />}
+      <ReactTyped
+        strings={vocations.split(', ').map(vocation => `${vocation}.`)}
+        loop={true}
+        typeSpeed={70}
+        backSpeed={50}
+        backDelay={2000}
+        showCursor={true}
+        cursorChar="|"
+        style={{ color: '#ef4444' }}
+      />
     </>
   )
 }
