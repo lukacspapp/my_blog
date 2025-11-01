@@ -32,7 +32,6 @@ export default function BrowserFrame({ children, href, title, containerClassName
 
   return (
     <>
-
       <Transition
         show={show}
         enter={clsx(transition)}
@@ -40,7 +39,9 @@ export default function BrowserFrame({ children, href, title, containerClassName
         enterTo="opacity-100 translate-y-0"
       >
 
-        <Link href={href} passHref className={clsx(wrapperStyle, "cursor-ne-resize hover:scale-[1.03]", transition)}>
+        <Link
+          href={href}
+          className={clsx(wrapperStyle, "cursor-ne-resize hover:scale-[1.03]", transition)}>
           <div
             className={clsx(
               "relative flex h-12 w-full flex-row items-center space-x-2 px-4",
@@ -66,5 +67,5 @@ export default function BrowserFrame({ children, href, title, containerClassName
         </Link>
       </Transition>
     </>
-  )
+  );
 }
