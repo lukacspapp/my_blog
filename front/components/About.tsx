@@ -5,7 +5,6 @@ import clsx from "clsx"
 import { useEffect, useState } from "react"
 import AnimatedDescription from "./Description/AnimatedDescription"
 import TypeWriter from "./TypeWriter"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { useUserStore } from "../lib/store/userStore"
 
 const darkGradient = "bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-transparent bg-clip-text";

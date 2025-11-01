@@ -3,8 +3,7 @@ import "tailwindcss/tailwind.css";
 import { getBio } from "../lib/services";
 import '../styles/global.css';
 import { Providers } from './providers';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createSupabaseServerClient } from '../lib/supabase/server';
 
 export const revalidate = 0;
 
@@ -15,15 +14,15 @@ export default async function RootLayout({
 }) {
 
   let prompts: null | any = []
-  const supabase = createServerComponentClient({cookies})
+  const supabase = await createSupabaseServerClient()
 
   const { email } = await getBio()
-  const { data } = await supabase.auth.getSession()
+  const { data: { session } } = await supabase.auth.getSession()
 
-  if (data.session) {
+  if (session) {
     const { data } = await supabase
-    .from('messages')
-    .select('*')
+      .from('messages')
+      .select('*')
 
     if (data) prompts = data
   }
@@ -41,7 +40,7 @@ export default async function RootLayout({
         <Providers
           email={email}
           prompts={prompts}
-          session={data.session}
+          session={session}
         >
           {children}
         </Providers>

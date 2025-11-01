@@ -9,12 +9,12 @@ import "tailwindcss/tailwind.css"
 import Footer from '../components/Footer'
 import Gradient from '../components/Gradient'
 import Navigation from '../components/Navigation/Navigation'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect } from 'react'
 import { useUserStore } from '../lib/store/userStore'
 import ChatPopover from '../components/Chat/ChatPopover'
 import Login from '../components/Auth/Login'
 import { useMessagesStore } from '../lib/store/messagesStore'
+import { createSupabaseClient } from '../lib/supabase/client'
 
 
 export function Providers({ children, email, prompts, session }) {
@@ -22,7 +22,7 @@ export function Providers({ children, email, prompts, session }) {
   const router = usePathname()
   const user = useUserStore(state => state.user)
   const setUser = useUserStore(state => state.setUser)
-  const supabase = createClientComponentClient()
+  const supabase = createSupabaseClient()
   const messages = useMessagesStore(state => state.messages)
   const setMessages = useMessagesStore(state => state.setMessages)
 
