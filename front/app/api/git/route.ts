@@ -1,9 +1,7 @@
 import { normalizeUtc } from "../../../lib/date"
 import { ContributionsCollectionType, UserInformationType } from "../../../types/githubTypes"
+import { GITHUB_API_URL, GITHUB_HEADER } from "./config"
 
-const api = "https://api.github.com/graphql"
-const ghToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN
-const ghHeaders = { Authorization: `bearer ${ghToken}` }
 
 async function fetchYearlyContributions(username: string | string[], year: number): Promise<ContributionsCollectionType> {
   const body = {
@@ -26,10 +24,10 @@ async function fetchYearlyContributions(username: string | string[], year: numbe
       }`,
   }
 
-  const response = await fetch(api, {
+  const response = await fetch(GITHUB_API_URL, {
     method: "POST",
     body: JSON.stringify(body),
-    headers: ghHeaders,
+    headers: GITHUB_HEADER,
   })
 
   const data = (await response.json()) as ContributionsCollectionType
@@ -63,10 +61,10 @@ async function getGithubContributions(username: string): Promise<UserInformation
   }
 
   // Fetch contributions in the last year
-  const response = await fetch(api, {
+  const response = await fetch(GITHUB_API_URL, {
     method: "POST",
     body: JSON.stringify(body),
-    headers: ghHeaders,
+    headers: GITHUB_HEADER,
   })
 
   const collections: ContributionsCollectionType[] = []
