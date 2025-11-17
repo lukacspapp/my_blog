@@ -39,46 +39,39 @@ export function ContactDialog({ children, email }: ContactDialogProps): JSX.Elem
               <Dialog.Title className="text-black text-lg font-semibold dark:text-white flex-row justify-between p-4">
                 Contact
               </Dialog.Title>
-              <Dialog.Description
-                className="text-gray-400 p-5 dark:text-gray-400 mt-2 block sm:flex justify-between items-center">
-                <div
-                  className="flex flex-col sm:flex-wrap mb-4"
-                >
-                  <p className='text-[18px] font-semibold text-black dark:text-white'>
-                    Email
-                  </p>
-                  <p className='text-md text-gray-500 dark:text-gray-400'>
-                    papplukacs@hotmail.com
-                  </p>
-                </div>
-                <div
-                  className="flex flex-row items-start space-x-2"
-                >
-                  <div
-                    className="border-[1px] mb-2 rounded-md border-gray-500 dark:border-gray-600"
-                  >
-                    <a
-                      href="mailto:papplukacs@hotmail.com"
-                      className=" flex dark:border-[#282828] rounded-[3px] pl-3 pt-2 pr-2 pb-2 transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600"
-                      rel="noreferrer noopener"
-                      target="_blank"
-                    >
-                      <p className='mr-1 text-md text-black dark:text-white'>Compose</p>
-                      <PencilSquareIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                    </a>
+              <Dialog.Description asChild>
+                <div className="text-gray-400 p-5 dark:text-gray-400 mt-2 block sm:flex justify-between items-center">
+                  <div className="flex flex-col sm:flex-wrap mb-4">
+                    <span className='text-[18px] font-semibold text-black dark:text-white'>
+                      Email
+                    </span>
+                    <span className='text-md text-gray-500 dark:text-gray-400'>
+                      {email}
+                    </span>
                   </div>
-                  <div
-                    className="border-[1px] mb-2 rounded-md border-gray-500 dark:border-gray-600"
-                  >
-                    <button
-                      onClick={handleCopy}
-                      className="flex cursor-pointer dark:border-[#282828] rounded-[3px] pl-3 pt-2 pr-2 pb-2 transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600"
-                    >
-                      <p className='mr-1 text-md text-black dark:text-white'>
-                        Copy
-                      </p>
-                      <DocumentDuplicateIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                    </button>
+                  <div className="flex flex-row items-start space-x-2">
+                    <div className="border-[1px] mb-2 rounded-md border-gray-500 dark:border-gray-600">
+                      <a
+                        href={`mailto:${email}`}
+                        className="flex dark:border-[#282828] rounded-[3px] pl-3 pt-2 pr-2 pb-2 transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600"
+                        rel="noreferrer noopener"
+                        target="_blank"
+                      >
+                        <span className='mr-1 text-md text-black dark:text-white'>Compose</span>
+                        <PencilSquareIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                      </a>
+                    </div>
+                    <div className="border-[1px] mb-2 rounded-md border-gray-500 dark:border-gray-600">
+                      <button
+                        onClick={handleCopy}
+                        className="flex cursor-pointer dark:border-[#282828] rounded-[3px] pl-3 pt-2 pr-2 pb-2 transition-colors duration-300 ease-in-out hover:bg-gray-300 dark:hover:bg-gray-600"
+                      >
+                        <span className='mr-1 text-md text-black dark:text-white'>
+                          Copy
+                        </span>
+                        <DocumentDuplicateIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </Dialog.Description>
