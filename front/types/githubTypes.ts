@@ -1,4 +1,3 @@
-// Github Contributions
 export interface ContributionWeekType {
   color: string
   contributionCount: number

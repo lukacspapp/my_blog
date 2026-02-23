@@ -3,15 +3,15 @@
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Fragment, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useLayoutEffect, useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import useSWR from "swr";
-import { DEFAULT_USERNAME } from "../../lib/constant";
 import { UserInformationType, UserInsightsType } from "../../types/githubTypes";
 import Description from "../Description/Description";
 import TransitionPage from "../TransitionPage";
 import InsightsGroup from "./InsightsGroup";
 import YearlyChart from "./YearlyChart";
+import { DEFAULT_GITHUB_USERNAME } from "../../app/api/git/config";
 
 const title = "Github Contributions"
 const description = "visualize, analyze and contrast your commits"
@@ -63,8 +63,8 @@ export default function GithubContributions() {
 
     // fallback to default username
     if (searchParam === null) {
-      usernameInput.value = DEFAULT_USERNAME
-      router.push(`?search=${DEFAULT_USERNAME}`)
+      usernameInput.value = DEFAULT_GITHUB_USERNAME
+      router.push(`?search=${DEFAULT_GITHUB_USERNAME}`)
     } else {
       usernameInput.value = String(searchParam)
     }
@@ -98,7 +98,6 @@ export default function GithubContributions() {
             placeholder="username"
             ref={usernameRef}
           />
-          {/* Toast that displays the conntributions */}
           <button className="absolute inset-y-0 right-0 p-3 flex items-center" onClick={() => handleInput()}>
             {!isLoading ? (
               <MagnifyingGlassCircleIcon className="h-8 w-8 text-gray-400 dark:text-gray-500" aria-hidden="true" />

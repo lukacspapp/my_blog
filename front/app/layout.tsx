@@ -1,9 +1,9 @@
-import PlausibleProvider from 'next-plausible';
 import "tailwindcss/tailwind.css";
 import { getBio } from "../lib/services";
 import '../styles/global.css';
 import { Providers } from './providers';
 import { createSupabaseServerClient } from '../lib/supabase/server';
+import { Message } from '../lib/validator/message';
 
 export const revalidate = 0;
 
@@ -13,7 +13,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  let prompts: null | any = []
+  let prompts: null | Message[] = []
   const supabase = await createSupabaseServerClient()
 
   const { email } = await getBio()
@@ -29,13 +29,6 @@ export default async function RootLayout({
 
   return (
     <html suppressHydrationWarning lang="en" className='nightwind h-full'>
-      <head>
-        <PlausibleProvider
-          domain="lukacsjpapp.com"
-          trackFileDownloads={true}
-          taggedEvents={true}
-        />
-      </head>
       <body className="bg-gray-50 selection:bg-teal-300 selection:text-gray-900 dark:bg-gray-900 dark:selection:bg-rose-600 dark:selection:text-rose-50">
         <Providers
           email={email}

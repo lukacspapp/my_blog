@@ -1,7 +1,6 @@
 'use client'
 
 import clsx from "clsx"
-import { usePlausible } from 'next-plausible'
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { linkStyle } from "../../styles/styles"
@@ -15,8 +14,6 @@ type NavigationProps = {
 }
 
 export default function Navigation({ email }: NavigationProps) {
-
-  const plausible = usePlausible()
 
   const [, setMounted] = useState(false)
   const [showBlur, setShowBlur] = useState(false)
@@ -51,7 +48,6 @@ export default function Navigation({ email }: NavigationProps) {
       <div className="body">
         <nav className="flex items-center justify-between space-x-3 py-5">
           <Link
-            onClick={() => plausible('Home Link Clicked')}
             href="/"
             className={linkStyle}
           >
@@ -64,7 +60,6 @@ export default function Navigation({ email }: NavigationProps) {
           <div className="flex-grow" />
 
           <Link
-            onClick={() => plausible('Contributions Link Clicked')}
             href="/contributions" className={linkStyle}
           >
             <span className="sr-only">Contributions</span>
@@ -73,7 +68,6 @@ export default function Navigation({ email }: NavigationProps) {
             </svg>
           </Link>
           <Link
-            onClick={() => plausible('Projects Link Clicked')}
             href="/projects" className={linkStyle}
           >
             <span className="sr-only">Projects</span>
@@ -100,7 +94,6 @@ export default function Navigation({ email }: NavigationProps) {
           <div className="divider-y h-5" />
 
           <a
-            onClick={() => plausible('LinkedIn Link Clicked')}
             className={clsx(linkStyle, "cursor-ne-resize")}
             target="_blank"
             rel="noopener noreferrer"
@@ -112,7 +105,6 @@ export default function Navigation({ email }: NavigationProps) {
             </svg>
           </a>
           <a
-            onClick={() => plausible('GitHub Link Clicked')}
             className={clsx(linkStyle, "cursor-ne-resize")}
             target="_blank"
             rel="noopener noreferrer"
@@ -124,7 +116,6 @@ export default function Navigation({ email }: NavigationProps) {
             </svg>
           </a>
           <a
-            onClick={() => plausible('Youtube Link Clicked')}
             className={clsx(linkStyle, "cursor-ne-resize")}
             target="_blank"
             rel="noopener noreferrer"
